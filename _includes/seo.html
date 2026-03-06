@@ -1,0 +1,60 @@
+{% assign computed_title = site.title %}
+{% if page.title %}
+  {% assign computed_title = page.title | append: ' | ' | append: site.title %}
+{% endif %}
+
+{% assign raw_description = page.description | default: page.excerpt | default: site.description %}
+{% assign computed_description = raw_description | strip_html | strip_newlines | replace: '  ', ' ' | strip %}
+
+{% assign canonical_url = page.url | replace: 'index.html', '' | absolute_url %}
+
+{% assign og_type = page.og_type %}
+{% if og_type == nil %}
+  {% if page.layout == 'post' or page.collection == 'posts' %}
+    {% assign og_type = 'article' %}
+  {% else %}
+    {% assign og_type = 'website' %}
+  {% endif %}
+{% endif %}
+
+{% assign meta_image = page.image | default: site.og_image %}
+{% assign image_prefix = meta_image | slice: 0, 4 %}
+{% if meta_image and image_prefix != 'http' %}
+  {% assign meta_image = meta_image | absolute_url %}
+{% endif %}
+
+<title>{{ computed_title | escape }}</title>
+<meta name="description" content="{{ computed_description | escape }}">
+<link rel="canonical" href="{{ canonical_url }}">
+
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:locale" content="{{ site.locale | default: 'en_US' }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:title" content="{{ computed_title | escape }}">
+<meta property="og:description" content="{{ computed_description | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+{% if meta_image %}
+  <meta property="og:image" content="{{ meta_image }}">
+{% endif %}
+
+<meta name="twitter:card" content="{% if meta_image %}summary_large_image{% else %}summary{% endif %}">
+<meta name="twitter:title" content="{{ computed_title | escape }}">
+<meta name="twitter:description" content="{{ computed_description | escape }}">
+{% if site.twitter_username %}
+  <meta name="twitter:site" content="@{{ site.twitter_username | replace: '@', '' }}">
+{% endif %}
+{% if meta_image %}
+  <meta name="twitter:image" content="{{ meta_image }}">
+{% endif %}
+
+{% if page.layout == 'post' or page.collection == 'posts' %}
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+  {% if page.last_modified_at %}
+    <meta property="article:modified_time" content="{{ page.last_modified_at | date_to_xmlschema }}">
+  {% endif %}
+  {% if page.tags %}
+    {% for tag in page.tags %}
+      <meta property="article:tag" content="{{ tag | escape }}">
+    {% endfor %}
+  {% endif %}
+{% endif %}
