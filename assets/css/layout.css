@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  background: radial-gradient(circle at 85% 10%, #14324d 0%, var(--bg) 42%);
+  color: var(--text);
+  line-height: var(--leading-regular);
+}
+
+.container {
+  width: min(var(--max-width), 92vw);
+  margin: 0 auto;
+}
+
+main {
+  padding: var(--space-10) 0 var(--space-11);
+}
+
+.page-intro {
+  margin-bottom: var(--space-8);
+}
+
+.page-intro h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.page-intro-text {
+  margin: var(--space-2) 0 0;
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+  }
+}
