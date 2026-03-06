@@ -1,3 +1,40 @@
+- id: ai-document-processing-saas
+  title: "AI OCR and Document Processing SaaS"
+  period: "2022 - 2024"
+  summary: "AI-powered document-processing SaaS with OCR extraction, classification, and retrieval-augmented question answering."
+  stack:
+    - Python
+    - Django
+    - OCR
+    - LLMs
+    - RAG
+  linkedin: "https://www.linkedin.com/in/reiidoda/"
+  badge: "From CV"
+
+- id: warehouse-route-optimization-platform
+  title: "Warehouse Route Optimization Platform"
+  period: "2021 - 2022"
+  summary: "Warehouse graph-optimization and picking platform with gRPC services, FEFO logic, and real-time event streaming."
+  stack:
+    - C and C++
+    - gRPC
+    - Kafka
+    - PostgreSQL
+  linkedin: "https://www.linkedin.com/in/reiidoda/"
+  badge: "From CV"
+
+- id: edge-vision-robotic-qc
+  title: "Edge Computer Vision and Robotics QC"
+  period: "2020 - 2021"
+  summary: "Edge CV quality-control system on Raspberry Pi with robotic rejection flow and production deployment."
+  stack:
+    - Python
+    - OpenCV
+    - Raspberry Pi
+    - Arduino
+  linkedin: "https://www.linkedin.com/in/reiidoda/"
+  badge: "From CV"
+
 - id: occamo
   title: "OccamO"
   period: "2025 - Present"
@@ -7,7 +44,7 @@
     - GitHub Actions
     - CLI Tooling
   github: "https://github.com/reiidoda/OccamO"
-  badge: "Featured"
+  badge: "GitHub"
 
 - id: thinking-in-code
   title: "thinking_in_code"
@@ -18,16 +55,7 @@
     - Architecture
     - Programming Languages
   github: "https://github.com/reiidoda/thinking_in_code"
-
-- id: examen
-  title: "examen"
-  period: "2024 - 2025"
-  summary: "Applied software experimentation around product structure, implementation workflows, and iteration speed."
-  stack:
-    - Python
-    - Web Development
-    - Data Handling
-  github: "https://github.com/reiidoda/examen"
+  badge: "GitHub"
 
 - id: resume
   title: "resume"
@@ -39,3 +67,4 @@
     - Documentation
   github: "https://github.com/reiidoda/resume"
   demo: "https://reiidoda.github.io/resume/"
+  badge: "GitHub"

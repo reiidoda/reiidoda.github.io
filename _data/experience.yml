@@ -1,17 +1,3 @@
-- id: ai-automation-engineering
-  type: work
-  title: "AI and Automation Engineering"
-  period: "Mar 2026 - Present"
-  sort_date: 2026-03-01
-  category: "Professional Experience"
-  summary: "Design and delivery of AI-assisted workflows, automation pipelines, and integrations for operational use cases."
-  technologies:
-    - AI Agents
-    - Workflow Automation
-    - API Integrations
-  links:
-    resume: "https://reiidoda.github.io/resume/"
-
 - id: occamo
   type: project
   title: "OccamO"
@@ -25,6 +11,22 @@
     - CLI Tooling
   links:
     github: "https://github.com/reiidoda/OccamO"
+
+- id: movenpick-chief-engineer
+  type: work
+  title: "Movenpick Hotel (Accor Group) - Chief Engineer"
+  period: "Jul 2023 - Jun 2025"
+  sort_date: 2025-06-01
+  category: "Hospitality Engineering / Smart Building"
+  summary: "Led engineering operations and delivered smart-building software integrations across BMS/EMS, HVAC, generators/UPS, solar monitoring, access control, CCTV, and centralized alerting workflows."
+  technologies:
+    - Smart Building Integration
+    - BMS and EMS
+    - Access Control
+    - CCTV
+    - OT and IT Security
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
 
 - id: thinking-in-code
   type: project
@@ -40,6 +42,20 @@
   links:
     github: "https://github.com/reiidoda/thinking_in_code"
 
+- id: eg-global-ambassador
+  type: achievement
+  title: "EG Global - Ambassador"
+  period: "Dec 2021 - Jan 2025"
+  sort_date: 2025-01-01
+  category: "Volunteering"
+  summary: "Supported non-profits and social entrepreneurs through coordination, promotion, and community engagement initiatives."
+  technologies:
+    - Community Engagement
+    - Coordination
+    - Communication
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
 - id: examen
   type: project
   title: "examen"
@@ -54,26 +70,126 @@
   links:
     github: "https://github.com/reiidoda/examen"
 
-- id: neuroscience-ai-focus
-  type: achievement
-  title: "AI and Neuroscience Direction"
-  period: "2023 - Present"
-  sort_date: 2023-09-01
-  category: "Research Direction"
-  summary: "Focused trajectory on intelligent systems and neuroscience-inspired thinking for software and product development."
+- id: upnova-lead-software-engineer
+  type: work
+  title: "Upnova Group S.r.l - Lead Software Engineer"
+  period: "Oct 2022 - Aug 2024"
+  sort_date: 2024-08-01
+  category: "AI / SaaS Engineering"
+  summary: "Built and shipped an AI-powered document-processing SaaS with secure APIs, OCR pipelines, LLM features for classification and extraction, and RAG workflows for grounded Q&A over document corpora."
   technologies:
-    - Machine Learning
-    - Cognitive Systems
-    - Research Methods
+    - Python
+    - Django
+    - OCR
+    - PyTorch
+    - LLMs
+    - RAG
+    - LangChain
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
 
-- id: engineering-foundation
-  type: education
-  title: "Software Engineering Foundation"
-  period: "2022 - 2023"
+- id: ai-document-processing-saas
+  type: project
+  title: "AI OCR and Document Processing SaaS"
+  period: "2022 - 2024"
+  sort_date: 2024-07-01
+  category: "AI / OCR"
+  summary: "End-to-end platform for document ingestion, extraction, review, and structured categorization with OCR plus LLM-assisted analysis."
+  technologies:
+    - Django
+    - OCR
+    - LLMs
+    - RAG
+    - PostgreSQL
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: fondazione-student-teacher
+  type: achievement
+  title: "Fondazione Giovanni Paolo II ETS - Student Teacher"
+  period: "Nov 2021 - May 2024"
+  sort_date: 2024-05-01
+  category: "Volunteering"
+  summary: "Taught introductory Python with focus on computational thinking and practical problem-solving."
+  technologies:
+    - Python
+    - Teaching
+    - Mentoring
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: genesys-software-engineer
+  type: work
+  title: "Genesys Software S.r.l - Software Engineer"
+  period: "Nov 2021 - Sep 2022"
   sort_date: 2022-09-01
+  category: "Optimization / Warehouse Systems"
+  summary: "Developed warehouse picking and route-optimization software with a C/C++ routing engine, gRPC services, FEFO workflows, PostgreSQL traceability, RTLS integration, and Kafka event streaming."
+  technologies:
+    - C and C++
+    - gRPC
+    - PostgreSQL
+    - Kafka
+    - RTLS
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: warehouse-route-optimization-platform
+  type: project
+  title: "Warehouse Route Optimization Platform"
+  period: "2021 - 2022"
+  sort_date: 2022-08-01
+  category: "Operations Optimization"
+  summary: "Route and picking optimization platform modeled as a constrained weighted graph, integrated with real-time warehouse operations."
+  technologies:
+    - C and C++
+    - Graph Optimization
+    - gRPC
+    - Kafka
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: vallefiorita-software-engineer
+  type: work
+  title: "Vallefiorita - Software Engineer"
+  period: "Sep 2020 - Oct 2021"
+  sort_date: 2021-10-01
+  category: "Computer Vision / Robotics"
+  summary: "Built an edge visual-inspection system on Raspberry Pi using Python and OpenCV, integrated with Arduino/ESP8266 robotic rejection, and deployed as a production service."
+  technologies:
+    - Python
+    - OpenCV
+    - Raspberry Pi
+    - Arduino
+    - Linux
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: edge-vision-robotic-qc
+  type: project
+  title: "Edge Computer Vision and Robotics QC"
+  period: "2020 - 2021"
+  sort_date: 2021-09-01
+  category: "Computer Vision"
+  summary: "Real-time quality analysis and automated rejection pipeline combining CV thresholds, robotics control, and traceability logging."
+  technologies:
+    - OpenCV
+    - Edge Computing
+    - Robotics
+    - GPIO
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: bsc-computer-science
+  type: education
+  title: "BSc in Computer Science"
+  period: "University of Bari Aldo Moro"
+  sort_date: 2020-01-01
   category: "Education"
-  summary: "Core development foundations across algorithms, software architecture, and full-stack engineering practices."
+  summary: "Academic foundation in software engineering, algorithms, and computing systems."
   technologies:
     - Algorithms
-    - Architecture
-    - Web Technologies
+    - Software Engineering
+    - Computing Systems
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"

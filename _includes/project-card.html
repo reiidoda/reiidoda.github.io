@@ -17,10 +17,17 @@
     </ul>
   {% endif %}
 
-  <p class="project-card-links">
-    <a href="{{ include.project.github }}" target="_blank" rel="noopener noreferrer">GitHub</a>
-    {% if include.project.demo %}
-      <a href="{{ include.project.demo }}" target="_blank" rel="noopener noreferrer">Live</a>
-    {% endif %}
-  </p>
+  {% if include.project.github or include.project.linkedin or include.project.demo %}
+    <p class="project-card-links">
+      {% if include.project.github %}
+        <a href="{{ include.project.github }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+      {% endif %}
+      {% if include.project.linkedin %}
+        <a href="{{ include.project.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      {% endif %}
+      {% if include.project.demo %}
+        <a href="{{ include.project.demo }}" target="_blank" rel="noopener noreferrer">Live</a>
+      {% endif %}
+    </p>
+  {% endif %}
 </article>
