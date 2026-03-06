@@ -1,0 +1,79 @@
+- id: ai-automation-engineering
+  type: work
+  title: "AI and Automation Engineering"
+  period: "Mar 2026 - Present"
+  sort_date: 2026-03-01
+  category: "Professional Experience"
+  summary: "Design and delivery of AI-assisted workflows, automation pipelines, and integrations for operational use cases."
+  technologies:
+    - AI Agents
+    - Workflow Automation
+    - API Integrations
+  links:
+    resume: "https://reiidoda.github.io/resume/"
+
+- id: occamo
+  type: project
+  title: "OccamO"
+  period: "2025 - Present"
+  sort_date: 2025-10-01
+  category: "AI / Developer Tooling"
+  summary: "Tooling-focused project around reliable engineering workflows with emphasis on practical automation and quality."
+  technologies:
+    - Python
+    - GitHub Actions
+    - CLI Tooling
+  links:
+    github: "https://github.com/reiidoda/OccamO"
+
+- id: thinking-in-code
+  type: project
+  title: "thinking_in_code"
+  period: "2025"
+  sort_date: 2025-05-01
+  category: "Engineering / Knowledge"
+  summary: "Technical writing and implementation notes focused on software reasoning and engineering clarity."
+  technologies:
+    - Markdown
+    - Software Design
+    - Programming Languages
+  links:
+    github: "https://github.com/reiidoda/thinking_in_code"
+
+- id: examen
+  type: project
+  title: "examen"
+  period: "2024 - 2025"
+  sort_date: 2024-09-01
+  category: "Applied Software"
+  summary: "Project experimentation around practical software development, workflows, and iterative product structure."
+  technologies:
+    - Python
+    - Web Development
+    - Data Handling
+  links:
+    github: "https://github.com/reiidoda/examen"
+
+- id: neuroscience-ai-focus
+  type: achievement
+  title: "AI and Neuroscience Direction"
+  period: "2023 - Present"
+  sort_date: 2023-09-01
+  category: "Research Direction"
+  summary: "Focused trajectory on intelligent systems and neuroscience-inspired thinking for software and product development."
+  technologies:
+    - Machine Learning
+    - Cognitive Systems
+    - Research Methods
+
+- id: engineering-foundation
+  type: education
+  title: "Software Engineering Foundation"
+  period: "2022 - 2023"
+  sort_date: 2022-09-01
+  category: "Education"
+  summary: "Core development foundations across algorithms, software architecture, and full-stack engineering practices."
+  technologies:
+    - Algorithms
+    - Architecture
+    - Web Technologies

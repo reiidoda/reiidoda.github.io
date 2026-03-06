@@ -8,5 +8,6 @@
   document.addEventListener("DOMContentLoaded", function () {
     safeRun("initTerminalTypewriter");
     safeRun("initAINetworkCanvas");
+    safeRun("initRoadmap");
   });
 })();
