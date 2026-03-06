@@ -22,3 +22,8 @@ hero:
 featured_projects:
   title: "Featured Projects"
   description: "Selected work from my public repositories and ongoing engineering focus areas."
+resume:
+  live_url: "https://reiidoda.github.io/resume/"
+  source_url: "https://github.com/reiidoda/resume"
+  guard_text: "If the live resume page is temporarily unavailable,"
+  source_label: "open the resume repository"

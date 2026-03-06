@@ -4,6 +4,7 @@ description: Bio homepage with hacker and AI-themed animation sections.
 ---
 {% assign profile = site.data.site %}
 {% assign hero = profile.hero %}
+{% assign resume = profile.resume %}
 {% assign first_phrase = hero.terminal_phrases | first %}
 
 <section class="hero" aria-labelledby="hero-title">
@@ -26,6 +27,15 @@ description: Bio homepage with hacker and AI-themed animation sections.
           </a>
         {% endfor %}
       </div>
+
+      {% if resume and resume.source_url %}
+        <p class="resume-guard">
+          {{ resume.guard_text }}
+          <a href="{{ resume.source_url }}" target="_blank" rel="noopener noreferrer">
+            {{ resume.source_label }}
+          </a>.
+        </p>
+      {% endif %}
 
       {% if site.data.social and site.data.social.size > 0 %}
         <ul class="hero-socials" aria-label="Profile links">
