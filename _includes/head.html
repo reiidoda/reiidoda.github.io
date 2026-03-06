@@ -3,4 +3,8 @@
 <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+{% if page.url == '/' %}
+  <script defer src="{{ '/assets/js/terminal-typewriter.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/ai-network-canvas.js' | relative_url }}"></script>
+{% endif %}
 <script defer src="{{ '/assets/js/main.js' | relative_url }}"></script>

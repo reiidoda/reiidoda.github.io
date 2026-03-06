@@ -1,1 +1,12 @@
-/* Base JS entry point. Feature modules will be added in follow-up issues. */
+(function () {
+  function safeRun(fnName) {
+    if (typeof window[fnName] === "function") {
+      window[fnName]();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    safeRun("initTerminalTypewriter");
+    safeRun("initAINetworkCanvas");
+  });
+})();
