@@ -1,0 +1,24 @@
+<article class="news-card">
+  <header class="news-card-header">
+    <p class="news-card-date">
+      <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%Y-%m-%d" }}</time>
+    </p>
+    <h2 class="news-card-title">
+      <a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
+    </h2>
+  </header>
+
+  <p class="news-card-excerpt">{{ include.post.excerpt | strip_html | strip_newlines | truncate: 180 }}</p>
+
+  {% if include.post.tags and include.post.tags.size > 0 %}
+    <ul class="tag-list" aria-label="Post tags">
+      {% for tag in include.post.tags %}
+        <li class="tag-item">{{ tag }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <p class="news-card-link-row">
+    <a class="news-card-link" href="{{ include.post.url | relative_url }}">Read article</a>
+  </p>
+</article>
