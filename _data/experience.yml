@@ -1,16 +1,19 @@
-- id: ai-automation-engineering
+- id: ai-automation-engineer-autotrend
   type: work
-  title: "AI and Automation Engineering"
+  title: "AI & Automation Engineer"
   period: "Mar 2026 - Present"
   sort_date: 2026-03-01
-  category: "Professional Experience"
-  summary: "Design and delivery of AI-assisted workflows, automation pipelines, and integrations for operational use cases."
+  category: "AI Engineering"
+  context: "Autotrend Mobility · Full-time"
+  location: "Bari, Apulia, Italy · On-site"
+  summary: "Designing and delivering AI and automation solutions with focus on NLP and LLM-powered workflows integrated into real operational processes."
   technologies:
-    - AI Agents
+    - Natural Language Processing (NLP)
+    - Large Language Models (LLM)
     - Workflow Automation
     - API Integrations
   links:
-    resume: "https://reiidoda.github.io/resume/"
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
 
 - id: occamo
   type: project
@@ -26,6 +29,24 @@
   links:
     github: "https://github.com/reiidoda/OccamO"
 
+- id: chief-engineer-movenpick
+  type: work
+  title: "Chief Engineer"
+  period: "Jul 2023 - Jun 2025"
+  sort_date: 2025-06-01
+  category: "Hospitality Engineering / Smart Building"
+  context: "Movenpick Hotel Lalez Durres · Full-time"
+  location: "Durres, Albania · On-site"
+  summary: "Led hotel engineering operations and implemented smart-building integrations across BMS/EMS, HVAC, generators/UPS, access control, CCTV, and centralized event monitoring."
+  technologies:
+    - Building Management Systems
+    - Energy Management Systems (EMS)
+    - HVAC
+    - Access Control
+    - CCTV
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
 - id: thinking-in-code
   type: project
   title: "thinking_in_code"
@@ -39,6 +60,22 @@
     - Programming Languages
   links:
     github: "https://github.com/reiidoda/thinking_in_code"
+
+- id: ambassador-eg-global
+  type: achievement
+  title: "Ambassador"
+  period: "Dec 2021 - Jan 2025"
+  sort_date: 2025-01-01
+  category: "Volunteering"
+  context: "EG Global"
+  location: "Worldwide"
+  summary: "Supported non-profits and social entrepreneurs with coordination, promotion, and community engagement initiatives."
+  technologies:
+    - Community Engagement
+    - Coordination
+    - Communication
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
 
 - id: examen
   type: project
@@ -54,26 +91,134 @@
   links:
     github: "https://github.com/reiidoda/examen"
 
-- id: neuroscience-ai-focus
-  type: achievement
-  title: "AI and Neuroscience Direction"
-  period: "2023 - Present"
-  sort_date: 2023-09-01
-  category: "Research Direction"
-  summary: "Focused trajectory on intelligent systems and neuroscience-inspired thinking for software and product development."
+- id: lead-software-engineer-upnova
+  type: work
+  title: "Lead Software Engineer"
+  period: "Oct 2022 - Aug 2024"
+  sort_date: 2024-08-01
+  category: "AI / SaaS Engineering"
+  context: "Upnova Group S.r.l"
+  location: "Bari, Apulia, Italy · Hybrid"
+  summary: "Built and shipped an AI-powered document-processing SaaS with OCR and LLM pipelines; company partner in the ASIRID program."
   technologies:
-    - Machine Learning
-    - Cognitive Systems
-    - Research Methods
+    - Python
+    - OCR
+    - Django
+    - LLMs
+    - RAG
+    - LangChain
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
 
-- id: engineering-foundation
-  type: education
-  title: "Software Engineering Foundation"
-  period: "2022 - 2023"
+- id: ai-document-processing-saas
+  type: project
+  title: "AI OCR and Document Processing SaaS"
+  period: "2022 - 2024"
+  sort_date: 2024-07-01
+  category: "AI / OCR"
+  summary: "End-to-end platform for document ingestion, extraction, review, and structured categorization with OCR plus LLM-assisted analysis."
+  technologies:
+    - Django
+    - OCR
+    - LLMs
+    - RAG
+    - PostgreSQL
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: student-teacher-fondazione
+  type: achievement
+  title: "Student Teacher"
+  period: "Nov 2021 - May 2024"
+  sort_date: 2024-05-01
+  category: "Volunteering"
+  context: "Fondazione Giovanni Paolo II ETS"
+  location: "Bari, Italy · Education"
+  summary: "Led introductory Python programming sessions focused on computational thinking and problem-solving skills."
+  technologies:
+    - Python
+    - Teaching
+    - Mentoring
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: software-engineer-genesys
+  type: work
+  title: "Software Engineer"
+  period: "Nov 2021 - Sep 2022"
   sort_date: 2022-09-01
+  category: "Optimization / Warehouse Systems"
+  context: "GENESYS SOFTWARE srl"
+  location: "Bari, Apulia, Italy · Hybrid"
+  summary: "Developed warehouse route-optimization and picking systems using C/C++, gRPC, FEFO workflows, and event streaming; company partner in the ASIRID program."
+  technologies:
+    - C (Programming Language)
+    - C++
+    - gRPC
+    - Kafka
+    - PostgreSQL
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: warehouse-route-optimization-platform
+  type: project
+  title: "Warehouse Route Optimization Platform"
+  period: "2021 - 2022"
+  sort_date: 2022-08-01
+  category: "Operations Optimization"
+  summary: "Route and picking optimization platform modeled as a constrained weighted graph integrated with real-time warehouse operations."
+  technologies:
+    - C and C++
+    - Graph Optimization
+    - gRPC
+    - Kafka
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: software-engineer-vallefiorita
+  type: work
+  title: "Software Engineer"
+  period: "Sep 2020 - Oct 2021"
+  sort_date: 2021-10-01
+  category: "Computer Vision / Robotics"
+  context: "Vallefiorita"
+  location: "Bari, Apulia, Italy · Hybrid"
+  summary: "Built an edge visual-inspection and robotics rejection system using Python and OpenCV; company partner in the ASIRID program."
+  technologies:
+    - Python
+    - OpenCV
+    - Raspberry Pi
+    - Arduino
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: edge-vision-robotic-qc
+  type: project
+  title: "Edge Computer Vision and Robotics QC"
+  period: "2020 - 2021"
+  sort_date: 2021-09-01
+  category: "Computer Vision"
+  summary: "Real-time quality analysis and automated rejection pipeline combining computer vision thresholds, robotics control, and traceability logging."
+  technologies:
+    - OpenCV
+    - Edge Computing
+    - Robotics
+    - GPIO
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: bsc-computer-science-bari
+  type: education
+  title: "Universita degli Studi di Bari"
+  period: "Bachelor's degree"
+  sort_date: 2020-01-01
   category: "Education"
-  summary: "Core development foundations across algorithms, software architecture, and full-stack engineering practices."
+  context: "Computer Science"
+  location: "Bari, Italy"
+  summary: "Academic foundation in software engineering, algorithms, and computing systems."
   technologies:
     - Algorithms
-    - Architecture
-    - Web Technologies
+    - Software Engineering
+    - Computing Systems
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"

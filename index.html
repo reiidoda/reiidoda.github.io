@@ -2,22 +2,46 @@
 title: Bio
 description: Bio homepage with hacker and AI-themed animation sections.
 ---
+{% assign profile = site.data.site %}
+{% assign hero = profile.hero %}
+{% assign first_phrase = hero.terminal_phrases | first %}
+
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-grid">
     <div class="hero-copy">
-      <p class="hero-kicker">Bio</p>
-      <h1 id="hero-title">Rei Doda</h1>
-      <p class="hero-subtitle">Software Engineer | AI Systems | Intelligent Products</p>
-      <p class="hero-summary">
-        Building practical AI products, full-stack systems, and research-driven software at the intersection of
-        intelligence, engineering, and neuroscience.
-      </p>
+      <p class="hero-kicker">{{ hero.kicker }}</p>
+      <h1 id="hero-title">{{ hero.title }}</h1>
+      <p class="hero-subtitle">{{ hero.subtitle }}</p>
+      <p class="hero-summary">{{ hero.summary }}</p>
 
       <div class="hero-actions">
-        <a class="button button-primary" href="{{ '/experience/' | relative_url }}">View Experience</a>
-        <a class="button button-ghost" href="{{ '/news/' | relative_url }}">Read News</a>
-        <a class="button button-ghost" href="https://reiidoda.github.io/resume/" target="_blank" rel="noopener noreferrer">Open Resume</a>
+        {% for cta in hero.ctas %}
+          {% assign is_external_cta = cta.external %}
+          <a
+            class="button button-{{ cta.style | default: 'ghost' }}"
+            href="{% if is_external_cta %}{{ cta.url }}{% else %}{{ cta.url | relative_url }}{% endif %}"
+            {% if is_external_cta %}target="_blank" rel="noopener noreferrer"{% endif %}
+          >
+            {{ cta.label }}
+          </a>
+        {% endfor %}
       </div>
+
+      {% if site.data.social and site.data.social.size > 0 %}
+        <ul class="hero-socials" aria-label="Profile links">
+          {% for social in site.data.social %}
+            {% assign is_external_social = social.external %}
+            <li>
+              <a
+                href="{% if is_external_social %}{{ social.url }}{% else %}{{ social.url | relative_url }}{% endif %}"
+                {% if is_external_social %}target="_blank" rel="noopener noreferrer"{% endif %}
+              >
+                {{ social.label }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
 
       <section class="terminal-panel" aria-label="Live terminal status">
         <p class="terminal-title">system.log</p>
@@ -26,9 +50,9 @@ description: Bio homepage with hacker and AI-themed animation sections.
           <span
             id="terminal-typewriter"
             data-typewriter
-            data-phrases='["Building AI systems...","Designing full-stack platforms...","Exploring intelligence, code, and cognition..."]'
+            data-phrases='{{ hero.terminal_phrases | jsonify }}'
           >
-            Building AI systems...
+            {{ first_phrase }}
           </span>
           <span class="terminal-cursor" aria-hidden="true"></span>
         </p>
@@ -46,5 +70,18 @@ description: Bio homepage with hacker and AI-themed animation sections.
         <p>Engineering</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="featured-projects" aria-labelledby="featured-projects-title">
+  <header class="section-header">
+    <h2 id="featured-projects-title">{{ profile.featured_projects.title }}</h2>
+    <p>{{ profile.featured_projects.description }}</p>
+  </header>
+
+  <div class="project-grid">
+    {% for project in site.data.featured_projects %}
+      {% include project-card.html project=project %}
+    {% endfor %}
   </div>
 </section>

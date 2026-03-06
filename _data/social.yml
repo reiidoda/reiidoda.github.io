@@ -1,0 +1,15 @@
+- label: "GitHub"
+  url: "https://github.com/reiidoda"
+  external: true
+
+- label: "LinkedIn"
+  url: "https://www.linkedin.com/in/reiidoda/"
+  external: true
+
+- label: "Resume"
+  url: "https://reiidoda.github.io/resume/"
+  external: true
+
+- label: "News"
+  url: "/news/"
+  external: false

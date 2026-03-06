@@ -7,6 +7,12 @@
     </p>
 
     <h2 class="roadmap-title">{{ include.item.title }}</h2>
+    {% if include.item.context %}
+      <p class="roadmap-context">{{ include.item.context }}</p>
+    {% endif %}
+    {% if include.item.location %}
+      <p class="roadmap-location">{{ include.item.location }}</p>
+    {% endif %}
     <p class="roadmap-summary">{{ include.item.summary }}</p>
 
     {% if include.item.technologies and include.item.technologies.size > 0 %}
@@ -21,6 +27,9 @@
       <p class="roadmap-links">
         {% if include.item.links.github %}
           <a href="{{ include.item.links.github }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+        {% endif %}
+        {% if include.item.links.linkedin %}
+          <a href="{{ include.item.links.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         {% endif %}
         {% if include.item.links.resume %}
           <a href="{{ include.item.links.resume }}" target="_blank" rel="noopener noreferrer">Resume</a>

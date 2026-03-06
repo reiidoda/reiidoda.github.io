@@ -1,0 +1,24 @@
+name: "Rei Doda"
+hero:
+  kicker: "Bio"
+  title: "Rei Doda"
+  subtitle: "Software Engineer | AI Systems | Intelligent Products"
+  summary: "Building practical AI products, full-stack systems, and research-driven software at the intersection of intelligence, engineering, and neuroscience."
+  terminal_phrases:
+    - "Building AI systems..."
+    - "Designing full-stack platforms..."
+    - "Exploring intelligence, code, and cognition..."
+  ctas:
+    - label: "View Experience"
+      url: "/experience/"
+      style: "primary"
+    - label: "Read News"
+      url: "/news/"
+      style: "ghost"
+    - label: "Open Resume"
+      url: "https://reiidoda.github.io/resume/"
+      style: "ghost"
+      external: true
+featured_projects:
+  title: "Featured Projects"
+  description: "Selected work from my public repositories and ongoing engineering focus areas."
