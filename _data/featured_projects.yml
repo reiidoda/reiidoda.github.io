@@ -1,0 +1,41 @@
+- id: occamo
+  title: "OccamO"
+  period: "2025 - Present"
+  summary: "Developer tooling and automation-focused project for reliable engineering workflows."
+  stack:
+    - Python
+    - GitHub Actions
+    - CLI Tooling
+  github: "https://github.com/reiidoda/OccamO"
+  badge: "Featured"
+
+- id: thinking-in-code
+  title: "thinking_in_code"
+  period: "2025"
+  summary: "Technical knowledge base and implementation notes about software reasoning and code craftsmanship."
+  stack:
+    - Markdown
+    - Architecture
+    - Programming Languages
+  github: "https://github.com/reiidoda/thinking_in_code"
+
+- id: examen
+  title: "examen"
+  period: "2024 - 2025"
+  summary: "Applied software experimentation around product structure, implementation workflows, and iteration speed."
+  stack:
+    - Python
+    - Web Development
+    - Data Handling
+  github: "https://github.com/reiidoda/examen"
+
+- id: resume
+  title: "resume"
+  period: "2024 - Present"
+  summary: "LaTeX-based resume project designed for GitHub Pages publication and versioned maintenance."
+  stack:
+    - LaTeX
+    - GitHub Pages
+    - Documentation
+  github: "https://github.com/reiidoda/resume"
+  demo: "https://reiidoda.github.io/resume/"

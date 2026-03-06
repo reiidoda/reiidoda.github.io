@@ -50,6 +50,26 @@
   gap: var(--space-4);
 }
 
+.hero-socials {
+  list-style: none;
+  margin: calc(var(--space-2) * -1) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.hero-socials a {
+  color: #c8ddf2;
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+
+.hero-socials a:hover,
+.hero-socials a:focus-visible {
+  color: var(--accent-soft);
+}
+
 .terminal-panel {
   margin-top: var(--space-2);
   border: 1px solid var(--line);
@@ -130,6 +150,24 @@
   opacity: 0.85;
 }
 
+.featured-projects {
+  margin-top: var(--space-10);
+}
+
+.section-header {
+  margin-bottom: var(--space-6);
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+}
+
+.section-header p {
+  margin: var(--space-2) 0 0;
+  color: var(--muted);
+}
+
 @keyframes blink {
   0%,
   49% {
@@ -175,6 +213,10 @@
 
   .terminal-line {
     font-size: var(--text-sm);
+  }
+
+  .featured-projects {
+    margin-top: var(--space-9);
   }
 }
 

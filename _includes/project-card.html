@@ -1,0 +1,26 @@
+<article class="project-card">
+  <header class="project-card-header">
+    <p class="project-card-period">{{ include.project.period }}</p>
+    {% if include.project.badge %}
+      <span class="project-card-badge">{{ include.project.badge }}</span>
+    {% endif %}
+  </header>
+
+  <h3 class="project-card-title">{{ include.project.title }}</h3>
+  <p class="project-card-summary">{{ include.project.summary }}</p>
+
+  {% if include.project.stack and include.project.stack.size > 0 %}
+    <ul class="tag-list" aria-label="Project technologies">
+      {% for tech in include.project.stack %}
+        <li class="tag-item">{{ tech }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <p class="project-card-links">
+    <a href="{{ include.project.github }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+    {% if include.project.demo %}
+      <a href="{{ include.project.demo }}" target="_blank" rel="noopener noreferrer">Live</a>
+    {% endif %}
+  </p>
+</article>
