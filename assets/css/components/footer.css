@@ -6,3 +6,44 @@
 .site-footer .container {
   padding: var(--space-6) 0;
 }
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.footer-copy {
+  margin: 0;
+}
+
+.footer-resume-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.footer-resume-links a {
+  color: #c8ddf2;
+  text-decoration: none;
+  font-size: var(--text-sm);
+}
+
+.footer-resume-links a:hover,
+.footer-resume-links a:focus-visible {
+  color: var(--accent-soft);
+}
+
+@media (max-width: 680px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .footer-resume-links {
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+}

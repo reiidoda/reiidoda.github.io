@@ -50,6 +50,21 @@
   gap: var(--space-4);
 }
 
+.resume-guard {
+  margin: calc(var(--space-1) * -1) 0 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.resume-guard a {
+  color: #c8ddf2;
+}
+
+.resume-guard a:hover,
+.resume-guard a:focus-visible {
+  color: var(--accent-soft);
+}
+
 .hero-socials {
   list-style: none;
   margin: calc(var(--space-2) * -1) 0 0;

@@ -1,5 +1,15 @@
 <footer class="site-footer">
   <div class="container">
-    <p>© {{ 'now' | date: '%Y' }} Rei Doda</p>
+    {% assign profile = site.data.site %}
+    {% assign resume = profile.resume %}
+    <div class="footer-inner">
+      <p class="footer-copy">© {{ 'now' | date: '%Y' }} Rei Doda</p>
+      {% if resume and resume.live_url and resume.source_url %}
+        <div class="footer-resume-links" aria-label="Resume links">
+          <a href="{{ resume.live_url }}" target="_blank" rel="noopener noreferrer">Resume Site ↗</a>
+          <a href="{{ resume.source_url }}" target="_blank" rel="noopener noreferrer">Resume Source ↗</a>
+        </div>
+      {% endif %}
+    </div>
   </div>
 </footer>
