@@ -1,0 +1,9 @@
+- title: Bio
+  url: /
+- title: News
+  url: /news/
+- title: Experience
+  url: /experience/
+- title: Resume
+  url: https://reiidoda.github.io/resume/
+  external: true

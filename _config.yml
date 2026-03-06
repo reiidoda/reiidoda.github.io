@@ -1,0 +1,18 @@
+title: Rei Doda
+description: Personal site of Rei Doda focused on AI systems, software engineering, and neuroscience.
+url: "https://reiidoda.github.io"
+baseurl: ""
+lang: en
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+timezone: Europe/Rome
+permalink: /news/:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
