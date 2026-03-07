@@ -7,8 +7,8 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     safeRun("initMobileMenu");
+    safeRun("initHeroNeuralIntro");
     safeRun("initTerminalTypewriter");
-    safeRun("initAINetworkCanvas");
     safeRun("initRoadmap");
     safeRun("initNewsFilter");
     safeRun("initRevealEffects");
