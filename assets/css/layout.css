@@ -12,6 +12,10 @@ body {
   line-height: var(--leading-regular);
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
 a {
   overflow-wrap: anywhere;
 }
