@@ -223,6 +223,7 @@
     var canvas = hero.querySelector("[data-hero-canvas]");
     var nameFill = hero.querySelector("[data-hero-name-fill]");
     var hint = hero.querySelector("[data-hero-scroll-hint]");
+    var animationToggle = hero.querySelector("[data-hero-animation-toggle]");
     var details = hero.querySelector("[data-hero-details]");
     if (!canvas || !nameFill) {
       return;
@@ -255,6 +256,7 @@
     var isInView = true;
     var progress = reducedMotion ? 1 : 0;
     var completionDispatched = false;
+    var userPaused = false;
 
     hero.classList.add("hero-is-enhanced");
     nameFill.textContent = nameTarget;
@@ -287,13 +289,36 @@
       document.dispatchEvent(new CustomEvent("hero:complete"));
     }
 
+    function syncAnimationToggleState() {
+      if (!animationToggle) {
+        return;
+      }
+
+      if (reducedMotion) {
+        animationToggle.textContent = "Animation Fixed";
+        animationToggle.disabled = true;
+        animationToggle.setAttribute("aria-disabled", "true");
+        animationToggle.setAttribute("aria-pressed", "true");
+        return;
+      }
+
+      animationToggle.disabled = false;
+      animationToggle.removeAttribute("aria-disabled");
+      animationToggle.setAttribute("aria-pressed", userPaused ? "true" : "false");
+      animationToggle.textContent = userPaused ? "Resume Animation" : "Pause Animation";
+    }
+
     function updateVisualState() {
       var completed = isComplete();
       hero.classList.toggle("is-complete", completed);
       setDetailsVisible();
 
       if (hint) {
-        hint.textContent = completed ? "Identity generated" : "Generating neural identity...";
+        if (!completed && userPaused && !reducedMotion) {
+          hint.textContent = "Animation paused";
+        } else {
+          hint.textContent = completed ? "Identity generated" : "Generating neural identity...";
+        }
       }
 
       if (completed) {
@@ -434,7 +459,7 @@
       }
     }
 
-    function drawNetwork(timeMs) {
+    function drawNetwork(timeMs, freezeMotion) {
       context.clearRect(0, 0, width, height);
 
       var maxDistance = 150;
@@ -443,7 +468,7 @@
       for (var i = 0; i < nodes.length; i += 1) {
         var node = nodes[i];
 
-        if (!reducedMotion) {
+        if (!reducedMotion && !freezeMotion) {
           node.x += node.vx;
           node.y += node.vy;
 
@@ -501,13 +526,13 @@
       lastFrameTime = timeMs;
 
       advanceAutoProgress(deltaMs);
-      drawNetwork(timeMs);
+      drawNetwork(timeMs, false);
       animationFrame = window.requestAnimationFrame(animate);
     }
 
     function startAnimation() {
-      if (reducedMotion || document.hidden || !isInView) {
-        drawNetwork(0);
+      if (reducedMotion || document.hidden || !isInView || userPaused) {
+        drawNetwork(lastFrameTime || 0, true);
         return;
       }
 
@@ -527,11 +552,12 @@
 
     resizeCanvas();
     setDetailsVisible();
+    syncAnimationToggleState();
     updateVisualState();
 
     window.addEventListener("resize", function () {
       resizeCanvas();
-      drawNetwork(0);
+      drawNetwork(lastFrameTime || 0, reducedMotion || userPaused);
     });
 
     document.addEventListener("visibilitychange", function () {
@@ -560,9 +586,23 @@
       observer.observe(hero);
     }
 
+    if (animationToggle && !reducedMotion) {
+      animationToggle.addEventListener("click", function () {
+        userPaused = !userPaused;
+        syncAnimationToggleState();
+        updateVisualState();
+        if (userPaused) {
+          stopAnimation();
+          drawNetwork(lastFrameTime || 0, true);
+          return;
+        }
+        startAnimation();
+      });
+    }
+
     if (reducedMotion) {
       onCompletedFirstTime();
-      drawNetwork(0);
+      drawNetwork(0, true);
       return;
     }
 
