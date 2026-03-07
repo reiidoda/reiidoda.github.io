@@ -1,39 +1,24 @@
-- id: ai-document-processing-saas
-  title: "AI OCR and Document Processing SaaS"
-  period: "2022 - 2024"
-  summary: "AI-powered document-processing SaaS with OCR extraction, classification, and retrieval-augmented question answering."
+- id: examen
+  title: "examen"
+  period: "2024 - 2025"
+  summary: "Project experimentation around practical software development, workflows, and iterative product structure."
   stack:
     - Python
-    - Django
-    - OCR
-    - LLMs
-    - RAG
-  linkedin: "https://www.linkedin.com/in/reiidoda/"
-  badge: "From CV"
+    - Web Development
+    - Data Handling
+  github: "https://github.com/reiidoda/examen"
+  badge: "GitHub"
 
-- id: warehouse-route-optimization-platform
-  title: "Warehouse Route Optimization Platform"
-  period: "2021 - 2022"
-  summary: "Warehouse graph-optimization and picking platform with gRPC services, FEFO logic, and real-time event streaming."
+- id: thinking-in-code
+  title: "thinking_in_code"
+  period: "2025"
+  summary: "Technical knowledge base and implementation notes focused on software reasoning and code craftsmanship."
   stack:
-    - C and C++
-    - gRPC
-    - Kafka
-    - PostgreSQL
-  linkedin: "https://www.linkedin.com/in/reiidoda/"
-  badge: "From CV"
-
-- id: edge-vision-robotic-qc
-  title: "Edge Computer Vision and Robotics QC"
-  period: "2020 - 2021"
-  summary: "Edge CV quality-control system on Raspberry Pi with robotic rejection flow and production deployment."
-  stack:
-    - Python
-    - OpenCV
-    - Raspberry Pi
-    - Arduino
-  linkedin: "https://www.linkedin.com/in/reiidoda/"
-  badge: "From CV"
+    - Markdown
+    - Architecture
+    - Programming Languages
+  github: "https://github.com/reiidoda/thinking_in_code"
+  badge: "GitHub"
 
 - id: occamo
   title: "OccamO"
@@ -46,25 +31,39 @@
   github: "https://github.com/reiidoda/OccamO"
   badge: "GitHub"
 
-- id: thinking-in-code
-  title: "thinking_in_code"
-  period: "2025"
-  summary: "Technical knowledge base and implementation notes about software reasoning and code craftsmanship."
+- id: edge-vision-robotic-qc
+  title: "Edge Computer Vision and Robotics QC"
+  period: "2020 - 2021"
+  summary: "Real-time quality analysis and automated rejection pipeline combining computer vision thresholds, robotics control, and traceability logging."
   stack:
-    - Markdown
-    - Architecture
-    - Programming Languages
-  github: "https://github.com/reiidoda/thinking_in_code"
-  badge: "GitHub"
+    - OpenCV
+    - Edge Computing
+    - Robotics
+    - GPIO
+  linkedin: "https://www.linkedin.com/in/reiidoda/"
+  badge: "From CV"
 
-- id: resume
-  title: "resume"
-  period: "2024 - Present"
-  summary: "LaTeX-based resume project designed for GitHub Pages publication and versioned maintenance."
+- id: warehouse-route-optimization-platform
+  title: "Warehouse Route Optimization Platform"
+  period: "2021 - 2022"
+  summary: "Route and picking optimization platform modeled as a constrained weighted graph integrated with real-time warehouse operations."
   stack:
-    - LaTeX
-    - GitHub Pages
-    - Documentation
-  github: "https://github.com/reiidoda/resume"
-  demo: "https://reiidoda.github.io/resume/"
-  badge: "GitHub"
+    - C and C++
+    - Graph Optimization
+    - gRPC
+    - Kafka
+  linkedin: "https://www.linkedin.com/in/reiidoda/"
+  badge: "From CV"
+
+- id: ai-document-processing-saas
+  title: "AI OCR and Document Processing SaaS"
+  period: "2022 - 2024"
+  summary: "End-to-end platform for document ingestion, extraction, review, and structured categorization with OCR plus LLM-assisted analysis."
+  stack:
+    - Django
+    - OCR
+    - LLMs
+    - RAG
+    - PostgreSQL
+  linkedin: "https://www.linkedin.com/in/reiidoda/"
+  badge: "From CV"
