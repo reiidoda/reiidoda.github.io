@@ -222,7 +222,6 @@
 
     var canvas = hero.querySelector("[data-hero-canvas]");
     var nameFill = hero.querySelector("[data-hero-name-fill]");
-    var hint = hero.querySelector("[data-hero-scroll-hint]");
     var animationToggle = hero.querySelector("[data-hero-animation-toggle]");
     var details = hero.querySelector("[data-hero-details]");
     if (!canvas || !nameFill) {
@@ -312,14 +311,6 @@
       var completed = isComplete();
       hero.classList.toggle("is-complete", completed);
       setDetailsVisible();
-
-      if (hint) {
-        if (!completed && userPaused && !reducedMotion) {
-          hint.textContent = "Animation paused";
-        } else {
-          hint.textContent = completed ? "Identity generated" : "Generating neural identity...";
-        }
-      }
 
       if (completed) {
         onCompletedFirstTime();
