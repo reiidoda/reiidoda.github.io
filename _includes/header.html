@@ -1,7 +1,7 @@
 <header class="site-header" data-site-header>
   {% assign favicon_version = site.favicon_version | default: '20260307' %}
   <div class="container header-inner">
-    <a class="brand" href="{{ '/' | relative_url }}">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Rei Doda home">
       <span class="brand-mark-wrap" aria-hidden="true">
         <img class="brand-mark" src="{{ '/assets/img/favicon/favicon.svg?v=' | append: favicon_version | relative_url }}" alt="">
       </span>
@@ -14,6 +14,7 @@
     <button
       class="menu-toggle"
       type="button"
+      aria-label="Open primary navigation"
       aria-expanded="false"
       aria-controls="primary-navigation"
       data-menu-toggle
