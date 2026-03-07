@@ -1,8 +1,18 @@
 <article class="project-card" data-reveal>
   <header class="project-card-header">
     <p class="project-card-period">{{ include.project.period }}</p>
-    {% if include.project.badge %}
-      <span class="project-card-badge">{{ include.project.badge }}</span>
+    {% if include.project.github %}
+      <a
+        class="project-card-github"
+        href="{{ include.project.github }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open {{ include.project.title }} on GitHub"
+      >
+        GitHub
+      </a>
+    {% else %}
+      <span class="project-card-github">GitHub</span>
     {% endif %}
   </header>
 
@@ -15,19 +25,5 @@
         <li class="tag-item">{{ tech }}</li>
       {% endfor %}
     </ul>
-  {% endif %}
-
-  {% if include.project.github or include.project.linkedin or include.project.demo %}
-    <p class="project-card-links">
-      {% if include.project.github %}
-        <a href="{{ include.project.github }}" target="_blank" rel="noopener noreferrer">GitHub</a>
-      {% endif %}
-      {% if include.project.linkedin %}
-        <a href="{{ include.project.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      {% endif %}
-      {% if include.project.demo %}
-        <a href="{{ include.project.demo }}" target="_blank" rel="noopener noreferrer">Live</a>
-      {% endif %}
-    </p>
   {% endif %}
 </article>

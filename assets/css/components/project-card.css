@@ -34,14 +34,31 @@
   font-size: 0.8rem;
 }
 
-.project-card-badge {
+.project-card-github {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.38);
   border-radius: var(--radius-pill);
   color: #f5f5f5;
   background: rgba(255, 255, 255, 0.08);
   padding: 0.2rem 0.55rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
   font-size: 0.72rem;
   font-weight: 600;
+  transition:
+    color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard),
+    background-color var(--duration-fast) var(--easing-standard);
+}
+
+.project-card-github:hover,
+.project-card-github:focus-visible {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.56);
+  background: rgba(255, 255, 255, 0.16);
 }
 
 .project-card-title {
@@ -53,27 +70,6 @@
 .project-card-summary {
   margin: var(--space-4) 0;
   color: var(--muted);
-}
-
-.project-card-links {
-  margin: var(--space-4) 0 0;
-  display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-}
-
-.project-card-links a {
-  text-decoration: none;
-  color: var(--accent-soft);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.9px;
-  font-size: 0.75rem;
-}
-
-.project-card-links a:hover,
-.project-card-links a:focus-visible {
-  color: var(--accent);
 }
 
 @media (max-width: 900px) {

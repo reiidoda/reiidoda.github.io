@@ -7,7 +7,6 @@
     - Web Development
     - Data Handling
   github: "https://github.com/reiidoda/examen"
-  badge: "GitHub"
 
 - id: thinking-in-code
   title: "thinking_in_code"
@@ -18,7 +17,6 @@
     - Architecture
     - Programming Languages
   github: "https://github.com/reiidoda/thinking_in_code"
-  badge: "GitHub"
 
 - id: occamo
   title: "OccamO"
@@ -29,7 +27,6 @@
     - GitHub Actions
     - CLI Tooling
   github: "https://github.com/reiidoda/OccamO"
-  badge: "GitHub"
 
 - id: edge-vision-robotic-qc
   title: "Edge Computer Vision and Robotics QC"
@@ -40,8 +37,6 @@
     - Edge Computing
     - Robotics
     - GPIO
-  linkedin: "https://www.linkedin.com/in/reiidoda/"
-  badge: "From CV"
 
 - id: warehouse-route-optimization-platform
   title: "Warehouse Route Optimization Platform"
@@ -52,8 +47,6 @@
     - Graph Optimization
     - gRPC
     - Kafka
-  linkedin: "https://www.linkedin.com/in/reiidoda/"
-  badge: "From CV"
 
 - id: ai-document-processing-saas
   title: "AI OCR and Document Processing SaaS"
@@ -65,5 +58,3 @@
     - LLMs
     - RAG
     - PostgreSQL
-  linkedin: "https://www.linkedin.com/in/reiidoda/"
-  badge: "From CV"
