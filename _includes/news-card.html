@@ -1,4 +1,14 @@
-<article class="news-card" data-reveal>
+{% assign card_excerpt = include.post.excerpt | strip_html | strip_newlines %}
+{% assign tag_tokens = include.post.tags | join: "|" | downcase %}
+{% assign search_blob = include.post.title | append: " " | append: card_excerpt | downcase %}
+
+<article
+  class="news-card"
+  data-reveal
+  data-news-card
+  data-news-tags="{{ tag_tokens | escape }}"
+  data-news-search="{{ search_blob | escape }}"
+>
   <header class="news-card-header">
     <p class="news-card-date">
       <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%Y-%m-%d" }}</time>
@@ -8,7 +18,7 @@
     </h2>
   </header>
 
-  <p class="news-card-excerpt">{{ include.post.excerpt | strip_html | strip_newlines | truncate: 180 }}</p>
+  <p class="news-card-excerpt">{{ card_excerpt | truncate: 180 }}</p>
 
   {% if include.post.tags and include.post.tags.size > 0 %}
     <ul class="tag-list" aria-label="Post tags">

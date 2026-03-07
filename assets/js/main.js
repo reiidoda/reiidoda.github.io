@@ -10,6 +10,7 @@
     safeRun("initTerminalTypewriter");
     safeRun("initAINetworkCanvas");
     safeRun("initRoadmap");
+    safeRun("initNewsFilter");
     safeRun("initRevealEffects");
   });
 })();
