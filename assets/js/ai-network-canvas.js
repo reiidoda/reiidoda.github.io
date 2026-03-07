@@ -10,11 +10,14 @@
       return;
     }
 
-    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var saveData = Boolean(connection && connection.saveData);
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches || saveData;
     var width = 0;
     var height = 0;
     var nodes = [];
     var rafId = null;
+    var inViewport = true;
 
     function createNodes(count) {
       nodes = [];
@@ -59,6 +62,8 @@
 
     function drawFrame() {
       context.clearRect(0, 0, width, height);
+      var maxDistance = 125;
+      var maxDistanceSquared = maxDistance * maxDistance;
 
       for (var i = 0; i < nodes.length; i += 1) {
         var node = nodes[i];
@@ -84,10 +89,11 @@
         for (var b = a + 1; b < nodes.length; b += 1) {
           var dx = nodes[a].x - nodes[b].x;
           var dy = nodes[a].y - nodes[b].y;
-          var distance = Math.sqrt(dx * dx + dy * dy);
+          var distanceSquared = dx * dx + dy * dy;
 
-          if (distance < 125) {
-            var alpha = (1 - distance / 125) * 0.35;
+          if (distanceSquared < maxDistanceSquared) {
+            var distance = Math.sqrt(distanceSquared);
+            var alpha = (1 - distance / maxDistance) * 0.35;
             context.strokeStyle = "rgba(126, 216, 240, " + alpha + ")";
             context.lineWidth = 1;
             context.beginPath();
@@ -104,6 +110,10 @@
     function start() {
       if (reducedMotion) {
         drawStatic();
+        return;
+      }
+
+      if (document.hidden || !inViewport) {
         return;
       }
 
@@ -126,6 +136,8 @@
       resize();
       if (reducedMotion) {
         drawStatic();
+      } else {
+        start();
       }
     });
 
@@ -136,6 +148,24 @@
         start();
       }
     });
+
+    if (typeof window.IntersectionObserver === "function") {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          inViewport = Boolean(entries[0] && entries[0].isIntersecting);
+          if (inViewport) {
+            start();
+          } else {
+            stop();
+          }
+        },
+        {
+          threshold: 0.05
+        }
+      );
+
+      observer.observe(canvas);
+    }
   }
 
   window.initAINetworkCanvas = initAINetworkCanvas;

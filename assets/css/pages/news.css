@@ -84,6 +84,18 @@
   color: var(--text-soft);
 }
 
+.news-post-cover {
+  margin: 0 0 var(--space-7);
+}
+
+.news-post-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+}
+
 .news-post-content p {
   margin: 0 0 var(--space-6);
 }

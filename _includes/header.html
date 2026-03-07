@@ -5,12 +5,26 @@
     <nav aria-label="Primary navigation">
       <ul class="menu">
         {% for item in site.data.navigation %}
+          {% assign is_external = item.external %}
+          {% assign item_href = item.url %}
+          {% unless is_external %}
+            {% assign item_href = item.url | relative_url %}
+          {% endunless %}
+          {% assign is_current = false %}
+          {% unless is_external %}
+            {% assign page_url = page.url | default: '/' %}
+            {% if page_url == item.url %}
+              {% assign is_current = true %}
+            {% endif %}
+          {% endunless %}
           <li>
             <a
-              href="{{ item.url }}"
-              {% if item.external %}target="_blank" rel="noopener noreferrer" aria-label="{{ item.title }} (opens in a new tab)"{% endif %}
+              href="{{ item_href }}"
+              {% if is_current %}class="is-active"{% endif %}
+              {% if is_current %}aria-current="page"{% endif %}
+              {% if is_external %}target="_blank" rel="noopener noreferrer" aria-label="{{ item.title }} (opens in a new tab)"{% endif %}
             >
-              {{ item.title }}{% if item.external %} <span aria-hidden="true">↗</span>{% endif %}
+              {{ item.title }}{% if is_external %} <span aria-hidden="true">↗</span>{% endif %}
             </a>
           </li>
         {% endfor %}

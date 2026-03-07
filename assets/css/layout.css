@@ -10,6 +10,10 @@ body {
   line-height: var(--leading-regular);
 }
 
+a {
+  overflow-wrap: anywhere;
+}
+
 .container {
   width: min(var(--max-width), 92vw);
   margin: 0 auto;
@@ -17,6 +21,35 @@ body {
 
 main {
   padding: var(--space-10) 0 var(--space-11);
+}
+
+#main-content {
+  scroll-margin-top: 5rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm);
+  background: #d9f2ff;
+  color: #042035;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  left: var(--space-4);
+  top: var(--space-4);
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
 }
 
 .page-intro {

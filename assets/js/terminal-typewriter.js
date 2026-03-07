@@ -24,8 +24,11 @@
 
     var defaultPhrase = target.textContent.trim() || "Building AI systems...";
     var phrases = parsePhrases(target.getAttribute("data-phrases"), [defaultPhrase]);
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var saveData = Boolean(connection && connection.saveData);
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (reducedMotion || saveData) {
       target.textContent = phrases[0];
       return;
     }
@@ -33,8 +36,18 @@
     var phraseIndex = 0;
     var charIndex = 0;
     var deleting = false;
+    var timeoutId = null;
+    var running = true;
+
+    function schedule(delay) {
+      timeoutId = window.setTimeout(tick, delay);
+    }
 
     function tick() {
+      if (!running) {
+        return;
+      }
+
       var current = phrases[phraseIndex];
 
       if (!deleting) {
@@ -43,11 +56,11 @@
 
         if (charIndex >= current.length) {
           deleting = true;
-          window.setTimeout(tick, 1300);
+          schedule(1300);
           return;
         }
 
-        window.setTimeout(tick, 45 + Math.random() * 50);
+        schedule(45 + Math.random() * 50);
         return;
       }
 
@@ -57,12 +70,28 @@
       if (charIndex <= 0) {
         deleting = false;
         phraseIndex = (phraseIndex + 1) % phrases.length;
-        window.setTimeout(tick, 300);
+        schedule(300);
         return;
       }
 
-      window.setTimeout(tick, 22 + Math.random() * 28);
+      schedule(22 + Math.random() * 28);
     }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        running = false;
+        if (timeoutId !== null) {
+          window.clearTimeout(timeoutId);
+          timeoutId = null;
+        }
+        return;
+      }
+
+      if (!running) {
+        running = true;
+        schedule(120);
+      }
+    });
 
     tick();
   }
