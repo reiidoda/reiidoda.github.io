@@ -24,6 +24,8 @@
 
     var defaultPhrase = target.textContent.trim() || "Building AI systems...";
     var phrases = parsePhrases(target.getAttribute("data-phrases"), [defaultPhrase]);
+    var startMode = target.getAttribute("data-typewriter-start");
+    var waitForHeroCompletion = startMode === "hero-complete";
     var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     var saveData = Boolean(connection && connection.saveData);
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -37,7 +39,8 @@
     var charIndex = 0;
     var deleting = false;
     var timeoutId = null;
-    var running = true;
+    var running = false;
+    var initialized = false;
 
     function schedule(delay) {
       timeoutId = window.setTimeout(tick, delay);
@@ -77,7 +80,24 @@
       schedule(22 + Math.random() * 28);
     }
 
+    function startTyping() {
+      if (initialized) {
+        return;
+      }
+
+      initialized = true;
+      running = true;
+
+      if (!document.hidden) {
+        tick();
+      }
+    }
+
     document.addEventListener("visibilitychange", function () {
+      if (!initialized) {
+        return;
+      }
+
       if (document.hidden) {
         running = false;
         if (timeoutId !== null) {
@@ -93,7 +113,18 @@
       }
     });
 
-    tick();
+    if (!waitForHeroCompletion) {
+      startTyping();
+      return;
+    }
+
+    var completedHero = document.querySelector("[data-hero-intro].is-complete");
+    if (completedHero) {
+      startTyping();
+      return;
+    }
+
+    document.addEventListener("hero:complete", startTyping, { once: true });
   }
 
   window.initTerminalTypewriter = initTerminalTypewriter;
