@@ -13,25 +13,27 @@
       </div>
       <div class="footer-links-wrap">
         {% if resume and resume.live_url and resume.source_url %}
-          <div class="footer-resume-links" aria-label="Resume links">
+          <nav class="footer-resume-links" aria-label="Resume links">
             <a href="{{ resume.live_url }}" target="_blank" rel="noopener noreferrer">Resume Site ↗</a>
             <a href="{{ resume.source_url }}" target="_blank" rel="noopener noreferrer">Resume Source ↗</a>
-          </div>
+          </nav>
         {% endif %}
         {% if site.data.social and site.data.social.size > 0 %}
-          <ul class="footer-socials" aria-label="Social links">
-            {% for social in site.data.social %}
-              {% assign is_external_social = social.external %}
-              <li>
-                <a
-                  href="{% if is_external_social %}{{ social.url }}{% else %}{{ social.url | relative_url }}{% endif %}"
-                  {% if is_external_social %}target="_blank" rel="noopener noreferrer"{% endif %}
-                >
-                  {{ social.label }}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
+          <nav aria-label="Social links">
+            <ul class="footer-socials">
+              {% for social in site.data.social %}
+                {% assign is_external_social = social.external %}
+                <li>
+                  <a
+                    href="{% if is_external_social %}{{ social.url }}{% else %}{{ social.url | relative_url }}{% endif %}"
+                    {% if is_external_social %}target="_blank" rel="noopener noreferrer"{% endif %}
+                  >
+                    {{ social.label }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
         {% endif %}
       </div>
     </div>

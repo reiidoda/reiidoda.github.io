@@ -24,6 +24,11 @@
   text-decoration: none;
 }
 
+.brand:focus-visible {
+  border-radius: var(--radius-sm);
+  outline-offset: 5px;
+}
+
 .brand-mark-wrap {
   width: 38px;
   height: 38px;

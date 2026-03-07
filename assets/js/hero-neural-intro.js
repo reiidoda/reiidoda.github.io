@@ -266,6 +266,8 @@
     var unlockTimer = null;
     var touchStartY = null;
     var completionDispatched = false;
+    var detailFocusableSelector =
+      "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]";
 
     hero.classList.add("hero-is-enhanced");
     nameFill.textContent = nameTarget;
@@ -284,6 +286,44 @@
       }
 
       details.setAttribute("aria-hidden", visible ? "false" : "true");
+      setDetailsInteractivity(visible);
+    }
+
+    function setDetailsInteractivity(enabled) {
+      if (!details) {
+        return;
+      }
+
+      if ("inert" in details) {
+        details.inert = !enabled;
+      }
+
+      var focusableNodes = details.querySelectorAll(detailFocusableSelector);
+      for (var i = 0; i < focusableNodes.length; i += 1) {
+        var node = focusableNodes[i];
+
+        if (enabled) {
+          if (!node.hasAttribute("data-hero-tabindex")) {
+            continue;
+          }
+
+          var storedTabindex = node.getAttribute("data-hero-tabindex");
+          if (storedTabindex === "") {
+            node.removeAttribute("tabindex");
+          } else {
+            node.setAttribute("tabindex", storedTabindex);
+          }
+          node.removeAttribute("data-hero-tabindex");
+          continue;
+        }
+
+        if (!node.hasAttribute("data-hero-tabindex")) {
+          var currentTabindex = node.getAttribute("tabindex");
+          node.setAttribute("data-hero-tabindex", currentTabindex === null ? "" : currentTabindex);
+        }
+
+        node.setAttribute("tabindex", "-1");
+      }
     }
 
     function applyScrollLock(locked) {
