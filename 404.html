@@ -1,9 +1,21 @@
 ---
 title: Page Not Found
+description: The page does not exist or has moved.
 permalink: /404.html
 ---
-<section>
-  <h1>404</h1>
-  <p>The page you requested was not found.</p>
-  <p><a href="{{ '/' | relative_url }}">Back to Bio</a></p>
+<section class="not-found-page" aria-labelledby="not-found-title">
+  {% include page-hero.html
+    id="not-found-title"
+    kicker="Error"
+    title="404 · Page Not Found"
+    subtitle="The page you requested does not exist or has moved."
+  %}
+
+  <div class="not-found-card" data-reveal>
+    <p>Use the main navigation to continue browsing, or return directly to the Bio homepage.</p>
+    <p class="not-found-actions">
+      <a class="button button-primary" href="{{ '/' | relative_url }}">Back to Bio</a>
+      <a class="button button-ghost" href="{{ '/experience/' | relative_url }}">Open Experience</a>
+    </p>
+  </div>
 </section>

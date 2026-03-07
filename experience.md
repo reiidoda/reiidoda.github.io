@@ -6,12 +6,12 @@ permalink: /experience/
 {% assign experience_items = site.data.experience | sort: "sort_date" | reverse %}
 
 <section class="experience-page" aria-labelledby="experience-title">
-  <header class="page-intro">
-    <h1 id="experience-title">Experience Roadmap</h1>
-    <p class="page-intro-text">
-      A reverse-chronological timeline of projects, work, and milestones from most recent to oldest.
-    </p>
-  </header>
+  {% include page-hero.html
+    id="experience-title"
+    kicker="Experience"
+    title="Experience Roadmap"
+    subtitle="A reverse-chronological timeline of projects, work, and milestones from most recent to oldest."
+  %}
 
   <div class="roadmap" data-roadmap>
     <div class="roadmap-line" aria-hidden="true">

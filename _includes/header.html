@@ -1,6 +1,14 @@
-<header class="site-header">
-  <div class="container header-inner" data-site-header>
-    <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+<header class="site-header" data-site-header>
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">
+      <span class="brand-mark-wrap" aria-hidden="true">
+        <img class="brand-mark" src="{{ '/assets/img/favicon/favicon.svg' | relative_url }}" alt="">
+      </span>
+      <span class="brand-copy">
+        <span class="brand-name">{{ site.title }}</span>
+        <span class="brand-tag">AI · Engineering · Neuroscience</span>
+      </span>
+    </a>
 
     <button
       class="menu-toggle"

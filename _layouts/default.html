@@ -3,7 +3,7 @@
   <head>
     {% include head.html %}
   </head>
-  <body>
+  <body class="layout-{{ page.layout | default: 'default' }} page-{{ page.title | default: 'page' | slugify }}">
     <a class="skip-link" href="#main-content">Skip to main content</a>
     {% include header.html %}
 

@@ -7,7 +7,7 @@ description: Bio homepage with hacker and AI-themed animation sections.
 {% assign resume = profile.resume %}
 {% assign first_phrase = hero.terminal_phrases | first %}
 
-<section class="hero" aria-labelledby="hero-title">
+<section class="hero" aria-labelledby="hero-title" data-reveal>
   <div class="hero-grid">
     <div class="hero-copy">
       <p class="hero-kicker">{{ hero.kicker }}</p>
@@ -97,7 +97,7 @@ description: Bio homepage with hacker and AI-themed animation sections.
   </div>
 </section>
 
-<section class="featured-projects" aria-labelledby="featured-projects-title">
+<section class="featured-projects" aria-labelledby="featured-projects-title" data-reveal>
   <header class="section-header">
     <h2 id="featured-projects-title">{{ profile.featured_projects.title }}</h2>
     <p>{{ profile.featured_projects.description }}</p>
@@ -110,7 +110,28 @@ description: Bio homepage with hacker and AI-themed animation sections.
   </div>
 </section>
 
-<section class="profile-banner" aria-labelledby="profile-banner-title">
+{% assign latest_posts = site.posts | sort: 'date' | reverse | slice: 0, 2 %}
+<section class="latest-news-preview" aria-labelledby="latest-news-preview-title" data-reveal>
+  <header class="section-header">
+    <h2 id="latest-news-preview-title">Latest News</h2>
+    <p>Recent notes and updates from the project and engineering work.</p>
+  </header>
+
+  {% if latest_posts.size > 0 %}
+    <div class="news-grid">
+      {% for post in latest_posts %}
+        {% include news-card.html post=post %}
+      {% endfor %}
+    </div>
+    <p class="latest-news-actions">
+      <a class="button button-ghost" href="{{ '/news/' | relative_url }}">View all news</a>
+    </p>
+  {% else %}
+    <p class="empty-state">No posts yet. Add markdown files in <code>_posts/</code> to publish updates.</p>
+  {% endif %}
+</section>
+
+<section class="profile-banner" aria-labelledby="profile-banner-title" data-reveal>
   <header class="section-header">
     <h2 id="profile-banner-title">Profile Visual</h2>
     <p>Monochrome animated identity inspired by my profile repository design language.</p>

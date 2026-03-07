@@ -2,13 +2,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.7rem;
-  padding: 0.55rem var(--space-6);
-  border-radius: var(--radius-pill);
+  min-height: 2.55rem;
+  padding: 0.52rem var(--space-6);
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
   text-decoration: none;
-  font-size: var(--text-md);
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 550;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition:
     transform var(--duration-fast) var(--easing-standard),
     border-color var(--duration-fast) var(--easing-standard),
@@ -23,7 +25,7 @@
 .button-primary {
   background: #ffffff;
   color: #030303;
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
 }
 
 .button-primary:hover,

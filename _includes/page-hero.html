@@ -1,0 +1,29 @@
+{% assign hero_id = include.id | default: "page-hero-title" %}
+{% assign hero_kicker = include.kicker | default: "Section" %}
+{% assign hero_title = include.title | default: page.title %}
+{% assign hero_subtitle = include.subtitle | default: page.description %}
+
+<section class="page-hero" aria-labelledby="{{ hero_id }}" data-reveal>
+  <div class="page-hero-media" aria-hidden="true">
+    <img
+      src="{{ '/assets/img/home/hero.gif' | relative_url }}"
+      alt=""
+      loading="eager"
+      decoding="async"
+    >
+    <img
+      class="page-hero-mark"
+      src="{{ '/assets/img/home/profile.svg' | relative_url }}"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    >
+  </div>
+  <div class="page-hero-copy">
+    <p class="page-hero-kicker">{{ hero_kicker }}</p>
+    <h1 id="{{ hero_id }}">{{ hero_title }}</h1>
+    {% if hero_subtitle %}
+      <p class="page-hero-subtitle">{{ hero_subtitle }}</p>
+    {% endif %}
+  </div>
+</section>

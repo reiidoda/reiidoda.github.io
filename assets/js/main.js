@@ -10,5 +10,6 @@
     safeRun("initTerminalTypewriter");
     safeRun("initAINetworkCanvas");
     safeRun("initRoadmap");
+    safeRun("initRevealEffects");
   });
 })();
