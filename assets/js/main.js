@@ -1,4 +1,6 @@
 (function () {
+  document.documentElement.classList.add("js-enabled");
+
   function safeRun(fnName) {
     if (typeof window[fnName] === "function") {
       window[fnName]();
