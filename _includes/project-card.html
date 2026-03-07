@@ -1,19 +1,7 @@
 <article class="project-card" data-reveal>
   <header class="project-card-header">
     <p class="project-card-period">{{ include.project.period }}</p>
-    {% if include.project.github %}
-      <a
-        class="project-card-github"
-        href="{{ include.project.github }}"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open {{ include.project.title }} on GitHub"
-      >
-        GitHub
-      </a>
-    {% else %}
-      <span class="project-card-github">GitHub</span>
-    {% endif %}
+    <span class="project-card-github">GitHub</span>
   </header>
 
   <h3 class="project-card-title">{{ include.project.title }}</h3>
