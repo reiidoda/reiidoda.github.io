@@ -1,6 +1,6 @@
 .site-header {
   border-bottom: 1px solid var(--line);
-  background: rgba(7, 17, 26, 0.84);
+  background: rgba(3, 3, 3, 0.9);
   backdrop-filter: blur(7px);
   position: sticky;
   top: 0;
@@ -36,12 +36,12 @@
 }
 
 .menu a.is-active {
-  color: var(--accent-soft);
+  color: var(--text);
 }
 
 .menu a:hover,
 .menu a:focus-visible {
-  color: var(--accent);
+  color: var(--text);
 }
 
 @media (max-width: 680px) {

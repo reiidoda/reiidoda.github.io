@@ -1,23 +1,23 @@
 :root {
   /* Color system */
-  --bg: #07111a;
-  --bg-alt: #0b1a28;
-  --surface: #0d1b2a;
-  --surface-strong: #102338;
-  --text: #e6f1ff;
-  --text-soft: #d7e9fa;
-  --muted: #93a4b8;
-  --accent: #38bdf8;
-  --accent-soft: #7ed8f0;
-  --line: rgba(126, 216, 240, 0.2);
+  --bg: #030303;
+  --bg-alt: #080808;
+  --surface: #0f0f0f;
+  --surface-strong: #171717;
+  --text: #ffffff;
+  --text-soft: #efefef;
+  --muted: #b7b7b7;
+  --accent: #ffffff;
+  --accent-soft: #dddddd;
+  --line: rgba(255, 255, 255, 0.16);
 
-  --status-work: #7ef0c4;
-  --status-education: #f0d07e;
-  --status-achievement: #da9fff;
+  --status-work: #f2f2f2;
+  --status-education: #d0d0d0;
+  --status-achievement: #b4b4b4;
 
   /* Typography */
-  --font-ui: "Space Grotesk", "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", "SFMono-Regular", Menlo, monospace;
+  --font-ui: "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
 
   --text-xs: 0.78rem;
   --text-sm: 0.88rem;
@@ -49,7 +49,7 @@
   --radius-md: 16px;
   --radius-pill: 999px;
 
-  --shadow-glow: 0 0 35px rgba(56, 189, 248, 0.18);
+  --shadow-glow: 0 0 28px rgba(255, 255, 255, 0.12);
 
   /* Motion */
   --duration-fast: 0.2s;
