@@ -20,6 +20,19 @@ hero:
       url: "https://reiidoda.github.io/resume/"
       style: "ghost"
       external: true
+  social_links:
+    - label: "Instagram"
+      url: "https://www.instagram.com/reiidoda/"
+      external: true
+    - label: "X"
+      url: "https://www.x.com/reiidoda/"
+      external: true
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/reiidoda/"
+      external: true
+    - label: "GitHub"
+      url: "https://github.com/reiidoda/"
+      external: true
 featured_projects:
   title: "Featured Projects"
   description: "Selected work from my public repositories and ongoing engineering focus areas."

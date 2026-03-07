@@ -138,6 +138,45 @@
   gap: var(--space-4);
 }
 
+.hero-socials {
+  margin: calc(var(--space-2) * -1) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.hero-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.36rem 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.01);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard),
+    background-color var(--duration-fast) var(--easing-standard),
+    transform var(--duration-fast) var(--easing-standard);
+}
+
+.hero-socials a:hover,
+.hero-socials a:focus-visible {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateY(-1px);
+}
+
 .resume-guard {
   margin: calc(var(--space-1) * -1) 0 0;
   color: var(--muted);
@@ -316,6 +355,10 @@
 
   .hero-actions {
     width: 100%;
+  }
+
+  .hero-socials {
+    gap: var(--space-2);
   }
 
   .terminal-panel {
