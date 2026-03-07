@@ -2,6 +2,10 @@
 
 Personal website for Rei Doda, built with Jekyll and published on GitHub Pages.
 
+## Architecture
+
+- [Architecture Reference](docs/architecture.md)
+
 ## Local development
 
 ```bash
