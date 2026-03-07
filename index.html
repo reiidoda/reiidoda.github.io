@@ -19,15 +19,7 @@ description: Bio homepage with hacker and AI-themed animation sections.
         <span class="hero-name-fill" data-hero-name-fill>{{ hero.title }}</span>
         <span class="hero-name-cursor" aria-hidden="true"></span>
       </h1>
-      <button
-        class="hero-skip"
-        type="button"
-        data-hero-skip
-        aria-label="Skip intro animation and show Bio details"
-      >
-        Skip Intro
-      </button>
-      <p class="hero-scroll-hint" data-hero-scroll-hint>Scroll to generate identity</p>
+      <p class="hero-scroll-hint" data-hero-scroll-hint>Generating neural identity...</p>
     </div>
   </div>
 
@@ -81,7 +73,7 @@ description: Bio homepage with hacker and AI-themed animation sections.
           <span
             id="terminal-typewriter"
             data-typewriter
-            data-typewriter-start="hero-complete"
+            data-typewriter-start="immediate"
             data-phrases='{{ hero.terminal_phrases | jsonify }}'
           >
             {{ first_phrase }}
