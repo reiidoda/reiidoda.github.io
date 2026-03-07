@@ -60,3 +60,6 @@ jobs:
 
       - name: Check internal links in generated site
         run: node scripts/validate-site-links.js _site
+
+      - name: Assert generated hero and footer structure
+        run: node scripts/validate-site-structure.js _site
