@@ -222,7 +222,6 @@
 
     var canvas = hero.querySelector("[data-hero-canvas]");
     var nameFill = hero.querySelector("[data-hero-name-fill]");
-    var animationToggle = hero.querySelector("[data-hero-animation-toggle]");
     var details = hero.querySelector("[data-hero-details]");
     if (!canvas || !nameFill) {
       return;
@@ -255,7 +254,6 @@
     var isInView = true;
     var progress = reducedMotion ? 1 : 0;
     var completionDispatched = false;
-    var userPaused = false;
 
     hero.classList.add("hero-is-enhanced");
     nameFill.textContent = nameTarget;
@@ -286,25 +284,6 @@
 
       completionDispatched = true;
       document.dispatchEvent(new CustomEvent("hero:complete"));
-    }
-
-    function syncAnimationToggleState() {
-      if (!animationToggle) {
-        return;
-      }
-
-      if (reducedMotion) {
-        animationToggle.textContent = "Animation Fixed";
-        animationToggle.disabled = true;
-        animationToggle.setAttribute("aria-disabled", "true");
-        animationToggle.setAttribute("aria-pressed", "true");
-        return;
-      }
-
-      animationToggle.disabled = false;
-      animationToggle.removeAttribute("aria-disabled");
-      animationToggle.setAttribute("aria-pressed", userPaused ? "true" : "false");
-      animationToggle.textContent = userPaused ? "Resume Animation" : "Pause Animation";
     }
 
     function updateVisualState() {
@@ -522,7 +501,7 @@
     }
 
     function startAnimation() {
-      if (reducedMotion || document.hidden || !isInView || userPaused) {
+      if (reducedMotion || document.hidden || !isInView) {
         drawNetwork(lastFrameTime || 0, true);
         return;
       }
@@ -543,12 +522,11 @@
 
     resizeCanvas();
     setDetailsVisible();
-    syncAnimationToggleState();
     updateVisualState();
 
     window.addEventListener("resize", function () {
       resizeCanvas();
-      drawNetwork(lastFrameTime || 0, reducedMotion || userPaused);
+      drawNetwork(lastFrameTime || 0, reducedMotion);
     });
 
     document.addEventListener("visibilitychange", function () {
@@ -575,20 +553,6 @@
       );
 
       observer.observe(hero);
-    }
-
-    if (animationToggle && !reducedMotion) {
-      animationToggle.addEventListener("click", function () {
-        userPaused = !userPaused;
-        syncAnimationToggleState();
-        updateVisualState();
-        if (userPaused) {
-          stopAnimation();
-          drawNetwork(lastFrameTime || 0, true);
-          return;
-        }
-        startAnimation();
-      });
     }
 
     if (reducedMotion) {
