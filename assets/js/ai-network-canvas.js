@@ -51,7 +51,7 @@
 
     function drawStatic() {
       context.clearRect(0, 0, width, height);
-      context.fillStyle = "rgba(126, 216, 240, 0.3)";
+      context.fillStyle = "rgba(255, 255, 255, 0.24)";
       for (var i = 0; i < nodes.length; i += 1) {
         var node = nodes[i];
         context.beginPath();
@@ -81,7 +81,7 @@
 
         context.beginPath();
         context.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        context.fillStyle = "rgba(126, 216, 240, 0.85)";
+        context.fillStyle = "rgba(255, 255, 255, 0.78)";
         context.fill();
       }
 
@@ -94,7 +94,7 @@
           if (distanceSquared < maxDistanceSquared) {
             var distance = Math.sqrt(distanceSquared);
             var alpha = (1 - distance / maxDistance) * 0.35;
-            context.strokeStyle = "rgba(126, 216, 240, " + alpha + ")";
+            context.strokeStyle = "rgba(255, 255, 255, " + alpha + ")";
             context.lineWidth = 1;
             context.beginPath();
             context.moveTo(nodes[a].x, nodes[a].y);

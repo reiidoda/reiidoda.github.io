@@ -110,22 +110,6 @@
   links:
     linkedin: "https://www.linkedin.com/in/reiidoda/"
 
-- id: ai-document-processing-saas
-  type: project
-  title: "AI OCR and Document Processing SaaS"
-  period: "2022 - 2024"
-  sort_date: 2024-07-01
-  category: "AI / OCR"
-  summary: "End-to-end platform for document ingestion, extraction, review, and structured categorization with OCR plus LLM-assisted analysis."
-  technologies:
-    - Django
-    - OCR
-    - LLMs
-    - RAG
-    - PostgreSQL
-  links:
-    linkedin: "https://www.linkedin.com/in/reiidoda/"
-
 - id: student-teacher-fondazione
   type: achievement
   title: "Student Teacher"
@@ -160,21 +144,6 @@
   links:
     linkedin: "https://www.linkedin.com/in/reiidoda/"
 
-- id: warehouse-route-optimization-platform
-  type: project
-  title: "Warehouse Route Optimization Platform"
-  period: "2021 - 2022"
-  sort_date: 2022-08-01
-  category: "Operations Optimization"
-  summary: "Route and picking optimization platform modeled as a constrained weighted graph integrated with real-time warehouse operations."
-  technologies:
-    - C and C++
-    - Graph Optimization
-    - gRPC
-    - Kafka
-  links:
-    linkedin: "https://www.linkedin.com/in/reiidoda/"
-
 - id: software-engineer-vallefiorita
   type: work
   title: "Software Engineer"
@@ -189,21 +158,6 @@
     - OpenCV
     - Raspberry Pi
     - Arduino
-  links:
-    linkedin: "https://www.linkedin.com/in/reiidoda/"
-
-- id: edge-vision-robotic-qc
-  type: project
-  title: "Edge Computer Vision and Robotics QC"
-  period: "2020 - 2021"
-  sort_date: 2021-09-01
-  category: "Computer Vision"
-  summary: "Real-time quality analysis and automated rejection pipeline combining computer vision thresholds, robotics control, and traceability logging."
-  technologies:
-    - OpenCV
-    - Edge Computing
-    - Robotics
-    - GPIO
   links:
     linkedin: "https://www.linkedin.com/in/reiidoda/"
 

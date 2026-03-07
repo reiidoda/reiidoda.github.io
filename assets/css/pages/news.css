@@ -6,7 +6,7 @@
 .news-card {
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  background: linear-gradient(150deg, rgba(10, 21, 33, 0.96), rgba(13, 33, 52, 0.88));
+  background: linear-gradient(150deg, rgba(10, 10, 10, 0.98), rgba(21, 21, 21, 0.94));
   padding: var(--space-6);
 }
 
@@ -106,7 +106,7 @@
 
 .news-post-content code {
   font-family: var(--font-mono);
-  background: rgba(126, 216, 240, 0.14);
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 0.1rem 0.35rem;
@@ -132,7 +132,7 @@
 
 .post-nav-link:hover,
 .post-nav-link:focus-visible {
-  border-color: rgba(126, 216, 240, 0.4);
+  border-color: rgba(255, 255, 255, 0.38);
   color: var(--accent-soft);
 }
 

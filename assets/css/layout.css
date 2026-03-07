@@ -5,7 +5,9 @@
 body {
   margin: 0;
   font-family: var(--font-ui);
-  background: radial-gradient(circle at 85% 10%, #14324d 0%, var(--bg) 42%);
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.08) 0%, transparent 35%),
+    linear-gradient(135deg, #030303 0%, #0b0b0b 55%, #030303 100%);
   color: var(--text);
   line-height: var(--leading-regular);
 }
@@ -34,8 +36,8 @@ main {
   z-index: 100;
   padding: 0.6rem 0.8rem;
   border-radius: var(--radius-sm);
-  background: #d9f2ff;
-  color: #042035;
+  background: #ffffff;
+  color: #030303;
   font-weight: 700;
   text-decoration: none;
 }

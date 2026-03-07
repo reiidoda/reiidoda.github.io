@@ -73,7 +73,21 @@ description: Bio homepage with hacker and AI-themed animation sections.
     </div>
 
     <div class="hero-visual" aria-hidden="true">
+      <img
+        class="hero-reel"
+        src="{{ '/assets/img/home/hero.gif' | relative_url }}"
+        alt=""
+        loading="eager"
+        decoding="async"
+      >
       <canvas id="ai-network-canvas"></canvas>
+      <img
+        class="hero-mark"
+        src="{{ '/assets/img/home/profile.svg' | relative_url }}"
+        alt=""
+        loading="lazy"
+        decoding="async"
+      >
       <div class="hero-visual-overlay">
         <p>AI</p>
         <p>Neuroscience</p>
@@ -94,4 +108,19 @@ description: Bio homepage with hacker and AI-themed animation sections.
       {% include project-card.html project=project %}
     {% endfor %}
   </div>
+</section>
+
+<section class="profile-banner" aria-labelledby="profile-banner-title">
+  <header class="section-header">
+    <h2 id="profile-banner-title">Profile Visual</h2>
+    <p>Monochrome animated identity inspired by my profile repository design language.</p>
+  </header>
+  <figure class="profile-banner-media">
+    <img
+      src="{{ '/assets/img/home/profile.gif' | relative_url }}"
+      alt="Animated profile panel with dark monochrome geometric design."
+      loading="lazy"
+      decoding="async"
+    >
+  </figure>
 </section>
