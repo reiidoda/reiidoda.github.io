@@ -73,6 +73,16 @@
   white-space: nowrap;
 }
 
+.hero-intro.hero-is-enhanced .hero-name-fill {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+}
+
+.hero-intro.hero-is-enhanced.hero-reduced-motion .hero-name-fill {
+  color: var(--text);
+  -webkit-text-stroke: 0;
+}
+
 .hero-name-cursor {
   display: inline-block;
   width: 0.66ch;
@@ -213,6 +223,10 @@
 .hero-intro.hero-is-enhanced.is-complete .hero-name-cursor {
   animation: none;
   opacity: 0;
+}
+
+.hero-intro.hero-is-enhanced .hero-name-cursor {
+  display: none;
 }
 
 .featured-projects {
