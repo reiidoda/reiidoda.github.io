@@ -12,6 +12,8 @@
   align-items: center;
   justify-content: space-between;
   min-height: 64px;
+  gap: var(--space-4);
+  position: relative;
 }
 
 .brand {
@@ -19,6 +21,10 @@
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 0.2px;
+}
+
+.site-nav {
+  margin-left: auto;
 }
 
 .menu {
@@ -44,15 +50,91 @@
   color: var(--text);
 }
 
-@media (max-width: 680px) {
+.menu-toggle {
+  display: none;
+  align-items: center;
+  gap: var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 0.42rem 0.6rem;
+  cursor: pointer;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  border-color: rgba(255, 255, 255, 0.36);
+}
+
+.menu-toggle-icon {
+  display: inline-grid;
+  gap: 0.18rem;
+}
+
+.menu-toggle-icon span {
+  width: 0.95rem;
+  height: 2px;
+  border-radius: 99px;
+  background: currentColor;
+  transition: transform var(--duration-fast) var(--easing-standard), opacity var(--duration-fast) var(--easing-standard);
+}
+
+.site-header.is-menu-open .menu-toggle-icon span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.site-header.is-menu-open .menu-toggle-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header.is-menu-open .menu-toggle-icon span:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+@media (max-width: 760px) {
   .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-4);
-    padding: 0.8rem 0;
+    min-height: 60px;
+    flex-wrap: wrap;
+    padding: 0.7rem 0;
+  }
+
+  .site-header.menu-enhanced .menu-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .site-nav {
+    width: 100%;
+    margin-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-4);
+  }
+
+  .site-header.menu-enhanced .site-nav[hidden] {
+    display: none;
   }
 
   .menu {
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .menu a {
+    display: inline-flex;
+    padding: 0.15rem 0;
+    font-size: 0.98rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle-icon span {
+    transition: none;
   }
 }

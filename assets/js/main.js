@@ -6,6 +6,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    safeRun("initMobileMenu");
     safeRun("initTerminalTypewriter");
     safeRun("initAINetworkCanvas");
     safeRun("initRoadmap");
