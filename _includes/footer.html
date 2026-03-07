@@ -9,7 +9,7 @@
     <div class="footer-inner" data-reveal>
       <div class="footer-copy-block">
         <p class="footer-copy">© {{ 'now' | date: '%Y' }} Rei Doda</p>
-        <p class="footer-note">Built with GitHub Pages · Jekyll · Design language from the reiidoda profile repository</p>
+        <p class="footer-note">{{ profile.footer_note | default: "Built with GitHub Pages · Jekyll · Design language from the reiidoda profile repository" }}</p>
       </div>
       <div class="footer-links-wrap">
         {% if resume and resume.live_url and resume.source_url %}

@@ -15,20 +15,6 @@
   links:
     linkedin: "https://www.linkedin.com/in/reiidoda/"
 
-- id: occamo
-  type: project
-  title: "OccamO"
-  period: "2025 - Present"
-  sort_date: 2025-10-01
-  category: "AI / Developer Tooling"
-  summary: "Tooling-focused project around reliable engineering workflows with emphasis on practical automation and quality."
-  technologies:
-    - Python
-    - GitHub Actions
-    - CLI Tooling
-  links:
-    github: "https://github.com/reiidoda/OccamO"
-
 - id: chief-engineer-movenpick
   type: work
   title: "Chief Engineer"
@@ -47,50 +33,6 @@
   links:
     linkedin: "https://www.linkedin.com/in/reiidoda/"
 
-- id: thinking-in-code
-  type: project
-  title: "thinking_in_code"
-  period: "2025"
-  sort_date: 2025-05-01
-  category: "Engineering / Knowledge"
-  summary: "Technical writing and implementation notes focused on software reasoning and engineering clarity."
-  technologies:
-    - Markdown
-    - Software Design
-    - Programming Languages
-  links:
-    github: "https://github.com/reiidoda/thinking_in_code"
-
-- id: ambassador-eg-global
-  type: achievement
-  title: "Ambassador"
-  period: "Dec 2021 - Jan 2025"
-  sort_date: 2025-01-01
-  category: "Volunteering"
-  context: "EG Global"
-  location: "Worldwide"
-  summary: "Supported non-profits and social entrepreneurs with coordination, promotion, and community engagement initiatives."
-  technologies:
-    - Community Engagement
-    - Coordination
-    - Communication
-  links:
-    linkedin: "https://www.linkedin.com/in/reiidoda/"
-
-- id: examen
-  type: project
-  title: "examen"
-  period: "2024 - 2025"
-  sort_date: 2024-09-01
-  category: "Applied Software"
-  summary: "Project experimentation around practical software development, workflows, and iterative product structure."
-  technologies:
-    - Python
-    - Web Development
-    - Data Handling
-  links:
-    github: "https://github.com/reiidoda/examen"
-
 - id: lead-software-engineer-upnova
   type: work
   title: "Lead Software Engineer"
@@ -107,22 +49,6 @@
     - LLMs
     - RAG
     - LangChain
-  links:
-    linkedin: "https://www.linkedin.com/in/reiidoda/"
-
-- id: student-teacher-fondazione
-  type: achievement
-  title: "Student Teacher"
-  period: "Nov 2021 - May 2024"
-  sort_date: 2024-05-01
-  category: "Volunteering"
-  context: "Fondazione Giovanni Paolo II ETS"
-  location: "Bari, Italy · Education"
-  summary: "Led introductory Python programming sessions focused on computational thinking and problem-solving skills."
-  technologies:
-    - Python
-    - Teaching
-    - Mentoring
   links:
     linkedin: "https://www.linkedin.com/in/reiidoda/"
 

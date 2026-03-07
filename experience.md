@@ -1,6 +1,6 @@
 ---
 title: Experience
-description: Professional and project timeline.
+description: Professional and education timeline.
 permalink: /experience/
 ---
 {% assign experience_items = site.data.experience | sort: "sort_date" | reverse %}
@@ -10,7 +10,7 @@ permalink: /experience/
     id="experience-title"
     kicker="Experience"
     title="Experience Roadmap"
-    subtitle="A reverse-chronological timeline of projects, work, and milestones from most recent to oldest."
+    subtitle="A reverse-chronological timeline of jobs and education from most recent to oldest."
   %}
 
   <div class="roadmap" data-roadmap>
