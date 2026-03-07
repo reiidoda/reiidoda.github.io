@@ -18,6 +18,11 @@ body.menu-open {
   overflow: hidden;
 }
 
+body.hero-scroll-lock:not(.menu-open) {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body::before {
   content: "";
   position: fixed;
