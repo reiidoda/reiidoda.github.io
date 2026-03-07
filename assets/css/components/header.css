@@ -1,6 +1,6 @@
 .site-header {
   border-bottom: 1px solid var(--line);
-  background: rgba(3, 3, 3, 0.9);
+  background: rgba(3, 3, 3, 0.86);
   backdrop-filter: blur(7px);
   position: sticky;
   top: 0;
@@ -11,16 +11,55 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 64px;
-  gap: var(--space-4);
+  min-height: 76px;
+  gap: var(--space-6);
   position: relative;
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
   color: var(--text);
   text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0.2px;
+}
+
+.brand-mark-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  display: inline-grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.brand-mark {
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
+  filter: grayscale(1) contrast(1.08);
+}
+
+.brand-copy {
+  display: grid;
+  gap: 0.06rem;
+}
+
+.brand-name {
+  display: block;
+  font-size: 1.03rem;
+  letter-spacing: 0.4px;
+  font-weight: 650;
+}
+
+.brand-tag {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  color: var(--muted);
 }
 
 .site-nav {
@@ -30,24 +69,33 @@
 .menu {
   display: flex;
   list-style: none;
-  gap: var(--space-6);
+  gap: var(--space-5);
   padding: 0;
   margin: 0;
 }
 
 .menu a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
   color: var(--muted);
   text-decoration: none;
-  font-size: 0.96rem;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  padding: 0.35rem 0.1rem;
+  border-bottom: 1px solid transparent;
 }
 
 .menu a.is-active {
   color: var(--text);
+  border-bottom-color: rgba(255, 255, 255, 0.48);
 }
 
 .menu a:hover,
 .menu a:focus-visible {
   color: var(--text);
+  border-bottom-color: rgba(255, 255, 255, 0.32);
 }
 
 .menu-toggle {
@@ -101,7 +149,12 @@
   .header-inner {
     min-height: 60px;
     flex-wrap: wrap;
-    padding: 0.7rem 0;
+    gap: var(--space-3);
+    padding: 0.78rem 0;
+  }
+
+  .brand-tag {
+    letter-spacing: 0.9px;
   }
 
   .site-header.menu-enhanced .menu-toggle {
@@ -129,7 +182,7 @@
   .menu a {
     display: inline-flex;
     padding: 0.15rem 0;
-    font-size: 0.98rem;
+    font-size: 0.95rem;
   }
 }
 

@@ -20,8 +20,9 @@
 .hero-kicker {
   margin: 0;
   color: var(--accent-soft);
+  font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 1.7px;
+  letter-spacing: 2px;
   font-size: var(--text-xs);
 }
 
@@ -180,13 +181,22 @@
   margin: 0;
   color: #f2f2f2;
   font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.55px;
-  opacity: 0.85;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  text-transform: uppercase;
 }
 
 .featured-projects {
   margin-top: var(--space-10);
+}
+
+.latest-news-preview {
+  margin-top: var(--space-10);
+}
+
+.latest-news-actions {
+  margin: var(--space-6) 0 0;
 }
 
 .profile-banner {
@@ -215,6 +225,7 @@
 .section-header h2 {
   margin: 0;
   font-size: clamp(1.4rem, 2.8vw, 2rem);
+  letter-spacing: 0.4px;
 }
 
 .section-header p {
@@ -270,6 +281,10 @@
   }
 
   .featured-projects {
+    margin-top: var(--space-9);
+  }
+
+  .latest-news-preview {
     margin-top: var(--space-9);
   }
 

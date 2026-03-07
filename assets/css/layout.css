@@ -3,17 +3,36 @@
 }
 
 body {
+  position: relative;
   margin: 0;
   font-family: var(--font-ui);
   background:
-    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.09) 0%, transparent 34%),
     linear-gradient(135deg, #030303 0%, #0b0b0b 55%, #030303 100%);
   color: var(--text);
   line-height: var(--leading-regular);
+  min-height: 100vh;
 }
 
 body.menu-open {
   overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.09;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 1;
+  animation: scanline 16s linear infinite;
 }
 
 a {
@@ -21,11 +40,13 @@ a {
 }
 
 .container {
-  width: min(var(--max-width), 92vw);
+  width: min(var(--max-width), 90vw);
   margin: 0 auto;
 }
 
 main {
+  position: relative;
+  z-index: 2;
   padding: var(--space-10) 0 var(--space-11);
 }
 
@@ -58,23 +79,64 @@ button:focus-visible,
   outline-offset: 3px;
 }
 
-.page-intro {
-  margin-bottom: var(--space-8);
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-mid) var(--easing-standard),
+    transform var(--duration-mid) var(--easing-standard);
 }
 
-.page-intro h1 {
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.not-found-page {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.not-found-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: linear-gradient(160deg, rgba(9, 9, 9, 0.98), rgba(18, 18, 18, 0.94));
+  padding: var(--space-8);
+}
+
+.not-found-card p {
   margin: 0;
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  color: var(--text-soft);
 }
 
-.page-intro-text {
-  margin: var(--space-2) 0 0;
-  color: var(--muted);
-  max-width: 65ch;
+.not-found-actions {
+  margin-top: var(--space-6) !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@keyframes scanline {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(6px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto;
+  }
+
+  body::before {
+    animation: none;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
