@@ -17,7 +17,8 @@
   {% endif %}
 {% endif %}
 
-{% assign meta_image = page.image | default: site.og_image %}
+{% assign meta_image = page.image | default: page.cover | default: site.og_image %}
+{% assign meta_image_alt = page.image_alt | default: page.cover_alt | default: site.og_image_alt | default: site.title %}
 {% assign image_prefix = meta_image | slice: 0, 4 %}
 {% if meta_image and image_prefix != 'http' %}
   {% assign meta_image = meta_image | absolute_url %}
@@ -35,6 +36,7 @@
 <meta property="og:url" content="{{ canonical_url }}">
 {% if meta_image %}
   <meta property="og:image" content="{{ meta_image }}">
+  <meta property="og:image:alt" content="{{ meta_image_alt | escape }}">
 {% endif %}
 
 <meta name="twitter:card" content="{% if meta_image %}summary_large_image{% else %}summary{% endif %}">
@@ -45,6 +47,7 @@
 {% endif %}
 {% if meta_image %}
   <meta name="twitter:image" content="{{ meta_image }}">
+  <meta name="twitter:image:alt" content="{{ meta_image_alt | escape }}">
 {% endif %}
 
 {% if page.layout == 'post' or page.collection == 'posts' %}
