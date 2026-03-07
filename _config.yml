@@ -3,6 +3,8 @@ description: Personal site of Rei Doda focused on AI systems, software engineeri
 url: "https://reiidoda.github.io"
 baseurl: ""
 lang: en
+og_image: "/assets/img/profile/og-cover.png"
+og_image_alt: "Rei Doda AI systems and software engineering profile cover"
 
 markdown: kramdown
 kramdown:

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Rei Doda social preview</title>
+  <desc id="desc">Social preview card with dark gradient background and cyan technical motif.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06101a"/>
+      <stop offset="45%" stop-color="#0a1e2f"/>
+      <stop offset="100%" stop-color="#0f3550"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7ed8f0"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g opacity="0.22">
+    <circle cx="920" cy="130" r="7" fill="#7ed8f0"/>
+    <circle cx="1030" cy="220" r="9" fill="#38bdf8"/>
+    <circle cx="860" cy="300" r="8" fill="#7ed8f0"/>
+    <circle cx="980" cy="380" r="10" fill="#38bdf8"/>
+    <line x1="920" y1="130" x2="1030" y2="220" stroke="#7ed8f0" stroke-width="2"/>
+    <line x1="1030" y1="220" x2="860" y2="300" stroke="#7ed8f0" stroke-width="2"/>
+    <line x1="860" y1="300" x2="980" y2="380" stroke="#7ed8f0" stroke-width="2"/>
+  </g>
+
+  <circle cx="870" cy="315" r="210" fill="#38bdf8" opacity="0.15" filter="url(#softGlow)"/>
+
+  <g transform="translate(90,120)">
+    <text x="0" y="0" fill="#7ed8f0" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" letter-spacing="2">REI DODA</text>
+    <text x="0" y="96" fill="#e6f1ff" font-family="Space Grotesk, Avenir Next, Segoe UI, sans-serif" font-size="72" font-weight="700">AI Systems</text>
+    <text x="0" y="168" fill="#e6f1ff" font-family="Space Grotesk, Avenir Next, Segoe UI, sans-serif" font-size="72" font-weight="700">Software Engineering</text>
+    <text x="0" y="242" fill="#b9d6ee" font-family="Space Grotesk, Avenir Next, Segoe UI, sans-serif" font-size="36">Research-driven products at the intersection of code and cognition.</text>
+    <rect x="0" y="286" width="330" height="2" fill="url(#accent)" opacity="0.75"/>
+    <text x="0" y="330" fill="#cbe8fb" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24">reiidoda.github.io</text>
+  </g>
+</svg>
