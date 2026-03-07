@@ -254,6 +254,7 @@
     var canvas = hero.querySelector("[data-hero-canvas]");
     var nameFill = hero.querySelector("[data-hero-name-fill]");
     var hint = hero.querySelector("[data-hero-scroll-hint]");
+    var skipButton = hero.querySelector("[data-hero-skip]");
     var details = hero.querySelector("[data-hero-details]");
     if (!canvas || !nameFill) {
       return;
@@ -418,10 +419,47 @@
       return direction * eased * INPUT_SENSITIVITY;
     }
 
+    function isInteractiveTarget(target) {
+      if (!target || typeof target.closest !== "function") {
+        return false;
+      }
+
+      return Boolean(
+        target.closest("button, a, input, select, textarea, [role='button'], [contenteditable='true']")
+      );
+    }
+
+    function completeAndUnlock(skipRequested) {
+      progress = 1;
+      if (lockEnabled) {
+        virtualDistance = releaseDistance;
+      }
+
+      updateVisualState();
+      drawNetwork(0);
+
+      if (!lockReleased) {
+        releaseScrollLock();
+        return;
+      }
+
+      if (skipRequested) {
+        var targetScrollTop = Math.round(handoffScrollTop);
+        if (targetScrollTop > 0 && window.scrollY < targetScrollTop) {
+          window.scrollTo(0, targetScrollTop);
+        }
+      }
+    }
+
     function updateVisualState() {
       var completed = isComplete();
       hero.classList.toggle("is-complete", completed);
       setDetailsVisibility(completed);
+
+      if (skipButton) {
+        skipButton.hidden = completed;
+        skipButton.setAttribute("aria-hidden", completed ? "true" : "false");
+      }
 
       if (hint) {
         if (completed && lockEnabled && !lockReleased) {
@@ -754,6 +792,10 @@
         return;
       }
 
+      if (isInteractiveTarget(event.target)) {
+        return;
+      }
+
       var key = event.key;
       if (key === "ArrowDown" || key === "PageDown" || key === "Enter" || key === " " || key === "Spacebar") {
         event.preventDefault();
@@ -791,6 +833,13 @@
     if (lockEnabled) {
       attachInputLockHandlers();
       applyScrollLock(true);
+    }
+
+    if (skipButton) {
+      skipButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        completeAndUnlock(true);
+      });
     }
 
     updateScrollProgress();
@@ -849,8 +898,7 @@
     }
 
     if (reducedMotion) {
-      onCompletedFirstTime();
-      releaseScrollLock();
+      completeAndUnlock(false);
     }
   }
 

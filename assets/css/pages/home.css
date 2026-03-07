@@ -92,8 +92,33 @@
   animation: blink 1s steps(1, end) infinite;
 }
 
+.hero-skip {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 0.26rem 0.62rem;
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) var(--easing-standard),
+    background-color var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard),
+    opacity var(--duration-fast) var(--easing-standard);
+}
+
+.hero-skip:hover,
+.hero-skip:focus-visible {
+  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
 .hero-scroll-hint {
-  margin: 0;
+  margin: var(--space-2) 0 0;
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: 0.83rem;
@@ -256,6 +281,11 @@
 .hero-intro.hero-is-enhanced.is-complete .hero-scroll-hint {
   opacity: 0;
   transform: translateY(-6px);
+}
+
+.hero-intro.hero-is-enhanced.is-complete .hero-skip {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .hero-intro.hero-is-enhanced.is-complete .hero-name-cursor {

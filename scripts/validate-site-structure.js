@@ -18,6 +18,7 @@ const heroPage = {
     "data-hero-intro",
     "data-hero-canvas",
     "data-hero-details",
+    "data-hero-skip",
     "class=\"hero-actions\"",
     "class=\"hero-socials\"",
   ],
