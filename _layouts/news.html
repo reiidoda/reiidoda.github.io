@@ -1,11 +1,50 @@
 ---
 layout: default
 ---
-<section class="news-listing" aria-labelledby="news-title">
+<section class="news-listing" aria-labelledby="news-title" data-news-root>
   {% include page-hero.html id="news-title" kicker="News" title=page.title subtitle=page.description %}
 
   {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+  {% assign sorted_tags = site.tags | sort %}
   {% if sorted_posts.size > 0 %}
+    <section class="news-toolbar" aria-label="News filters" data-news-toolbar>
+      <div class="news-toolbar-row">
+        <label class="news-search-label" for="news-search-input">Search</label>
+        <input
+          id="news-search-input"
+          class="news-search-input"
+          type="search"
+          placeholder="Search title or excerpt..."
+          autocomplete="off"
+          data-news-search-input
+        >
+      </div>
+
+      <div class="news-toolbar-row news-toolbar-tags" aria-label="Filter by tag">
+        <button class="news-filter-chip is-active" type="button" data-news-tag="all" aria-pressed="true">All</button>
+        {% for tag in sorted_tags %}
+          {% assign tag_name = tag[0] %}
+          {% unless tag_name == "" %}
+            <button
+              class="news-filter-chip"
+              type="button"
+              data-news-tag="{{ tag_name | downcase | escape }}"
+              aria-pressed="false"
+            >
+              {{ tag_name }}
+            </button>
+          {% endunless %}
+        {% endfor %}
+      </div>
+
+      <div class="news-toolbar-meta">
+        <button class="news-filter-reset" type="button" data-news-reset disabled>Reset filters</button>
+        <p class="news-results-count" data-news-results role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <p class="news-empty-results" data-news-empty hidden>No posts match these filters.</p>
+
     <div class="news-grid">
       {% for post in sorted_posts %}
         {% include news-card.html post=post %}
