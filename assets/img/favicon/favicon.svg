@@ -1,7 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="R favicon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Brain favicon">
   <rect width="1000" height="1000" fill="#000000"/>
-  <path
-    fill="#ffffff"
-    d="M290 180H492C571 180 635 243 635 321C635 389 584 447 517 460L651 820H545L420 480H360V820H290V180ZM360 250V410H483C533 410 565 373 565 328C565 285 533 250 483 250H360Z"
-  />
+
+  <ellipse cx="370" cy="410" rx="200" ry="240" fill="#ffffff"/>
+  <ellipse cx="630" cy="410" rx="200" ry="240" fill="#ffffff"/>
+  <rect x="250" y="330" width="500" height="360" rx="180" fill="#ffffff"/>
+
+  <rect x="471" y="200" width="58" height="480" fill="#000000"/>
+
+  <path d="M360 250L300 340L340 440L300 560" fill="none" stroke="#000000" stroke-width="44" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M430 260L390 360L430 470" fill="none" stroke="#000000" stroke-width="38" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M640 250L700 340L660 440L700 560" fill="none" stroke="#000000" stroke-width="44" stroke-linecap="square" stroke-linejoin="round"/>
+  <path d="M570 260L610 360L570 470" fill="none" stroke="#000000" stroke-width="38" stroke-linecap="square" stroke-linejoin="round"/>
+
+  <rect x="430" y="650" width="140" height="210" rx="68" fill="#ffffff"/>
+  <ellipse cx="500" cy="860" rx="110" ry="60" fill="#ffffff"/>
+  <rect x="487" y="680" width="26" height="220" fill="#000000"/>
 </svg>
