@@ -14,4 +14,5 @@
   font-size: 0.75rem;
   color: #cce7ff;
   background: rgba(56, 189, 248, 0.12);
+  overflow-wrap: anywhere;
 }

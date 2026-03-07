@@ -35,6 +35,10 @@
   font-size: 0.96rem;
 }
 
+.menu a.is-active {
+  color: var(--accent-soft);
+}
+
 .menu a:hover,
 .menu a:focus-visible {
   color: var(--accent);
