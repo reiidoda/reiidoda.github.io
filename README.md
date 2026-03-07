@@ -34,6 +34,16 @@ Deployment is automated with GitHub Actions using [`.github/workflows/pages.yml`
 - Build job: checks out code, configures Pages, builds Jekyll into `./_site`, uploads Pages artifact.
 - Deploy job: deploys the uploaded artifact to the `github-pages` environment.
 
+## Favicon cache busting
+
+Favicon links use a version query string from `_config.yml`:
+
+```yml
+favicon_version: "20260307"
+```
+
+When favicon assets are changed, bump `favicon_version` to force browser tab refresh across cached clients.
+
 ## GitHub Pages settings
 
 In repository settings, ensure:

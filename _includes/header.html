@@ -1,8 +1,9 @@
 <header class="site-header" data-site-header>
+  {% assign favicon_version = site.favicon_version | default: '20260307' %}
   <div class="container header-inner">
     <a class="brand" href="{{ '/' | relative_url }}">
       <span class="brand-mark-wrap" aria-hidden="true">
-        <img class="brand-mark" src="{{ '/assets/img/favicon/favicon.svg' | relative_url }}" alt="">
+        <img class="brand-mark" src="{{ '/assets/img/favicon/favicon.svg?v=' | append: favicon_version | relative_url }}" alt="">
       </span>
       <span class="brand-copy">
         <span class="brand-name">{{ site.title }}</span>
