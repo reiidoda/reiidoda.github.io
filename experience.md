@@ -17,6 +17,7 @@ permalink: /experience/
     <div class="roadmap-line" aria-hidden="true">
       <span class="roadmap-line-progress" data-roadmap-progress></span>
     </div>
+    <canvas class="roadmap-neural-canvas" data-roadmap-canvas aria-hidden="true"></canvas>
 
     <ol class="roadmap-list">
       {% for item in experience_items %}
