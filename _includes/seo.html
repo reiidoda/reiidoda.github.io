@@ -61,3 +61,63 @@
     {% endfor %}
   {% endif %}
 {% endif %}
+
+{% assign profile_name = site.data.site.name | default: site.title %}
+{% assign profile_url = '/' | absolute_url %}
+{% assign profile_description = site.data.site.hero.summary | default: site.description %}
+{% assign profile_job_title = site.data.site.hero.subtitle %}
+
+{% assign profile_image = site.og_image %}
+{% assign profile_image_prefix = profile_image | slice: 0, 4 %}
+{% if profile_image and profile_image_prefix != 'http' %}
+  {% assign profile_image = profile_image | absolute_url %}
+{% endif %}
+
+{% assign modified_date = page.last_modified_at | default: page.date %}
+
+{% assign is_profile_schema_page = false %}
+{% if page.url == '/' or page.url == '/news/' or page.url == '/experience/' %}
+  {% assign is_profile_schema_page = true %}
+{% endif %}
+
+{% if page.layout == 'post' or page.collection == 'posts' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ computed_description | jsonify }},
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      "dateModified": {{ modified_date | date_to_xmlschema | jsonify }},
+      "url": {{ canonical_url | jsonify }},
+      "mainEntityOfPage": {{ canonical_url | jsonify }},
+      "author": {
+        "@type": "Person",
+        "name": {{ profile_name | jsonify }},
+        "url": {{ profile_url | jsonify }}
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": {{ profile_name | jsonify }},
+        "url": {{ profile_url | jsonify }}
+      },
+      "inLanguage": {{ site.lang | default: 'en' | jsonify }}{% if meta_image %},
+      "image": {{ meta_image | jsonify }}{% endif %}{% if page.tags and page.tags.size > 0 %},
+      "keywords": {{ page.tags | join: ', ' | jsonify }}{% endif %}
+    }
+  </script>
+{% elsif is_profile_schema_page %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": {{ profile_name | jsonify }},
+      "url": {{ profile_url | jsonify }},
+      "description": {{ profile_description | jsonify }},
+      "mainEntityOfPage": {{ canonical_url | jsonify }}{% if profile_job_title %},
+      "jobTitle": {{ profile_job_title | jsonify }}{% endif %}{% if profile_image %},
+      "image": {{ profile_image | jsonify }}{% endif %},
+      "sameAs": [{% assign social_links = site.data.social | where: 'external', true %}{% for link in social_links %}{% if link.url contains '://' %}{{ link.url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}]
+    }
+  </script>
+{% endif %}
