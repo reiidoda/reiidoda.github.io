@@ -3,18 +3,6 @@
     return Math.max(min, Math.min(max, value));
   }
 
-  function normalizeWheelDelta(delta, deltaMode) {
-    if (deltaMode === 1) {
-      return delta * 16;
-    }
-
-    if (deltaMode === 2) {
-      return delta * window.innerHeight;
-    }
-
-    return delta;
-  }
-
   function segmentLength(a, b) {
     var dx = b.x - a.x;
     var dy = b.y - a.y;
@@ -31,25 +19,6 @@
       total += segmentLength(points[i - 1], points[i]);
     }
     return total;
-  }
-
-  function drawPolyline(context, points, strokeStyle, lineWidth) {
-    if (!points || points.length < 2) {
-      return;
-    }
-
-    context.strokeStyle = strokeStyle;
-    context.lineWidth = lineWidth;
-    context.lineJoin = "round";
-    context.lineCap = "round";
-    context.beginPath();
-    context.moveTo(points[0].x, points[0].y);
-
-    for (var i = 1; i < points.length; i += 1) {
-      context.lineTo(points[i].x, points[i].y);
-    }
-
-    context.stroke();
   }
 
   function drawPolylineProgress(context, points, maxLength, strokeStyle, lineWidth) {
@@ -108,7 +77,7 @@
 
   function getGlyphMap() {
     return {
-      "R": {
+      R: {
         width: 0.86,
         strokes: [
           [[0.0, 0.0], [0.0, 1.0]],
@@ -116,41 +85,41 @@
           [[0.24, 0.5], [0.78, 1.0]]
         ]
       },
-      "e": {
+      e: {
         width: 0.72,
         strokes: [
           [[0.72, 0.55], [0.2, 0.55], [0.2, 0.35], [0.7, 0.35]],
           [[0.7, 0.35], [0.7, 0.8], [0.18, 0.8], [0.18, 0.35]]
         ]
       },
-      "i": {
+      i: {
         width: 0.32,
         strokes: [
           [[0.5, 0.35], [0.5, 1.0]],
           [[0.5, 0.14], [0.5, 0.2]]
         ]
       },
-      "D": {
+      D: {
         width: 0.9,
         strokes: [
           [[0.0, 0.0], [0.0, 1.0]],
           [[0.0, 0.0], [0.62, 0.08], [0.86, 0.5], [0.62, 0.92], [0.0, 1.0]]
         ]
       },
-      "o": {
+      o: {
         width: 0.72,
         strokes: [
           [[0.2, 0.35], [0.7, 0.35], [0.82, 0.62], [0.7, 0.9], [0.2, 0.9], [0.08, 0.62], [0.2, 0.35]]
         ]
       },
-      "d": {
+      d: {
         width: 0.76,
         strokes: [
           [[0.72, 0.0], [0.72, 1.0]],
           [[0.16, 0.44], [0.6, 0.44], [0.72, 0.67], [0.6, 0.9], [0.16, 0.9], [0.04, 0.67], [0.16, 0.44]]
         ]
       },
-      "a": {
+      a: {
         width: 0.7,
         strokes: [
           [[0.12, 0.62], [0.28, 0.42], [0.62, 0.42], [0.74, 0.62], [0.62, 0.9], [0.26, 0.9], [0.12, 0.62]],
@@ -254,7 +223,6 @@
     var canvas = hero.querySelector("[data-hero-canvas]");
     var nameFill = hero.querySelector("[data-hero-name-fill]");
     var hint = hero.querySelector("[data-hero-scroll-hint]");
-    var skipButton = hero.querySelector("[data-hero-skip]");
     var details = hero.querySelector("[data-hero-details]");
     if (!canvas || !nameFill) {
       return;
@@ -265,10 +233,7 @@
       return;
     }
 
-    var KEY_STEP = 56;
-    var INPUT_SENSITIVITY = 0.72;
-    var WHEEL_STEP_CAP = 96;
-    var TOUCH_STEP_CAP = 82;
+    var AUTO_NAME_DURATION_MS = 3600;
 
     var nameTarget =
       (hero.getAttribute("data-hero-name") || nameFill.textContent || "Rei Doda").trim();
@@ -286,19 +251,10 @@
     var nameStrokeTotalLength = 0;
     var nameBounds = null;
     var animationFrame = null;
+    var lastFrameTime = 0;
     var isInView = true;
     var progress = reducedMotion ? 1 : 0;
-    var completionDistance = Math.max(300, window.innerHeight * 0.74);
-    var dwellDistance = clamp(window.innerHeight * 0.24, 130, 240);
-    var releaseDistance = completionDistance + dwellDistance;
-    var handoffScrollTop = completionDistance + dwellDistance * 0.58;
-    var virtualDistance = 0;
-    var lockEnabled = !reducedMotion;
-    var lockReleased = reducedMotion;
-    var touchStartY = null;
     var completionDispatched = false;
-    var detailFocusableSelector =
-      "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]";
 
     hero.classList.add("hero-is-enhanced");
     nameFill.textContent = nameTarget;
@@ -311,83 +267,14 @@
       return progress >= 0.999;
     }
 
-    function setDetailsVisibility(visible) {
+    function setDetailsVisible() {
       if (!details) {
         return;
       }
 
-      details.setAttribute("aria-hidden", visible ? "false" : "true");
-      setDetailsInteractivity(visible);
-    }
-
-    function setDetailsInteractivity(enabled) {
-      if (!details) {
-        return;
-      }
-
+      details.setAttribute("aria-hidden", "false");
       if ("inert" in details) {
-        details.inert = !enabled;
-      }
-
-      var focusableNodes = details.querySelectorAll(detailFocusableSelector);
-      for (var i = 0; i < focusableNodes.length; i += 1) {
-        var node = focusableNodes[i];
-
-        if (enabled) {
-          if (!node.hasAttribute("data-hero-tabindex")) {
-            continue;
-          }
-
-          var storedTabindex = node.getAttribute("data-hero-tabindex");
-          if (storedTabindex === "") {
-            node.removeAttribute("tabindex");
-          } else {
-            node.setAttribute("tabindex", storedTabindex);
-          }
-          node.removeAttribute("data-hero-tabindex");
-          continue;
-        }
-
-        if (!node.hasAttribute("data-hero-tabindex")) {
-          var currentTabindex = node.getAttribute("tabindex");
-          node.setAttribute("data-hero-tabindex", currentTabindex === null ? "" : currentTabindex);
-        }
-
-        node.setAttribute("tabindex", "-1");
-      }
-    }
-
-    function applyScrollLock(locked) {
-      if (locked) {
-        document.body.classList.add("hero-scroll-lock");
-        if (window.scrollY !== 0) {
-          window.scrollTo(0, 0);
-        }
-        return;
-      }
-
-      document.body.classList.remove("hero-scroll-lock");
-    }
-
-    function detachInputLockHandlers() {
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("keydown", onKeyDown);
-    }
-
-    function releaseScrollLock() {
-      if (lockReleased) {
-        return;
-      }
-
-      lockReleased = true;
-      applyScrollLock(false);
-      detachInputLockHandlers();
-
-      var targetScrollTop = Math.round(handoffScrollTop);
-      if (targetScrollTop > 0 && window.scrollY < targetScrollTop) {
-        window.scrollTo(0, targetScrollTop);
+        details.inert = false;
       }
     }
 
@@ -400,81 +287,13 @@
       document.dispatchEvent(new CustomEvent("hero:complete"));
     }
 
-    function getDwellProgress() {
-      if (dwellDistance <= 0) {
-        return 0;
-      }
-
-      return clamp((virtualDistance - completionDistance) / dwellDistance, 0, 1);
-    }
-
-    function normalizeInputDistance(rawDistance, cap) {
-      if (rawDistance === 0) {
-        return 0;
-      }
-
-      var direction = rawDistance < 0 ? -1 : 1;
-      var magnitude = Math.min(Math.abs(rawDistance), cap);
-      var eased = Math.pow(magnitude, 0.92);
-      return direction * eased * INPUT_SENSITIVITY;
-    }
-
-    function isInteractiveTarget(target) {
-      if (!target || typeof target.closest !== "function") {
-        return false;
-      }
-
-      return Boolean(
-        target.closest("button, a, input, select, textarea, [role='button'], [contenteditable='true']")
-      );
-    }
-
-    function completeAndUnlock(skipRequested) {
-      progress = 1;
-      if (lockEnabled) {
-        virtualDistance = releaseDistance;
-      }
-
-      updateVisualState();
-      drawNetwork(0);
-
-      if (!lockReleased) {
-        releaseScrollLock();
-        return;
-      }
-
-      if (skipRequested) {
-        var targetScrollTop = Math.round(handoffScrollTop);
-        if (targetScrollTop > 0 && window.scrollY < targetScrollTop) {
-          window.scrollTo(0, targetScrollTop);
-        }
-      }
-    }
-
     function updateVisualState() {
       var completed = isComplete();
       hero.classList.toggle("is-complete", completed);
-      setDetailsVisibility(completed);
-
-      if (skipButton) {
-        skipButton.hidden = completed;
-        skipButton.setAttribute("aria-hidden", completed ? "true" : "false");
-      }
+      setDetailsVisible();
 
       if (hint) {
-        if (completed && lockEnabled && !lockReleased) {
-          if (getDwellProgress() < 0.999) {
-            hint.textContent = "Identity generated - scroll a bit more to continue";
-          } else {
-            hint.textContent = "Continue scrolling to enter Bio";
-          }
-        } else if (completed) {
-          hint.textContent = "Scroll up to rewind intro";
-        } else if (progress > 0) {
-          hint.textContent = "Neural paths in progress";
-        } else {
-          hint.textContent = "Scroll to generate identity";
-        }
+        hint.textContent = completed ? "Identity generated" : "Generating neural identity...";
       }
 
       if (completed) {
@@ -496,7 +315,6 @@
     }
 
     function resizeCanvas() {
-      var previousReleaseDistance = releaseDistance;
       var rect = canvas.getBoundingClientRect();
       dpr = window.devicePixelRatio || 1;
       width = Math.max(1, rect.width);
@@ -506,16 +324,6 @@
       canvas.height = Math.max(1, Math.floor(height * dpr));
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      completionDistance = Math.max(300, window.innerHeight * 0.74);
-      dwellDistance = clamp(window.innerHeight * 0.24, 130, 240);
-      releaseDistance = completionDistance + dwellDistance;
-      handoffScrollTop = completionDistance + dwellDistance * 0.58;
-
-      if (previousReleaseDistance > 0 && lockEnabled && !lockReleased) {
-        var progressRatio = clamp(virtualDistance / previousReleaseDistance, 0, 1);
-        virtualDistance = clamp(progressRatio * releaseDistance, 0, releaseDistance);
-      }
-
       var nodeCount = clamp(Math.floor((width * height) / 22000), 34, 86);
       createNodes(nodeCount);
 
@@ -523,43 +331,6 @@
       nameStrokes = strokeData.strokes;
       nameStrokeTotalLength = strokeData.totalLength;
       nameBounds = strokeData.bounds;
-    }
-
-    function updateScrollProgress() {
-      if (reducedMotion) {
-        progress = 1;
-        updateVisualState();
-        return;
-      }
-
-      if (lockEnabled && !lockReleased) {
-        progress = clamp(virtualDistance / completionDistance, 0, 1);
-        updateVisualState();
-        return;
-      }
-
-      var rect = hero.getBoundingClientRect();
-      var traveled = Math.max(0, -rect.top);
-      progress = clamp(traveled / completionDistance, 0, 1);
-      updateVisualState();
-    }
-
-    function advanceLockedProgress(distance) {
-      if (lockReleased) {
-        return;
-      }
-
-      if (distance === 0) {
-        return;
-      }
-
-      virtualDistance = clamp(virtualDistance + distance, 0, releaseDistance);
-      progress = clamp(virtualDistance / completionDistance, 0, 1);
-      updateVisualState();
-
-      if (distance > 0 && virtualDistance >= releaseDistance) {
-        releaseScrollLock();
-      }
     }
 
     function getExternalSourceNode(target, index) {
@@ -712,7 +483,24 @@
       drawNameStrokes(timeMs);
     }
 
+    function advanceAutoProgress(deltaMs) {
+      if (progress >= 1 || reducedMotion) {
+        return;
+      }
+
+      progress = clamp(progress + deltaMs / AUTO_NAME_DURATION_MS, 0, 1);
+      updateVisualState();
+    }
+
     function animate(timeMs) {
+      if (lastFrameTime === 0) {
+        lastFrameTime = timeMs;
+      }
+
+      var deltaMs = Math.max(0, timeMs - lastFrameTime);
+      lastFrameTime = timeMs;
+
+      advanceAutoProgress(deltaMs);
       drawNetwork(timeMs);
       animationFrame = window.requestAnimationFrame(animate);
     }
@@ -724,6 +512,7 @@
       }
 
       if (animationFrame === null) {
+        lastFrameTime = 0;
         animationFrame = window.requestAnimationFrame(animate);
       }
     }
@@ -733,142 +522,16 @@
         window.cancelAnimationFrame(animationFrame);
         animationFrame = null;
       }
-    }
-
-    function onWheel(event) {
-      if (lockReleased || document.body.classList.contains("menu-open")) {
-        return;
-      }
-
-      var rawDelta = normalizeWheelDelta(event.deltaY, event.deltaMode);
-      if (rawDelta !== 0) {
-        event.preventDefault();
-      }
-
-      var delta = normalizeInputDistance(rawDelta, WHEEL_STEP_CAP);
-      advanceLockedProgress(delta);
-
-      if (window.scrollY !== 0) {
-        window.scrollTo(0, 0);
-      }
-    }
-
-    function onTouchStart(event) {
-      if (lockReleased || document.body.classList.contains("menu-open")) {
-        return;
-      }
-
-      if (!event.touches || event.touches.length === 0) {
-        return;
-      }
-
-      touchStartY = event.touches[0].clientY;
-    }
-
-    function onTouchMove(event) {
-      if (lockReleased || document.body.classList.contains("menu-open")) {
-        return;
-      }
-
-      if (!event.touches || event.touches.length === 0) {
-        return;
-      }
-
-      var currentY = event.touches[0].clientY;
-      if (touchStartY === null) {
-        touchStartY = currentY;
-      }
-
-      var delta = touchStartY - currentY;
-      touchStartY = currentY;
-
-      event.preventDefault();
-      var normalizedDelta = normalizeInputDistance(delta * 1.18, TOUCH_STEP_CAP);
-      advanceLockedProgress(normalizedDelta);
-    }
-
-    function onKeyDown(event) {
-      if (lockReleased || document.body.classList.contains("menu-open")) {
-        return;
-      }
-
-      if (isInteractiveTarget(event.target)) {
-        return;
-      }
-
-      var key = event.key;
-      if (key === "ArrowDown" || key === "PageDown" || key === "Enter" || key === " " || key === "Spacebar") {
-        event.preventDefault();
-        advanceLockedProgress(KEY_STEP);
-        return;
-      }
-
-      if (key === "ArrowUp" || key === "PageUp") {
-        event.preventDefault();
-        advanceLockedProgress(-KEY_STEP);
-        return;
-      }
-
-      if (key === "Home") {
-        event.preventDefault();
-        advanceLockedProgress(-releaseDistance);
-        return;
-      }
-
-      if (key === "End") {
-        event.preventDefault();
-        advanceLockedProgress(releaseDistance);
-      }
-    }
-
-    function attachInputLockHandlers() {
-      window.addEventListener("wheel", onWheel, { passive: false });
-      window.addEventListener("touchstart", onTouchStart, { passive: true });
-      window.addEventListener("touchmove", onTouchMove, { passive: false });
-      window.addEventListener("keydown", onKeyDown, false);
+      lastFrameTime = 0;
     }
 
     resizeCanvas();
-
-    if (lockEnabled) {
-      attachInputLockHandlers();
-      applyScrollLock(true);
-    }
-
-    if (skipButton) {
-      skipButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        completeAndUnlock(true);
-      });
-    }
-
-    updateScrollProgress();
-    startAnimation();
-
-    window.addEventListener(
-      "scroll",
-      function () {
-        if (lockEnabled && !lockReleased) {
-          if (window.scrollY !== 0) {
-            window.scrollTo(0, 0);
-          }
-          return;
-        }
-
-        updateScrollProgress();
-        if (reducedMotion) {
-          drawNetwork(0);
-        }
-      },
-      { passive: true }
-    );
+    setDetailsVisible();
+    updateVisualState();
 
     window.addEventListener("resize", function () {
       resizeCanvas();
-      updateScrollProgress();
-      if (reducedMotion) {
-        drawNetwork(0);
-      }
+      drawNetwork(0);
     });
 
     document.addEventListener("visibilitychange", function () {
@@ -898,8 +561,12 @@
     }
 
     if (reducedMotion) {
-      completeAndUnlock(false);
+      onCompletedFirstTime();
+      drawNetwork(0);
+      return;
     }
+
+    startAnimation();
   }
 
   window.initHeroNeuralIntro = initHeroNeuralIntro;
