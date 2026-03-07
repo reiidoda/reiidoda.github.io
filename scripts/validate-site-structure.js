@@ -17,7 +17,6 @@ const heroPage = {
   requiredMarkers: [
     "data-hero-intro",
     "data-hero-canvas",
-    "data-hero-animation-toggle",
     "data-hero-details",
     "class=\"hero-actions\"",
     "class=\"hero-socials\"",
