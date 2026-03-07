@@ -23,7 +23,7 @@ const heroPage = {
   ],
 };
 
-const footerPages = [
+const faviconPages = [
   {
     label: "Bio",
     file: "index.html",
@@ -36,10 +36,20 @@ const footerPages = [
     label: "Experience",
     file: path.join("experience", "index.html"),
   },
-  {
-    label: "404",
-    file: "404.html",
-  },
+];
+
+const footerPages = collectHtmlPages(siteRoot).map((relativePath) => ({
+  label: relativePath,
+  file: relativePath,
+}));
+
+const faviconMarkers = [
+  "rel=\"icon\" type=\"image/svg+xml\"",
+  "rel=\"icon\" type=\"image/png\" sizes=\"32x32\"",
+  "rel=\"icon\" type=\"image/png\" sizes=\"16x16\"",
+  "rel=\"shortcut icon\"",
+  "rel=\"apple-touch-icon\"",
+  "rel=\"manifest\"",
 ];
 
 const footerMarkers = [
@@ -52,6 +62,9 @@ const footerMarkers = [
 ];
 
 validateHero(heroPage);
+for (const page of faviconPages) {
+  validateFavicon(page);
+}
 for (const page of footerPages) {
   validateFooter(page);
 }
@@ -64,7 +77,7 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("Site structure validation passed for hero and footer requirements.");
+console.log("Site structure validation passed for hero, favicon, and footer requirements.");
 
 function validateHero(page) {
   const content = readPage(page.file, page.label);
@@ -79,6 +92,19 @@ function validateHero(page) {
   }
 }
 
+function validateFavicon(page) {
+  const content = readPage(page.file, page.label);
+  if (!content) {
+    return;
+  }
+
+  for (const marker of faviconMarkers) {
+    if (!content.includes(marker)) {
+      failures.push(`${page.label}: missing favicon marker "${marker}" in ${page.file}`);
+    }
+  }
+}
+
 function validateFooter(page) {
   const content = readPage(page.file, page.label);
   if (!content) {
@@ -88,6 +114,27 @@ function validateFooter(page) {
   for (const marker of footerMarkers) {
     if (!content.includes(marker)) {
       failures.push(`${page.label}: missing footer marker "${marker}" in ${page.file}`);
+    }
+  }
+}
+
+function collectHtmlPages(rootDir) {
+  const files = [];
+  walk(rootDir);
+  files.sort();
+  return files;
+
+  function walk(currentDir) {
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const absolutePath = path.join(currentDir, entry.name);
+      if (entry.isDirectory()) {
+        walk(absolutePath);
+        continue;
+      }
+      if (entry.isFile() && entry.name.endsWith(".html")) {
+        files.push(path.relative(rootDir, absolutePath));
+      }
     }
   }
 }
