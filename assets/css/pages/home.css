@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.page-bio #main-content {
+  padding-top: 0;
+}
+
 .hero-intro {
   width: 100vw;
   margin-left: calc(50% - 50vw);
