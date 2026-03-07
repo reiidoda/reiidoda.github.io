@@ -38,7 +38,10 @@ layout: default
       </div>
 
       <div class="news-toolbar-meta">
-        <button class="news-filter-reset" type="button" data-news-reset disabled>Reset filters</button>
+        <div class="news-toolbar-actions">
+          <button class="news-filter-reset" type="button" data-news-reset disabled>Reset filters</button>
+          <a class="news-feed-link" href="{{ '/feed.xml' | relative_url }}" target="_blank" rel="noopener noreferrer">RSS feed ↗</a>
+        </div>
         <p class="news-results-count" data-news-results role="status" aria-live="polite"></p>
       </div>
     </section>

@@ -13,3 +13,7 @@
 - label: "News"
   url: "/news/"
   external: false
+
+- label: "RSS"
+  url: "/feed.xml"
+  external: false

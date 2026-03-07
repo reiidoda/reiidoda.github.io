@@ -23,6 +23,10 @@ permalink: /sitemap.xml
   {% endif %}
 {% endfor %}
 {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+  <url>
+    <loc>{{ '/feed.xml' | absolute_url }}</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+  </url>
 {% for post in sorted_posts %}
   <url>
     <loc>{{ post.url | replace: 'index.html', '' | absolute_url }}</loc>
