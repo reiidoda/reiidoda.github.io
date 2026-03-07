@@ -73,14 +73,13 @@
   white-space: nowrap;
 }
 
-.hero-intro.hero-is-enhanced .hero-name-fill {
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+.hero-intro.hero-is-enhanced:not(.hero-reduced-motion) .hero-name-fill {
+  opacity: 0;
 }
 
 .hero-intro.hero-is-enhanced.hero-reduced-motion .hero-name-fill {
   color: var(--text);
-  -webkit-text-stroke: 0;
+  opacity: 1;
 }
 
 .hero-name-cursor {

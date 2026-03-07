@@ -210,13 +210,38 @@
     }
 
     var totalLength = 0;
+    var bounds = {
+      left: Number.POSITIVE_INFINITY,
+      right: Number.NEGATIVE_INFINITY,
+      top: Number.POSITIVE_INFINITY,
+      bottom: Number.NEGATIVE_INFINITY
+    };
+
+    for (var b = 0; b < allStrokes.length; b += 1) {
+      for (var q = 0; q < allStrokes[b].length; q += 1) {
+        var point = allStrokes[b][q];
+        bounds.left = Math.min(bounds.left, point.x);
+        bounds.right = Math.max(bounds.right, point.x);
+        bounds.top = Math.min(bounds.top, point.y);
+        bounds.bottom = Math.max(bounds.bottom, point.y);
+      }
+    }
+
+    if (!isFinite(bounds.left)) {
+      bounds.left = width * 0.25;
+      bounds.right = width * 0.75;
+      bounds.top = height * 0.22;
+      bounds.bottom = height * 0.62;
+    }
+
     for (var n = 0; n < allStrokes.length; n += 1) {
       totalLength += polylineLength(allStrokes[n]);
     }
 
     return {
       strokes: allStrokes,
-      totalLength: totalLength
+      totalLength: totalLength,
+      bounds: bounds
     };
   }
 
@@ -239,8 +264,10 @@
       return;
     }
 
-    var UNLOCK_DELAY_MS = 920;
-    var KEY_STEP = 88;
+    var KEY_STEP = 56;
+    var INPUT_SENSITIVITY = 0.72;
+    var WHEEL_STEP_CAP = 96;
+    var TOUCH_STEP_CAP = 82;
 
     var nameTarget =
       (hero.getAttribute("data-hero-name") || nameFill.textContent || "Rei Doda").trim();
@@ -256,14 +283,17 @@
     var nodes = [];
     var nameStrokes = [];
     var nameStrokeTotalLength = 0;
+    var nameBounds = null;
     var animationFrame = null;
     var isInView = true;
     var progress = reducedMotion ? 1 : 0;
-    var completionDistance = Math.max(280, window.innerHeight * 0.72);
+    var completionDistance = Math.max(300, window.innerHeight * 0.74);
+    var dwellDistance = clamp(window.innerHeight * 0.24, 130, 240);
+    var releaseDistance = completionDistance + dwellDistance;
+    var handoffScrollTop = completionDistance + dwellDistance * 0.58;
     var virtualDistance = 0;
     var lockEnabled = !reducedMotion;
     var lockReleased = reducedMotion;
-    var unlockTimer = null;
     var touchStartY = null;
     var completionDispatched = false;
     var detailFocusableSelector =
@@ -353,16 +383,11 @@
       lockReleased = true;
       applyScrollLock(false);
       detachInputLockHandlers();
-    }
 
-    function scheduleUnlock() {
-      if (unlockTimer !== null) {
-        return;
+      var targetScrollTop = Math.round(handoffScrollTop);
+      if (targetScrollTop > 0 && window.scrollY < targetScrollTop) {
+        window.scrollTo(0, targetScrollTop);
       }
-
-      unlockTimer = window.setTimeout(function () {
-        releaseScrollLock();
-      }, UNLOCK_DELAY_MS);
     }
 
     function onCompletedFirstTime() {
@@ -372,10 +397,25 @@
 
       completionDispatched = true;
       document.dispatchEvent(new CustomEvent("hero:complete"));
+    }
 
-      if (lockEnabled) {
-        scheduleUnlock();
+    function getDwellProgress() {
+      if (dwellDistance <= 0) {
+        return 0;
       }
+
+      return clamp((virtualDistance - completionDistance) / dwellDistance, 0, 1);
+    }
+
+    function normalizeInputDistance(rawDistance, cap) {
+      if (rawDistance === 0) {
+        return 0;
+      }
+
+      var direction = rawDistance < 0 ? -1 : 1;
+      var magnitude = Math.min(Math.abs(rawDistance), cap);
+      var eased = Math.pow(magnitude, 0.92);
+      return direction * eased * INPUT_SENSITIVITY;
     }
 
     function updateVisualState() {
@@ -384,9 +424,13 @@
       setDetailsVisibility(completed);
 
       if (hint) {
-        if (completed) {
-          hint.textContent = "Identity generated";
-        } else if (progress > 0 && lockReleased) {
+        if (completed && lockEnabled && !lockReleased) {
+          if (getDwellProgress() < 0.999) {
+            hint.textContent = "Identity generated - scroll a bit more to continue";
+          } else {
+            hint.textContent = "Continue scrolling to enter Bio";
+          }
+        } else if (completed) {
           hint.textContent = "Scroll up to rewind intro";
         } else if (progress > 0) {
           hint.textContent = "Neural paths in progress";
@@ -414,7 +458,7 @@
     }
 
     function resizeCanvas() {
-      var previousCompletionDistance = completionDistance;
+      var previousReleaseDistance = releaseDistance;
       var rect = canvas.getBoundingClientRect();
       dpr = window.devicePixelRatio || 1;
       width = Math.max(1, rect.width);
@@ -424,9 +468,14 @@
       canvas.height = Math.max(1, Math.floor(height * dpr));
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      completionDistance = Math.max(280, window.innerHeight * 0.72);
-      if (previousCompletionDistance > 0 && lockEnabled && !lockReleased) {
-        virtualDistance = clamp(progress, 0, 1) * completionDistance;
+      completionDistance = Math.max(300, window.innerHeight * 0.74);
+      dwellDistance = clamp(window.innerHeight * 0.24, 130, 240);
+      releaseDistance = completionDistance + dwellDistance;
+      handoffScrollTop = completionDistance + dwellDistance * 0.58;
+
+      if (previousReleaseDistance > 0 && lockEnabled && !lockReleased) {
+        var progressRatio = clamp(virtualDistance / previousReleaseDistance, 0, 1);
+        virtualDistance = clamp(progressRatio * releaseDistance, 0, releaseDistance);
       }
 
       var nodeCount = clamp(Math.floor((width * height) / 22000), 34, 86);
@@ -435,6 +484,7 @@
       var strokeData = buildNameStrokes(nameTarget, width, height);
       nameStrokes = strokeData.strokes;
       nameStrokeTotalLength = strokeData.totalLength;
+      nameBounds = strokeData.bounds;
     }
 
     function updateScrollProgress() {
@@ -465,18 +515,54 @@
         return;
       }
 
-      virtualDistance = clamp(virtualDistance + distance, 0, completionDistance);
+      virtualDistance = clamp(virtualDistance + distance, 0, releaseDistance);
       progress = clamp(virtualDistance / completionDistance, 0, 1);
       updateVisualState();
+
+      if (distance > 0 && virtualDistance >= releaseDistance) {
+        releaseScrollLock();
+      }
+    }
+
+    function getExternalSourceNode(target, index) {
+      if (!nodes.length) {
+        return {
+          x: width * 0.08,
+          y: target.y
+        };
+      }
+
+      var margin = Math.max(20, Math.min(width, height) * 0.04);
+      var left = nameBounds ? nameBounds.left - margin : width * 0.24;
+      var right = nameBounds ? nameBounds.right + margin : width * 0.76;
+      var top = nameBounds ? nameBounds.top - margin : height * 0.18;
+      var bottom = nameBounds ? nameBounds.bottom + margin : height * 0.66;
+      var startIndex = (index * 5) % nodes.length;
+
+      for (var i = 0; i < nodes.length; i += 1) {
+        var candidate = nodes[(startIndex + i) % nodes.length];
+        if (candidate.x < left || candidate.x > right || candidate.y < top || candidate.y > bottom) {
+          return candidate;
+        }
+      }
+
+      var edge = index % 4;
+      if (edge === 0) {
+        return { x: 0, y: target.y };
+      }
+      if (edge === 1) {
+        return { x: width, y: target.y };
+      }
+      if (edge === 2) {
+        return { x: target.x, y: 0 };
+      }
+
+      return { x: target.x, y: height };
     }
 
     function drawNameStrokes(timeMs) {
       if (!nameStrokes.length || nameStrokeTotalLength <= 0) {
         return;
-      }
-
-      for (var i = 0; i < nameStrokes.length; i += 1) {
-        drawPolyline(context, nameStrokes[i], "rgba(255, 255, 255, 0.09)", 2.4);
       }
 
       var drawLength = nameStrokeTotalLength * progress;
@@ -492,8 +578,8 @@
           context,
           nameStrokes[s],
           remaining,
-          "rgba(255, 255, 255, 0.92)",
-          2.8
+          "rgba(255, 255, 255, 0.95)",
+          2.95
         );
 
         remaining -= result.drawnLength;
@@ -507,10 +593,10 @@
 
       for (var p = 0; p < revealedPoints.length; p += 1) {
         var target = revealedPoints[p];
-        var source = nodes[(p * 3) % nodes.length];
+        var source = getExternalSourceNode(target, p);
 
-        context.strokeStyle = "rgba(255, 255, 255, 0.3)";
-        context.lineWidth = 1;
+        context.strokeStyle = "rgba(255, 255, 255, 0.38)";
+        context.lineWidth = 1.05;
         context.beginPath();
         context.moveTo(source.x, source.y);
         context.lineTo(target.x, target.y);
@@ -520,7 +606,7 @@
           var pulse = (timeMs * 0.0002 + p * 0.09) % 1;
           var pulseX = source.x + (target.x - source.x) * pulse;
           var pulseY = source.y + (target.y - source.y) * pulse;
-          context.fillStyle = "rgba(255, 255, 255, 0.95)";
+          context.fillStyle = "rgba(255, 255, 255, 0.98)";
           context.beginPath();
           context.arc(pulseX, pulseY, 1.35, 0, Math.PI * 2);
           context.fill();
@@ -528,8 +614,14 @@
 
         context.fillStyle = "rgba(255, 255, 255, 0.94)";
         context.beginPath();
-        context.arc(target.x, target.y, 1.85, 0, Math.PI * 2);
+        context.arc(target.x, target.y, 2, 0, Math.PI * 2);
         context.fill();
+
+        context.strokeStyle = "rgba(255, 255, 255, 0.58)";
+        context.lineWidth = 0.75;
+        context.beginPath();
+        context.arc(target.x, target.y, 3.1, 0, Math.PI * 2);
+        context.stroke();
       }
     }
 
@@ -610,11 +702,12 @@
         return;
       }
 
-      var delta = normalizeWheelDelta(event.deltaY, event.deltaMode);
-      if (delta !== 0) {
+      var rawDelta = normalizeWheelDelta(event.deltaY, event.deltaMode);
+      if (rawDelta !== 0) {
         event.preventDefault();
       }
 
+      var delta = normalizeInputDistance(rawDelta, WHEEL_STEP_CAP);
       advanceLockedProgress(delta);
 
       if (window.scrollY !== 0) {
@@ -652,7 +745,8 @@
       touchStartY = currentY;
 
       event.preventDefault();
-      advanceLockedProgress(delta * 1.2);
+      var normalizedDelta = normalizeInputDistance(delta * 1.18, TOUCH_STEP_CAP);
+      advanceLockedProgress(normalizedDelta);
     }
 
     function onKeyDown(event) {
@@ -675,13 +769,13 @@
 
       if (key === "Home") {
         event.preventDefault();
-        advanceLockedProgress(-completionDistance);
+        advanceLockedProgress(-releaseDistance);
         return;
       }
 
       if (key === "End") {
         event.preventDefault();
-        advanceLockedProgress(completionDistance);
+        advanceLockedProgress(releaseDistance);
       }
     }
 
