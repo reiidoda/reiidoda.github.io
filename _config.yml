@@ -5,7 +5,7 @@ baseurl: ""
 lang: en
 og_image: "/assets/img/profile/og-cover.png"
 og_image_alt: "Rei Doda AI systems and software engineering profile cover"
-favicon_version: "20260307"
+favicon_version: "20260307-2"
 
 markdown: kramdown
 kramdown:
