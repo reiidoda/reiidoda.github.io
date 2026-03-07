@@ -50,3 +50,13 @@ jobs:
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
+
+      - name: Validate critical build artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f _site/feed.xml
+          test -f _site/sitemap.xml
+
+      - name: Check internal links in generated site
+        run: node scripts/validate-site-links.js _site
