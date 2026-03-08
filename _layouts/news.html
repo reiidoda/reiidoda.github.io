@@ -2,7 +2,7 @@
 layout: default
 ---
 <section class="news-listing" aria-labelledby="news-title" data-news-root>
-  {% include page-hero.html id="news-title" kicker="News" title=page.title subtitle=page.description %}
+  {% include page-hero.html id="news-title" kicker="News" title=page.title subtitle=page.description orb="/assets/img/favicon/favicon.svg" %}
 
   {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
   {% assign sorted_tags = site.tags | sort %}

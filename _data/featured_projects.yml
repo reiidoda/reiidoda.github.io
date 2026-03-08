@@ -1,31 +1,35 @@
 - id: examen
   title: "examen"
   period: "2024 - 2025"
-  summary: "Project experimentation around practical software development, workflows, and iterative product structure."
+  summary: "Examen is a platform for structured daily examination of conscience and personal reflection."
   stack:
-    - Python
-    - Web Development
-    - Data Handling
+    - Java
+    - Spring Boot
+    - Node JS
+    - Angular
+    - TypeScript
   github: "https://github.com/reiidoda/examen"
 
 - id: thinking-in-code
   title: "thinking_in_code"
   period: "2025"
-  summary: "Technical knowledge base and implementation notes focused on software reasoning and code craftsmanship."
+  summary: "Turn research PDFs into cited, listener-ready podcast scripts and optional audio."
   stack:
-    - Markdown
-    - Architecture
-    - Programming Languages
+    - Python
+    - FastAPI
+    - Redis
+    - Pydantic
+    - Docker
   github: "https://github.com/reiidoda/thinking_in_code"
 
 - id: occamo
   title: "OccamO"
   period: "2025 - Present"
-  summary: "Developer tooling and automation-focused project for reliable engineering workflows."
+  summary: "OccamO is a performance regression guard that analyzes code complexity on PRs, compares against the base branch, and reports only what got worse, with GitHub-native comments, SARIF, and policy gating."
   stack:
     - Python
-    - GitHub Actions
-    - CLI Tooling
+    - TypeScript
+    - Docker
   github: "https://github.com/reiidoda/OccamO"
 
 - id: edge-vision-robotic-qc
