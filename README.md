@@ -94,7 +94,7 @@ node scripts/validate-site-structure.js _site
 Favicon links are cache-busted through `_config.yml`:
 
 ```yml
-favicon_version: "20260307"
+favicon_version: "20260308-1"
 ```
 
 When favicon files change, bump this value so browsers refresh the tab icon.
