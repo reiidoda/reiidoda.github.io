@@ -2,12 +2,13 @@
 {% assign hero_kicker = include.kicker | default: "Section" %}
 {% assign hero_title = include.title | default: page.title %}
 {% assign hero_subtitle = include.subtitle | default: page.description %}
+{% assign hero_orb = include.orb | default: "/assets/img/home/neural-circle.svg" %}
 
 <section class="page-hero" aria-labelledby="{{ hero_id }}" data-reveal>
   <div class="page-hero-media" aria-hidden="true">
     <img
       class="page-hero-orb"
-      src="{{ '/assets/img/home/neural-circle.svg' | relative_url }}"
+      src="{{ hero_orb | relative_url }}"
       alt=""
       loading="lazy"
       decoding="async"

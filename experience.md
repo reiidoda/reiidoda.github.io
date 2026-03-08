@@ -11,6 +11,7 @@ permalink: /experience/
     kicker="Experience"
     title="Experience Roadmap"
     subtitle="A reverse-chronological timeline of jobs and education from most recent to oldest."
+    orb="/assets/img/favicon/favicon.svg"
   %}
 
   <div class="roadmap" data-roadmap>
