@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">OccamO pull request regression architecture diagram</title>
+  <desc id="desc">Architecture graph showing repository diff ingestion, complexity analysis engine, policy gates, and SARIF and PR feedback outputs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070707"/>
+      <stop offset="100%" stop-color="#131313"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d9d9d9"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="none" stroke="#2a2a2a" stroke-width="1">
+    <path d="M0 140 H1280"/><path d="M0 280 H1280"/><path d="M0 420 H1280"/><path d="M0 560 H1280"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f5f5f5">
+    <text x="56" y="60" font-size="28" font-weight="700">OccamO Architecture</text>
+    <text x="56" y="90" font-size="16" fill="#bdbdbd">PR Diff -> Complexity Engine -> Policy Gate -> SARIF, PR Comments, Check Runs</text>
+  </g>
+  <g stroke="#d6d6d6" fill="#101010" stroke-width="1.4" font-family="SF Mono, JetBrains Mono, monospace" font-size="16">
+    <rect x="70" y="220" width="220" height="220" rx="18"/>
+    <rect x="340" y="180" width="290" height="300" rx="18"/>
+    <rect x="680" y="220" width="250" height="220" rx="18"/>
+    <rect x="980" y="190" width="230" height="280" rx="18"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f1f1f1" font-size="15">
+    <text x="95" y="255">Git Repository</text>
+    <text x="95" y="285" fill="#bdbdbd">Base + head branches</text>
+    <text x="95" y="310" fill="#bdbdbd">Changed files only</text>
+
+    <text x="390" y="220">OccamO Engine</text>
+    <text x="370" y="250" fill="#bdbdbd">Stable function IDs</text>
+    <text x="370" y="275" fill="#bdbdbd">Complexity scoring</text>
+    <text x="370" y="300" fill="#bdbdbd">Call graph weighting</text>
+    <text x="370" y="325" fill="#bdbdbd">Diff-only regression output</text>
+    <text x="370" y="350" fill="#bdbdbd">Polyglot parsers</text>
+
+    <text x="730" y="255">Policy Gate</text>
+    <text x="710" y="285" fill="#bdbdbd">Threshold budgets</text>
+    <text x="710" y="310" fill="#bdbdbd">No-regression paths</text>
+    <text x="710" y="335" fill="#bdbdbd">Warn / fail decisions</text>
+
+    <text x="1030" y="230">Developer Feedback</text>
+    <text x="1010" y="260" fill="#bdbdbd">SARIF upload</text>
+    <text x="1010" y="285" fill="#bdbdbd">PR comment</text>
+    <text x="1010" y="310" fill="#bdbdbd">Check run status</text>
+    <text x="1010" y="335" fill="#bdbdbd">Trend reports</text>
+  </g>
+  <g stroke="#d9d9d9" stroke-width="2.2" marker-end="url(#arrow)">
+    <line x1="290" y1="330" x2="340" y2="330"/>
+    <line x1="630" y1="330" x2="680" y2="330"/>
+    <line x1="930" y1="330" x2="980" y2="330"/>
+  </g>
+</svg>

@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Build and Validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
+          bundler-cache: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Check JavaScript syntax
+        run: npm run lint:js
+
+      - name: Validate README image references
+        run: npm run validate:readme
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
+      - name: Validate critical build artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f _site/feed.xml
+          test -f _site/sitemap.xml
+
+      - name: Ensure internal repository files are excluded from generated site
+        run: npm run validate:generated-artifacts
+
+      - name: Check internal links in generated site
+        run: npm run validate:links
+
+      - name: Check external links in generated site
+        if: github.event_name != 'pull_request'
+        run: npm run validate:external-links
+
+      - name: Assert generated hero and footer structure
+        run: npm run validate:structure
+
+      - name: Run visual smoke validation on generated pages
+        run: npm run validate:visual-smoke
+
+      - name: Validate structured data schemas
+        run: npm run validate:schema
+
+      - name: Run visual regression tests
+        run: npm run test:visual
+
+      - name: Run accessibility checks
+        run: npm run test:a11y
+
+      - name: Audit Node dependencies
+        run: npm run audit:node
+
+      - name: Audit Ruby dependencies
+        run: bash scripts/audit-ruby.sh

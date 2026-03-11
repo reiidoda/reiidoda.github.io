@@ -1,0 +1,25 @@
+<footer class="site-footer">
+  <div class="container footer-shell">
+    <div class="footer-meta-row">
+      <p class="footer-copy">© {{ 'now' | date: '%Y' }} Rei Doda</p>
+      <p class="footer-note">Software Engineering · AI Systems · Automation</p>
+    </div>
+
+    <nav aria-label="Footer links">
+      <ul class="footer-links">
+        {% for social in site.data.social %}
+          <li>
+            <a
+              href="{% if social.external %}{{ social.url }}{% else %}{{ social.url | relative_url }}{% endif %}"
+              {% if social.external %}target="_blank" rel="noopener noreferrer"{% endif %}
+            >
+              {{ social.label }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <p class="footer-legal">Built with GitHub Pages and Jekyll.</p>
+  </div>
+</footer>

@@ -1,0 +1,23 @@
+- label: GitHub
+  url: https://github.com/reiidoda
+  external: true
+
+- label: LinkedIn
+  url: https://www.linkedin.com/in/reiidoda/
+  external: true
+
+- label: Email
+  url: mailto:reidoda@icloud.com
+  external: true
+
+- label: CV
+  url: /cv/
+  external: false
+
+- label: Instagram
+  url: https://www.instagram.com/reiidoda/
+  external: true
+
+- label: X
+  url: https://x.com/reiidoda
+  external: true

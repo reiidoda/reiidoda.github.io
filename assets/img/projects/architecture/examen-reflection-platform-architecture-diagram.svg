@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Examen reflection platform architecture diagram</title>
+  <desc id="desc">Architecture graph showing Angular SSR client, Spring Boot API, domain services, and PostgreSQL analytics storage.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080808"/>
+      <stop offset="100%" stop-color="#151515"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d9d9d9"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="none" stroke="#2a2a2a" stroke-width="1">
+    <path d="M0 140 H1280"/><path d="M0 280 H1280"/><path d="M0 420 H1280"/><path d="M0 560 H1280"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f5f5f5">
+    <text x="56" y="60" font-size="28" font-weight="700">Examen Architecture</text>
+    <text x="56" y="90" font-size="16" fill="#bdbdbd">Angular SSR -> Spring Boot API -> Reflection Domain Services -> PostgreSQL Analytics</text>
+  </g>
+  <g stroke="#d6d6d6" fill="#101010" stroke-width="1.4" font-family="SF Mono, JetBrains Mono, monospace" font-size="16" fill-opacity="1">
+    <rect x="70" y="220" width="230" height="210" rx="18"/>
+    <rect x="370" y="180" width="260" height="290" rx="18"/>
+    <rect x="700" y="170" width="260" height="310" rx="18"/>
+    <rect x="1030" y="220" width="190" height="210" rx="18"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f1f1f1" font-size="15">
+    <text x="120" y="255">Users</text>
+    <text x="95" y="285">Web / Mobile Browser</text>
+    <text x="95" y="335" fill="#bdbdbd">Guided prompts</text>
+    <text x="95" y="360" fill="#bdbdbd">Mood inputs</text>
+
+    <text x="430" y="220">Angular 21 SSR</text>
+    <text x="410" y="255" fill="#bdbdbd">Auth, profile, questions</text>
+    <text x="410" y="280" fill="#bdbdbd">Session workflow UI</text>
+    <text x="410" y="305" fill="#bdbdbd">Analytics dashboard</text>
+    <text x="410" y="330" fill="#bdbdbd">Node SSR runtime</text>
+
+    <text x="760" y="210">Spring Boot API</text>
+    <text x="740" y="245" fill="#bdbdbd">JWT auth + rate limits</text>
+    <text x="740" y="270" fill="#bdbdbd">Session orchestration</text>
+    <text x="740" y="295" fill="#bdbdbd">Insights + reminders</text>
+    <text x="740" y="320" fill="#bdbdbd">Flyway migrations</text>
+
+    <text x="1070" y="255">PostgreSQL 15</text>
+    <text x="1050" y="285" fill="#bdbdbd">Sessions</text>
+    <text x="1050" y="310" fill="#bdbdbd">Answers + trends</text>
+    <text x="1050" y="335" fill="#bdbdbd">Notifications</text>
+  </g>
+  <g stroke="#d9d9d9" stroke-width="2.2" marker-end="url(#arrow)">
+    <line x1="300" y1="325" x2="370" y2="325"/>
+    <line x1="630" y1="325" x2="700" y2="325"/>
+    <line x1="960" y1="325" x2="1030" y2="325"/>
+  </g>
+</svg>

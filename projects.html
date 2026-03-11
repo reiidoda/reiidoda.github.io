@@ -1,0 +1,37 @@
+---
+title: Projects
+description: Selected software engineering projects by Rei Doda.
+permalink: /projects/
+body_class: projects
+---
+<section class="section" aria-labelledby="projects-grid-title" data-reveal>
+  <div class="shell projects-page">
+    <div class="section-intro">
+      <p class="section-label">Projects</p>
+      <h1 id="projects-grid-title">PROJECTS</h1>
+    </div>
+
+    {% assign projects = site.data.featured_projects %}
+    {% if projects and projects.size > 0 %}
+      <div class="project-grid">
+        {% for project in projects %}
+          {% include project-card.html project=project flip_index=forloop.index0 %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty-state">Projects will be listed here.</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section section-split-art" aria-hidden="true" data-reveal>
+  <div class="shell">
+    <div class="split-art" data-split-art style="--split-image: url('{{ '/assets/img/portfolio/art/sapientia-iustitia.webp' | relative_url }}');">
+      <div class="split-art__slice" data-split-slice style="--slice-index: 0;"></div>
+      <div class="split-art__slice" data-split-slice style="--slice-index: 1;"></div>
+      <div class="split-art__slice" data-split-slice style="--slice-index: 2;"></div>
+      <div class="split-art__slice" data-split-slice style="--slice-index: 3;"></div>
+      <div class="split-art__slice" data-split-slice style="--slice-index: 4;"></div>
+    </div>
+  </div>
+</section>

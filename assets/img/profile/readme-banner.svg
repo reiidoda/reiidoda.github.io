@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc">
+  <title id="title">Monochrome neural brain banner</title>
+  <desc id="desc">Dark monochrome banner with layered neural connections forming a three-dimensional brain structure, without text.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020202"/>
+      <stop offset="55%" stop-color="#090909"/>
+      <stop offset="100%" stop-color="#020202"/>
+    </linearGradient>
+    <radialGradient id="haze" cx="50%" cy="48%" r="44%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="52%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <marker id="dot" markerWidth="3" markerHeight="3" refX="1.5" refY="1.5">
+      <circle cx="1.5" cy="1.5" r="1.4" fill="#f2f2f2" />
+    </marker>
+    <style>
+      .shell {
+        fill: none;
+        stroke: #d8d8d8;
+        stroke-width: 1.25;
+        stroke-opacity: 0.34;
+      }
+      .wire {
+        fill: none;
+        stroke: #ececec;
+        stroke-width: 1.05;
+        stroke-opacity: 0.36;
+        stroke-linecap: round;
+      }
+      .wire-soft {
+        fill: none;
+        stroke: #f6f6f6;
+        stroke-width: 0.85;
+        stroke-opacity: 0.2;
+        stroke-linecap: round;
+      }
+      .node {
+        fill: #fafafa;
+        opacity: 0.86;
+      }
+      .node-soft {
+        fill: #ffffff;
+        opacity: 0.5;
+      }
+      .node-core {
+        fill: #ffffff;
+        opacity: 0.96;
+      }
+    </style>
+  </defs>
+
+  <rect width="1600" height="560" fill="url(#bg)" />
+  <rect width="1600" height="560" fill="url(#haze)" />
+
+  <g filter="url(#glow)" opacity="0.3">
+    <circle cx="800" cy="286" r="145" fill="#ffffff" />
+    <circle cx="706" cy="286" r="88" fill="#ffffff" />
+    <circle cx="894" cy="286" r="88" fill="#ffffff" />
+  </g>
+
+  <g transform="translate(0,-2)">
+    <path class="shell" d="M802 96 C674 74 536 148 500 256 C470 354 546 454 764 452" />
+    <path class="shell" d="M798 96 C926 74 1064 148 1100 256 C1130 354 1054 454 836 452" />
+    <path class="shell" d="M800 96 C774 176 774 370 800 452" />
+
+    <path class="shell" d="M694 128 C622 164 596 232 602 290 C608 350 650 404 736 428" />
+    <path class="shell" d="M906 128 C978 164 1004 232 998 290 C992 350 950 404 864 428" />
+
+    <g class="wire">
+      <path d="M628 150 L570 192 L536 248 L542 318 L588 374 L650 416 L706 406 L734 352 L724 292 L696 232 L654 186" />
+      <path d="M972 150 L1030 192 L1064 248 L1058 318 L1012 374 L950 416 L894 406 L866 352 L876 292 L904 232 L946 186" />
+      <path d="M570 192 L734 352" />
+      <path d="M536 248 L706 406" />
+      <path d="M654 186 L542 318" />
+      <path d="M696 232 L588 374" />
+      <path d="M1030 192 L866 352" />
+      <path d="M1064 248 L894 406" />
+      <path d="M946 186 L1058 318" />
+      <path d="M904 232 L1012 374" />
+      <path d="M734 352 L866 352" />
+      <path d="M706 406 L894 406" />
+      <path d="M724 292 L876 292" />
+      <path d="M696 232 L904 232" />
+      <path d="M758 236 L842 236" />
+      <path d="M758 324 L842 324" />
+      <path d="M758 280 L842 280" />
+    </g>
+
+    <g class="wire-soft">
+      <path d="M624 148 C700 178 754 232 800 280 C846 232 900 178 976 148" />
+      <path d="M650 416 C720 376 760 330 800 280 C840 330 880 376 950 416" />
+      <path d="M602 286 C672 272 736 270 800 280 C864 270 928 272 998 286" />
+      <path d="M650 220 C726 248 760 264 800 280 C840 264 874 248 950 220" />
+      <path d="M650 352 C726 322 760 304 800 280 C840 304 874 322 950 352" />
+    </g>
+
+    <g marker-mid="url(#dot)" marker-start="url(#dot)" marker-end="url(#dot)" class="wire-soft">
+      <path d="M620 176 L694 232 L724 292 L706 406" />
+      <path d="M980 176 L906 232 L876 292 L894 406" />
+      <path d="M588 374 L734 352 L800 280 L866 352 L1012 374" />
+    </g>
+
+    <g>
+      <circle class="node" cx="628" cy="150" r="3.8" />
+      <circle class="node-soft" cx="570" cy="192" r="3.4" />
+      <circle class="node" cx="536" cy="248" r="3.7" />
+      <circle class="node-soft" cx="542" cy="318" r="3.3" />
+      <circle class="node" cx="588" cy="374" r="3.7" />
+      <circle class="node-soft" cx="650" cy="416" r="3.4" />
+      <circle class="node" cx="706" cy="406" r="3.7" />
+      <circle class="node-soft" cx="734" cy="352" r="3.3" />
+      <circle class="node" cx="724" cy="292" r="3.7" />
+      <circle class="node-soft" cx="696" cy="232" r="3.3" />
+      <circle class="node" cx="654" cy="186" r="3.7" />
+
+      <circle class="node" cx="972" cy="150" r="3.8" />
+      <circle class="node-soft" cx="1030" cy="192" r="3.4" />
+      <circle class="node" cx="1064" cy="248" r="3.7" />
+      <circle class="node-soft" cx="1058" cy="318" r="3.3" />
+      <circle class="node" cx="1012" cy="374" r="3.7" />
+      <circle class="node-soft" cx="950" cy="416" r="3.4" />
+      <circle class="node" cx="894" cy="406" r="3.7" />
+      <circle class="node-soft" cx="866" cy="352" r="3.3" />
+      <circle class="node" cx="876" cy="292" r="3.7" />
+      <circle class="node-soft" cx="904" cy="232" r="3.3" />
+      <circle class="node" cx="946" cy="186" r="3.7" />
+
+      <circle class="node" cx="758" cy="236" r="3.5" />
+      <circle class="node-soft" cx="842" cy="236" r="3.4" />
+      <circle class="node" cx="758" cy="324" r="3.5" />
+      <circle class="node-soft" cx="842" cy="324" r="3.4" />
+      <circle class="node-core" cx="800" cy="280" r="4.4" />
+    </g>
+  </g>
+</svg>

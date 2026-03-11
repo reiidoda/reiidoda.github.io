@@ -1,0 +1,57 @@
+---
+layout: default
+---
+{% assign project_name = page.project_name | default: page.title %}
+{% assign project_subtitle = page.project_subtitle | default: page.description %}
+<section class="section" aria-labelledby="project-title">
+  <div class="shell project-shell">
+    <p class="section-label">Project</p>
+    <h1 id="project-title">{{ project_name }}</h1>
+    {% if project_subtitle %}
+      <p class="project-subtitle">{{ project_subtitle }}</p>
+    {% endif %}
+
+    <div class="project-meta-row">
+      {% if page.project_period %}
+        <p class="work-date">{{ page.project_period }}</p>
+      {% endif %}
+      {% if page.project_stack and page.project_stack.size > 0 %}
+        <ul class="tag-list" aria-label="Project stack">
+          {% for tech in page.project_stack %}
+            <li class="tag-item">{{ tech }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <nav class="post-nav" aria-label="Project navigation">
+      <a href="{{ '/projects/' | relative_url }}">All projects</a>
+      {% if page.project_repo %}
+        <a href="{{ page.project_repo }}" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+      {% endif %}
+    </nav>
+
+    <article class="project-card">
+      {% if page.project_summary %}
+        <p class="project-summary">{{ page.project_summary }}</p>
+      {% endif %}
+
+      {% if page.project_diagram %}
+        {% assign project_diagram_url = page.project_diagram %}
+        {% unless project_diagram_url contains '://' %}
+          {% assign project_diagram_url = project_diagram_url | relative_url %}
+        {% endunless %}
+        <figure class="art-panel project-figure">
+          <img src="{{ project_diagram_url }}" alt="{{ page.project_diagram_alt | default: project_name }}" loading="lazy" decoding="async">
+          {% if page.project_diagram_caption %}
+            <figcaption>{{ page.project_diagram_caption }}</figcaption>
+          {% endif %}
+        </figure>
+      {% endif %}
+
+      <section class="project-detail-content prose">
+        {{ content }}
+      </section>
+    </article>
+  </div>
+</section>

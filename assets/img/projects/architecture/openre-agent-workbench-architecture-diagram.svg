@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">OpenRe agent workbench architecture diagram</title>
+  <desc id="desc">Architecture graph showing orchestration runner, safety policy engine, trace bus, evaluation loop, and reporting outputs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080808"/>
+      <stop offset="100%" stop-color="#141414"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d9d9d9"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="none" stroke="#2a2a2a" stroke-width="1">
+    <path d="M0 130 H1280"/><path d="M0 260 H1280"/><path d="M0 390 H1280"/><path d="M0 520 H1280"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f5f5f5">
+    <text x="56" y="60" font-size="28" font-weight="700">OpenRe Architecture</text>
+    <text x="56" y="90" font-size="16" fill="#bdbdbd">Dataset Runner -> Agent Adapter -> Safety + Trace -> Evaluation + Optimization</text>
+  </g>
+  <g stroke="#d6d6d6" fill="#101010" stroke-width="1.4" font-family="SF Mono, JetBrains Mono, monospace" font-size="15">
+    <rect x="60" y="220" width="220" height="220" rx="18"/>
+    <rect x="320" y="170" width="260" height="320" rx="18"/>
+    <rect x="630" y="170" width="290" height="320" rx="18"/>
+    <rect x="970" y="220" width="240" height="220" rx="18"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f1f1f1" font-size="15">
+    <text x="90" y="255">Input Layer</text>
+    <text x="82" y="285" fill="#bdbdbd">CLI commands</text>
+    <text x="82" y="310" fill="#bdbdbd">Dataset tasks</text>
+    <text x="82" y="335" fill="#bdbdbd">Config variants</text>
+
+    <text x="370" y="205">Orchestration</text>
+    <text x="350" y="235" fill="#bdbdbd">Run execution</text>
+    <text x="350" y="260" fill="#bdbdbd">Tool adapter calls</text>
+    <text x="350" y="285" fill="#bdbdbd">Approval checkpoints</text>
+    <text x="350" y="310" fill="#bdbdbd">Retry and timeouts</text>
+    <text x="350" y="335" fill="#bdbdbd">SQLite storage</text>
+
+    <text x="690" y="205">Safety + Trace</text>
+    <text x="670" y="235" fill="#bdbdbd">Risk levels</text>
+    <text x="670" y="260" fill="#bdbdbd">Domain allowlists</text>
+    <text x="670" y="285" fill="#bdbdbd">Immutable trace events</text>
+    <text x="670" y="310" fill="#bdbdbd">Evaluation hooks</text>
+    <text x="670" y="335" fill="#bdbdbd">Optimization loops</text>
+
+    <text x="1020" y="255">Outputs</text>
+    <text x="1000" y="285" fill="#bdbdbd">Run reports</text>
+    <text x="1000" y="310" fill="#bdbdbd">Benchmark comparisons</text>
+    <text x="1000" y="335" fill="#bdbdbd">Audit evidence</text>
+  </g>
+  <g stroke="#d9d9d9" stroke-width="2.2" marker-end="url(#arrow)">
+    <line x1="280" y1="330" x2="320" y2="330"/>
+    <line x1="580" y1="330" x2="630" y2="330"/>
+    <line x1="920" y1="330" x2="970" y2="330"/>
+  </g>
+</svg>

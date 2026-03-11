@@ -1,0 +1,59 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.28rem;
+  padding: 0.46rem 0.92rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 560;
+  letter-spacing: 0.01em;
+  transition:
+    transform var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard),
+    background-color var(--duration-fast) var(--easing-standard);
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translate3d(0, -1px, 0);
+}
+
+.button-primary {
+  color: #050505;
+  background: #f3f3f3;
+  border-color: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.button-primary:hover,
+.button-primary:focus-visible {
+  background: #ffffff;
+}
+
+.button-ghost {
+  border-color: var(--line);
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.button-ghost:hover,
+.button-ghost:focus-visible {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: var(--text);
+}
+
+@media (max-width: 680px) {
+  .button {
+    flex: 1 1 168px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

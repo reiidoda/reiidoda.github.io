@@ -1,0 +1,20 @@
+---
+title: Page Not Found
+description: The page does not exist or has moved.
+permalink: /404.html
+noindex: true
+body_class: not-found
+---
+<section class="section" aria-labelledby="not-found-title">
+  <div class="shell">
+    <p class="section-label">Error</p>
+    <h1 id="not-found-title">404 · Page Not Found</h1>
+    <p style="margin-top: 1rem; color: var(--text-muted); max-width: 60ch;">
+      The page you requested does not exist or has moved. Use the main navigation or return to the portfolio home page.
+    </p>
+    <p style="margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+      <a class="button button-primary" href="{{ '/' | relative_url }}">Back to Home</a>
+      <a class="button button-ghost" href="{{ '/#contact' | relative_url }}">Go to Contact</a>
+    </p>
+  </div>
+</section>

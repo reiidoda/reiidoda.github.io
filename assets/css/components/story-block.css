@@ -1,0 +1,103 @@
+.story-block {
+  position: relative;
+  margin-top: clamp(2.1rem, 5vw, 3.2rem);
+}
+
+.story-block--split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(1rem, 3vw, 2.1rem);
+  align-items: center;
+}
+
+.story-block--reverse {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+.story-block--reverse .story-block__media {
+  order: 2;
+}
+
+.story-block--reverse .story-block__content {
+  order: 1;
+}
+
+.story-block__media {
+  border: 1px solid var(--glass-line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(7, 7, 7, 0.96), rgba(16, 16, 16, 0.92));
+  box-shadow: var(--shadow-soft);
+}
+
+.story-block__media img {
+  width: 100%;
+  height: clamp(220px, 28vw, 320px);
+  object-fit: cover;
+}
+
+.story-block__content {
+  max-width: 46ch;
+}
+
+.story-block__eyebrow {
+  margin: 0 0 0.6rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 560;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.story-block__content h2 {
+  font-size: clamp(1.45rem, 3.2vw, 2.2rem);
+  letter-spacing: -0.03em;
+}
+
+.story-block__content p {
+  margin-top: var(--space-4);
+  color: var(--muted);
+}
+
+.story-block__actions {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.story-block--center {
+  display: grid;
+  gap: var(--space-6);
+  text-align: center;
+}
+
+.story-block--center .story-block__media {
+  max-width: min(860px, 100%);
+  justify-self: center;
+}
+
+.story-block--center .story-block__media img {
+  height: clamp(220px, 34vw, 420px);
+}
+
+.story-block--center .story-block__content {
+  max-width: min(64ch, 100%);
+  margin: 0 auto;
+}
+
+@media (max-width: 980px) {
+  .story-block--split,
+  .story-block--reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .story-block--reverse .story-block__media,
+  .story-block--reverse .story-block__content {
+    order: initial;
+  }
+
+  .story-block__content {
+    max-width: 100%;
+  }
+}

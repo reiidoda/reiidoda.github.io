@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Warehouse route optimization platform architecture diagram</title>
+  <desc id="desc">Architecture graph showing order intake, graph optimization service, event streaming, and warehouse execution dashboards.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070707"/>
+      <stop offset="100%" stop-color="#151515"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d9d9d9"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="none" stroke="#2a2a2a" stroke-width="1">
+    <path d="M0 140 H1280"/><path d="M0 280 H1280"/><path d="M0 420 H1280"/><path d="M0 560 H1280"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f5f5f5">
+    <text x="56" y="60" font-size="28" font-weight="700">Warehouse Optimization Architecture</text>
+    <text x="56" y="90" font-size="16" fill="#bdbdbd">Order Intake -> Graph Solver -> Event Bus -> Picking and Routing Execution</text>
+  </g>
+  <g stroke="#d6d6d6" fill="#101010" stroke-width="1.4" font-family="SF Mono, JetBrains Mono, monospace" font-size="15">
+    <rect x="60" y="220" width="220" height="220" rx="18"/>
+    <rect x="320" y="180" width="300" height="300" rx="18"/>
+    <rect x="670" y="220" width="230" height="220" rx="18"/>
+    <rect x="950" y="190" width="260" height="280" rx="18"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f1f1f1" font-size="15">
+    <text x="95" y="255">Input Systems</text>
+    <text x="82" y="285" fill="#bdbdbd">Order queue</text>
+    <text x="82" y="310" fill="#bdbdbd">Inventory map</text>
+
+    <text x="390" y="220">Optimization Core</text>
+    <text x="360" y="250" fill="#bdbdbd">Weighted graph model</text>
+    <text x="360" y="275" fill="#bdbdbd">Route constraints</text>
+    <text x="360" y="300" fill="#bdbdbd">FEFO and priority rules</text>
+    <text x="360" y="325" fill="#bdbdbd">C and C++ services</text>
+
+    <text x="725" y="255">Integration Bus</text>
+    <text x="705" y="285" fill="#bdbdbd">gRPC calls</text>
+    <text x="705" y="310" fill="#bdbdbd">Kafka events</text>
+
+    <text x="1015" y="230">Operations Layer</text>
+    <text x="985" y="260" fill="#bdbdbd">Picker route assignment</text>
+    <text x="985" y="285" fill="#bdbdbd">Cycle-time dashboards</text>
+    <text x="985" y="310" fill="#bdbdbd">Replan triggers</text>
+  </g>
+  <g stroke="#d9d9d9" stroke-width="2.2" marker-end="url(#arrow)">
+    <line x1="280" y1="330" x2="320" y2="330"/>
+    <line x1="620" y1="330" x2="670" y2="330"/>
+    <line x1="900" y1="330" x2="950" y2="330"/>
+  </g>
+</svg>

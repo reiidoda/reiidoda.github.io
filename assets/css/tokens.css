@@ -1,0 +1,75 @@
+:root {
+  /* Color system (preserved) */
+  --bg: #030303;
+  --bg-alt: #080808;
+  --surface: #0f0f0f;
+  --surface-strong: #171717;
+  --text: #ffffff;
+  --text-soft: #efefef;
+  --muted: #c4c4c4;
+  --accent: #ffffff;
+  --accent-soft: #dddddd;
+  --line: rgba(255, 255, 255, 0.16);
+
+  /* Derived premium layers */
+  --glass-bg: rgba(15, 15, 15, 0.72);
+  --glass-bg-strong: rgba(8, 8, 8, 0.82);
+  --glass-line: rgba(255, 255, 255, 0.08);
+  --panel-grad-top: rgba(255, 255, 255, 0.04);
+  --panel-grad-bottom: rgba(255, 255, 255, 0.01);
+  --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.28);
+  --shadow-panel: 0 24px 80px rgba(0, 0, 0, 0.35);
+
+  --status-work: #f2f2f2;
+  --status-education: #d0d0d0;
+  --status-achievement: #b4b4b4;
+
+  /* Typography */
+  --font-ui: "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+
+  --text-xs: 0.78rem;
+  --text-sm: 0.88rem;
+  --text-md: 0.95rem;
+  --text-lg: 1.05rem;
+  --text-xl: 1.25rem;
+  --display-xl: clamp(2.2rem, 6vw, 4.9rem);
+  --display-lg: clamp(1.65rem, 3.6vw, 2.8rem);
+
+  --leading-regular: 1.6;
+  --leading-tight: 1.25;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.45rem;
+  --space-3: 0.65rem;
+  --space-4: 0.75rem;
+  --space-5: 0.95rem;
+  --space-6: 1rem;
+  --space-7: 1.15rem;
+  --space-8: 1.5rem;
+  --space-9: 1.8rem;
+  --space-10: 2.25rem;
+  --space-11: 4rem;
+  --space-12: 5.5rem;
+
+  /* Layout */
+  --max-width: 1120px;
+  --max-width-wide: 1260px;
+  --page-gutter: clamp(0.9rem, 3.4vw, 2.3rem);
+  --header-height: 48px;
+
+  /* Radius and effects */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  --shadow-glow: 0 0 28px rgba(255, 255, 255, 0.12);
+
+  /* Motion */
+  --duration-fast: 0.2s;
+  --duration-mid: 0.45s;
+  --easing-standard: ease;
+}

@@ -1,0 +1,86 @@
+.page-projects .section,
+.page-project .section {
+  padding-top: clamp(2.3rem, 5vw, 3.7rem);
+}
+
+.projects-page {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.projects-intro-copy {
+  margin-top: 0.9rem;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.projects-page .section-intro h1 {
+  font-size: var(--display-lg);
+  letter-spacing: -0.03em;
+}
+
+.project-shell h1 {
+  font-size: var(--display-lg);
+}
+
+.project-subtitle {
+  margin-top: 0.85rem;
+  max-width: 72ch;
+  color: var(--muted);
+}
+
+.work-date {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+}
+
+.project-meta-row {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.project-card {
+  margin-top: 1.25rem;
+}
+
+.project-summary {
+  color: var(--muted);
+}
+
+.project-figure {
+  margin-top: var(--space-6);
+}
+
+.project-figure figcaption {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  padding: 0.5rem 0.64rem 0.66rem;
+  border-top: 1px solid var(--glass-line);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.project-detail-content {
+  color: var(--text-soft);
+}
+
+.project-detail-content p {
+  margin: 0 0 var(--space-5);
+}
+
+.project-detail-content h2,
+.project-detail-content h3,
+.project-detail-content h4 {
+  margin: 1.35rem 0 0.55rem;
+}
+
+.project-detail-content ul,
+.project-detail-content ol {
+  margin: 0 0 var(--space-5);
+  padding-left: 1rem;
+  color: var(--muted);
+}

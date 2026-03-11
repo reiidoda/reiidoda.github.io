@@ -1,0 +1,26 @@
+{
+  "name": "reiidoda-github-io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Validation and quality tooling for reiidoda.github.io",
+  "scripts": {
+    "lint:js": "sh -c 'for file in assets/js/*.js scripts/*.js; do node --check \"$file\"; done'",
+    "validate:readme": "node scripts/validate-readme-assets.js README.md",
+    "validate:links": "node scripts/validate-site-links.js _site",
+    "validate:generated-artifacts": "node scripts/validate-generated-artifacts.js _site",
+    "validate:external-links": "node scripts/validate-external-links.js _site",
+    "validate:structure": "node scripts/validate-site-structure.js _site",
+    "validate:visual-smoke": "node scripts/validate-visual-smoke.js _site",
+    "validate:schema": "node scripts/validate-structured-data.js _site",
+    "test:visual": "node scripts/visual-regression.js _site",
+    "test:visual:update": "node scripts/visual-regression.js _site --update",
+    "test:a11y": "node scripts/accessibility-check.js _site",
+    "audit:node": "npm audit --audit-level=high"
+  },
+  "devDependencies": {
+    "axe-core": "^4.11.0",
+    "pixelmatch": "^5.3.0",
+    "playwright": "^1.53.2",
+    "pngjs": "^7.0.0"
+  }
+}

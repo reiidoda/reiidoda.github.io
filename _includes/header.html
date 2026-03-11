@@ -1,0 +1,38 @@
+<header class="site-header" data-site-header>
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Rei Doda home">
+      <span class="brand-mark-wrap" aria-hidden="true">
+        <img class="brand-mark" src="{{ '/favicon.svg' | relative_url }}" alt="" width="24" height="24" loading="eager" decoding="async">
+      </span>
+      <span class="brand-copy">
+        <span class="brand-name">Rei Doda</span>
+      </span>
+    </a>
+
+    <button
+      type="button"
+      class="menu-toggle"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      aria-label="Toggle navigation"
+    >
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <nav id="primary-navigation" class="site-nav" data-site-nav aria-label="Primary navigation">
+      <ul class="menu">
+        {% for item in site.data.navigation %}
+          <li>
+            <a href="{{ item.url | relative_url }}" data-nav-link>{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

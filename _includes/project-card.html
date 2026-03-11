@@ -1,0 +1,71 @@
+<article
+  class="project-card"
+  data-reveal
+  data-flip-card
+  data-flip-order="{{ include.flip_index | default: 0 }}"
+>
+  <div class="project-card-flip">
+    <div class="project-card-face project-card-face-front" aria-hidden="true">
+      <div class="project-card-front-mark">
+        <img
+          src="{{ '/assets/img/portfolio/brand/tbon-icon.png' | relative_url }}"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        >
+      </div>
+    </div>
+
+    <div class="project-card-face project-card-face-back">
+      <div class="project-card-content">
+        <header class="project-card-header">
+          <p class="project-card-period">{{ include.project.period }}</p>
+          <span class="project-card-github project-card-github-static">GitHub</span>
+        </header>
+
+        <h3 class="project-card-title">
+          {% if include.project.detail_url %}
+            <a href="{{ include.project.detail_url | relative_url }}">{{ include.project.title }}</a>
+          {% else %}
+            {{ include.project.title }}
+          {% endif %}
+        </h3>
+        <p class="project-card-summary">{{ include.project.summary }}</p>
+
+        {% if include.project.impact and include.project.impact.size > 0 %}
+          <div class="project-card-impact">
+            <p class="project-card-impact-title">Engineering impact</p>
+            <ul class="project-card-impact-list">
+              {% for item in include.project.impact %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if include.project.stack and include.project.stack.size > 0 %}
+          <ul class="tag-list" aria-label="Project technologies">
+            {% for tech in include.project.stack %}
+              <li class="tag-item">{{ tech }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if include.project.detail_url or include.project.github %}
+          <p class="project-card-links">
+            {% if include.project.detail_url %}
+              <a class="project-card-link" href="{{ include.project.detail_url | relative_url }}">
+                Read {{ include.project.title }} engineering case study
+              </a>
+            {% endif %}
+            {% if include.project.github %}
+              <a class="project-card-link" href="{{ include.project.github }}" target="_blank" rel="noopener noreferrer">
+                Explore {{ include.project.title }} on GitHub ↗
+              </a>
+            {% endif %}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</article>

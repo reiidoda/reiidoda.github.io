@@ -1,0 +1,136 @@
+- id: ai-automation-engineer-autotrend
+  type: work
+  title: "AI & Automation Engineer"
+  period: "Mar 2026 - Present"
+  sort_date: 2026-03-01
+  category: "AI Engineering"
+  context: "Autotrend Mobility · Full-time"
+  location: "Bari, Apulia, Italy · On-site"
+  summary: "Designing and delivering AI and automation solutions with focus on NLP and LLM-powered workflows integrated into real operational processes."
+  technologies:
+    - Natural Language Processing (NLP)
+    - Large Language Models (LLM)
+    - Workflow Automation
+    - API Integrations
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: chief-engineer-movenpick
+  type: work
+  title: "Chief Engineer"
+  period: "Jul 2023 - Jun 2025"
+  sort_date: 2025-06-01
+  category: "Hospitality Engineering / Smart Building"
+  context: "Movenpick Hotel Lalez Durres · Full-time"
+  location: "Durres, Albania · On-site"
+  summary: "Led hotel engineering operations and implemented smart-building integrations across BMS/EMS, HVAC, generators/UPS, access control, CCTV, and centralized event monitoring."
+  technologies:
+    - Building Management Systems
+    - Energy Management Systems (EMS)
+    - HVAC
+    - Access Control
+    - CCTV
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: ambassador-egglobal
+  type: achievement
+  title: "Ambassador"
+  period: "Dec 2021 - Jan 2025"
+  sort_date: 2025-01-01
+  category: "Volunteering"
+  context: "EG GLOBAL"
+  location: "Worldwide"
+  summary: "Supported non-profits and social entrepreneurs through coordination, promotion, and community engagement, with focus on transparent impact and accessible collaboration."
+  technologies:
+    - Community Engagement
+    - Coordination
+    - Impact Communication
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: lead-software-engineer-upnova
+  type: work
+  title: "Lead Software Engineer"
+  period: "Oct 2022 - Aug 2024"
+  sort_date: 2024-08-01
+  category: "AI / SaaS Engineering"
+  context: "Upnova Group · Full-time"
+  location: "Bari, Apulia, Italy · Hybrid"
+  summary: "Built and shipped an AI-powered document-processing SaaS with OCR and LLM pipelines; company partner in the ASIRID program."
+  technologies:
+    - Python
+    - OCR
+    - Django
+    - LLMs
+    - RAG
+    - LangChain
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: student-teacher-gp2
+  type: achievement
+  title: "Student Teacher"
+  period: "Nov 2021 - May 2024"
+  sort_date: 2024-05-01
+  category: "Volunteering"
+  context: "Fondazione Giovanni Paolo II ETS"
+  location: "Bari, Italy"
+  summary: "Taught introductory Python programming with focus on computational thinking and problem-solving."
+  technologies:
+    - Python
+    - Teaching
+    - Computational Thinking
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: software-engineer-genesys
+  type: work
+  title: "Software Engineer"
+  period: "Nov 2021 - Sep 2022"
+  sort_date: 2022-09-01
+  category: "Optimization / Warehouse Systems"
+  context: "Genesys Software · Full-Time"
+  location: "Bari, Apulia, Italy · Hybrid"
+  summary: "Developed warehouse route-optimization and picking systems using C/C++, gRPC, FEFO workflows, and event streaming; company partner in the ASIRID program."
+  technologies:
+    - C (Programming Language)
+    - C++
+    - gRPC
+    - Kafka
+    - PostgreSQL
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: software-engineer-vallefiorita
+  type: work
+  title: "Software Engineer"
+  period: "Sep 2020 - Oct 2021"
+  sort_date: 2021-10-01
+  category: "Computer Vision / Robotics"
+  context: "Vallefiorita · Full-time"
+  location: "Bari, Apulia, Italy · Hybrid"
+  summary: "Built an edge visual-inspection and robotics rejection system using Python and OpenCV; company partner in the ASIRID program."
+  technologies:
+    - Python
+    - OpenCV
+    - Raspberry Pi
+    - Arduino
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"
+
+- id: bsc-computer-science-bari
+  type: education
+  title: "Universita degli Studi di Bari"
+  period: "Bachelor's degree"
+  sort_date: 2020-01-01
+  category: "Education"
+  context: "Computer Science"
+  location: "Bari, Italy"
+  summary: "Academic foundation in software engineering, algorithms, and computing systems."
+  technologies:
+    - Algorithms
+    - Software Engineering
+    - Computing Systems
+  links:
+    linkedin: "https://www.linkedin.com/in/reiidoda/"

@@ -1,0 +1,50 @@
+title: Rei Doda
+description: Rei Doda is a software engineer building practical AI systems, optimization platforms, and reliable automation.
+url: "https://reiidoda.github.io"
+baseurl: ""
+lang: en
+og_image: "/assets/img/portfolio/art/vision-simplicitas.webp"
+og_image_alt: "Classical mural inspired portfolio visual for Rei Doda"
+favicon_version: "20260311-2"
+logo: "/favicon-96x96.png"
+author:
+  name: Rei Doda
+  url: "https://reiidoda.github.io"
+twitter:
+  username: reiidoda
+social:
+  name: Rei Doda
+  links:
+    - "https://github.com/reiidoda"
+    - "https://www.linkedin.com/in/reiidoda/"
+    - "mailto:reidoda@icloud.com"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+timezone: Europe/Rome
+permalink: /news/:year/:month/:day/:title/
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - README.md
+  - docs/
+  - scripts/
+  - tests/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+  - .github/
+  - .bundle/
+  - vendor/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

@@ -1,0 +1,295 @@
+{% assign canonical_url = page.url | replace: 'index.html', '' | absolute_url %}
+{% assign raw_description = page.description | default: page.excerpt | default: site.description %}
+{% assign computed_description = raw_description | strip_html | strip_newlines | replace: '  ', ' ' | strip %}
+{% assign profile_name = site.data.site.name | default: site.title %}
+{% assign profile_job_title = site.data.site.hero.subtitle %}
+{% assign profile_description = site.data.site.hero.summary | default: site.description %}
+{% assign profile_url = '/' | absolute_url %}
+{% assign site_logo = site.logo | default: '/favicon-96x96.png' %}
+{% assign site_logo_prefix = site_logo | slice: 0, 4 %}
+{% if site_logo and site_logo_prefix != 'http' %}
+  {% assign site_logo = site_logo | absolute_url %}
+{% endif %}
+{% assign modified_date = page.last_modified_at | default: page.date %}
+{% assign profile_image = page.image | default: page.cover | default: site.og_image %}
+{% assign profile_image_prefix = profile_image | slice: 0, 4 %}
+{% if profile_image and profile_image_prefix != 'http' %}
+  {% assign profile_image = profile_image | absolute_url %}
+{% endif %}
+{% assign same_as_links = site.social.links %}
+{% if same_as_links == nil %}
+  {% assign same_as_links = "" | split: "" %}
+{% endif %}
+
+{% assign tab_title = page.tab_title | default: page.title | default: site.title %}
+<title>{{ tab_title | escape }}</title>
+{% seo title=false %}
+
+{% if page.noindex or page.sitemap == false %}
+  <meta name="robots" content="noindex, nofollow">
+{% else %}
+  <meta name="robots" content="index, follow">
+{% endif %}
+
+{% assign core_pages = '/,/news/,/experience/,/projects/' | split: ',' %}
+{% assign is_core_page = false %}
+{% for core_page in core_pages %}
+  {% if page.url == core_page %}
+    {% assign is_core_page = true %}
+  {% endif %}
+{% endfor %}
+
+{% if is_core_page %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": {{ site.title | jsonify }},
+      "alternateName": {{ site.title | jsonify }},
+      "url": {{ '/' | absolute_url | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "inLanguage": {{ site.lang | default: 'en' | jsonify }},
+      "publisher": {
+        "@type": "Organization",
+        "name": {{ profile_name | jsonify }},
+        "url": {{ profile_url | jsonify }}{% if site_logo %},
+        "logo": {
+          "@type": "ImageObject",
+          "url": {{ site_logo | jsonify }}
+        }{% endif %}
+      }
+    }
+  </script>
+{% endif %}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ profile_name | jsonify }},
+    "url": {{ profile_url | jsonify }}{% if site_logo %},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ site_logo | jsonify }}
+    }{% endif %}
+  }
+</script>
+
+{% if page.url == '/' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "name": {{ profile_name | jsonify }},
+      "url": {{ canonical_url | jsonify }},
+      "description": {{ computed_description | jsonify }},
+      "mainEntity": {
+        "@type": "Person",
+        "name": {{ profile_name | jsonify }},
+        "url": {{ profile_url | jsonify }},
+        "description": {{ profile_description | jsonify }}{% if profile_job_title %},
+        "jobTitle": {{ profile_job_title | jsonify }}{% endif %}{% if profile_image %},
+        "image": {{ profile_image | jsonify }}{% endif %},
+        "sameAs": {{ same_as_links | jsonify }}
+      }
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": {{ profile_name | jsonify }},
+      "url": {{ profile_url | jsonify }},
+      "description": {{ profile_description | jsonify }}{% if profile_job_title %},
+      "jobTitle": {{ profile_job_title | jsonify }}{% endif %}{% if profile_image %},
+      "image": {{ profile_image | jsonify }}{% endif %},
+      "sameAs": {{ same_as_links | jsonify }},
+      "mainEntityOfPage": {{ canonical_url | jsonify }}
+    }
+  </script>
+{% endif %}
+
+{% if page.layout == 'post' or page.collection == 'posts' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ computed_description | jsonify }},
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      "dateModified": {{ modified_date | date_to_xmlschema | jsonify }},
+      "url": {{ canonical_url | jsonify }},
+      "mainEntityOfPage": {{ canonical_url | jsonify }},
+      "author": {
+        "@type": "Person",
+        "name": {{ profile_name | jsonify }},
+        "url": {{ profile_url | jsonify }}
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": {{ profile_name | jsonify }},
+        "url": {{ profile_url | jsonify }}{% if profile_image %},
+        "logo": {
+          "@type": "ImageObject",
+          "url": {{ profile_image | jsonify }}
+        }{% endif %}
+      },
+      "inLanguage": {{ site.lang | default: 'en' | jsonify }}{% if profile_image %},
+      "image": {{ profile_image | jsonify }}{% endif %}{% if page.tags and page.tags.size > 0 %},
+      "keywords": {{ page.tags | join: ', ' | jsonify }}{% endif %}
+    }
+  </script>
+{% endif %}
+
+{% if page.layout == 'project' %}
+  {% assign project_schema_type = 'CreativeWork' %}
+  {% if page.project_repo %}
+    {% assign project_schema_type = 'SoftwareSourceCode' %}
+  {% endif %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": {{ project_schema_type | jsonify }},
+      "name": {{ page.project_name | default: page.title | jsonify }},
+      "description": {{ computed_description | jsonify }},
+      "url": {{ canonical_url | jsonify }},
+      "mainEntityOfPage": {{ canonical_url | jsonify }},
+      "author": {
+        "@type": "Person",
+        "name": {{ profile_name | jsonify }},
+        "url": {{ profile_url | jsonify }}
+      }{% if page.project_repo %},
+      "codeRepository": {{ page.project_repo | jsonify }}{% endif %}{% if page.project_stack and page.project_stack.size > 0 %},
+      "programmingLanguage": {{ page.project_stack | jsonify }}{% endif %}{% if page.project_keywords and page.project_keywords.size > 0 %},
+      "keywords": {{ page.project_keywords | join: ', ' | jsonify }}{% endif %}
+    }
+  </script>
+{% endif %}
+
+{% assign url_parts = page.url | split: '/' %}
+{% assign section_name = url_parts[1] | default: '' %}
+
+{% if section_name == 'news' %}
+  {% if page.url == '/news/' %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": {{ '/' | absolute_url | jsonify }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "News",
+            "item": {{ canonical_url | jsonify }}
+          }
+        ]
+      }
+    </script>
+  {% else %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": {{ '/' | absolute_url | jsonify }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "News",
+            "item": {{ '/news/' | absolute_url | jsonify }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": {{ page.title | jsonify }},
+            "item": {{ canonical_url | jsonify }}
+          }
+        ]
+      }
+    </script>
+  {% endif %}
+{% elsif section_name == 'experience' and page.url == '/experience/' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ '/' | absolute_url | jsonify }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Experience",
+          "item": {{ canonical_url | jsonify }}
+        }
+      ]
+    }
+  </script>
+{% elsif section_name == 'projects' %}
+  {% if page.url == '/projects/' %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": {{ '/' | absolute_url | jsonify }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": {{ canonical_url | jsonify }}
+          }
+        ]
+      }
+    </script>
+  {% else %}
+    {% assign breadcrumb_project_name = page.project_name | default: page.title %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": {{ '/' | absolute_url | jsonify }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": {{ '/projects/' | absolute_url | jsonify }}
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": {{ breadcrumb_project_name | jsonify }},
+            "item": {{ canonical_url | jsonify }}
+          }
+        ]
+      }
+    </script>
+  {% endif %}
+{% endif %}

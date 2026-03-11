@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">InvesteRei AI investing platform architecture diagram</title>
+  <desc id="desc">Architecture graph showing gateway, portfolio and AI services, broker integrations, and web and mobile client delivery.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#070707"/>
+      <stop offset="100%" stop-color="#151515"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#d9d9d9"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <g fill="none" stroke="#2a2a2a" stroke-width="1">
+    <path d="M0 130 H1280"/><path d="M0 260 H1280"/><path d="M0 390 H1280"/><path d="M0 520 H1280"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f5f5f5">
+    <text x="56" y="60" font-size="28" font-weight="700">InvesteRei Architecture</text>
+    <text x="56" y="90" font-size="16" fill="#bdbdbd">Web + Mobile -> API Gateway -> Core Services -> Broker and Market Data</text>
+  </g>
+  <g stroke="#d6d6d6" fill="#101010" stroke-width="1.4" font-family="SF Mono, JetBrains Mono, monospace" font-size="15">
+    <rect x="60" y="220" width="250" height="220" rx="18"/>
+    <rect x="360" y="190" width="220" height="280" rx="18"/>
+    <rect x="630" y="150" width="320" height="360" rx="18"/>
+    <rect x="1000" y="220" width="220" height="220" rx="18"/>
+  </g>
+  <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f1f1f1" font-size="15">
+    <text x="110" y="255">Client Layer</text>
+    <text x="85" y="285" fill="#bdbdbd">Angular platform</text>
+    <text x="85" y="310" fill="#bdbdbd">Flutter mobile app</text>
+    <text x="85" y="335" fill="#bdbdbd">Approval / decline UX</text>
+
+    <text x="395" y="225">Gateway + Auth</text>
+    <text x="385" y="255" fill="#bdbdbd">JWT validation</text>
+    <text x="385" y="280" fill="#bdbdbd">Rate limiting</text>
+    <text x="385" y="305" fill="#bdbdbd">Routing</text>
+
+    <text x="690" y="190">Core Services</text>
+    <text x="670" y="220" fill="#bdbdbd">Portfolio optimization</text>
+    <text x="670" y="245" fill="#bdbdbd">AI forecasting</text>
+    <text x="670" y="270" fill="#bdbdbd">Simulation jobs</text>
+    <text x="670" y="295" fill="#bdbdbd">Trade intent workflow</text>
+    <text x="670" y="320" fill="#bdbdbd">Audit + notifications</text>
+    <text x="670" y="345" fill="#bdbdbd">PostgreSQL + Redis</text>
+
+    <text x="1040" y="255">External Systems</text>
+    <text x="1020" y="285" fill="#bdbdbd">Broker adapters</text>
+    <text x="1020" y="310" fill="#bdbdbd">Market data providers</text>
+    <text x="1020" y="335" fill="#bdbdbd">Funding rails</text>
+  </g>
+  <g stroke="#d9d9d9" stroke-width="2.2" marker-end="url(#arrow)">
+    <line x1="310" y1="330" x2="360" y2="330"/>
+    <line x1="580" y1="330" x2="630" y2="330"/>
+    <line x1="950" y1="330" x2="1000" y2="330"/>
+  </g>
+</svg>
