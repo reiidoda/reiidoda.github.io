@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Future of Smartphones"
-date: 2026-03-17 12:00:00 +0100
+date: 2026-03-06 12:00:00 +0100
 tags: [AI, Smartphones, OpenClaw]
 excerpt: "As agentic AI takes over routine tasks, the smartphone may fade from center stage."
 ---
