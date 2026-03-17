@@ -82,8 +82,10 @@ async function main() {
         ".hero-name-cursor {",
         "  display: none !important;",
         "}",
+        target.id === "news-index" ? ".section-split-art, [data-split-art] { display: none !important; }" : "",
       ].join("\n"),
     });
+    await waitForStableRender(page);
     await page.screenshot({ path: currentFile, fullPage: false });
 
     if (updateMode || !fs.existsSync(baselineFile)) {
@@ -151,4 +153,53 @@ function comparePngFiles(expectedFile, actualFile, diffFile) {
 
 function ensureDir(dirPath) {
   fs.mkdirSync(dirPath, { recursive: true });
+}
+
+async function waitForStableRender(page) {
+  await page.evaluate(async () => {
+    if (document.fonts && typeof document.fonts.ready?.then === "function") {
+      try {
+        await document.fonts.ready;
+      } catch {
+        // Ignore font-loading failures to avoid blocking capture.
+      }
+    }
+
+    const urls = new Set();
+
+    for (const image of Array.from(document.images)) {
+      if (image.currentSrc) {
+        urls.add(image.currentSrc);
+      } else if (image.src) {
+        urls.add(image.src);
+      }
+    }
+
+    for (const splitArt of Array.from(document.querySelectorAll("[data-split-art]"))) {
+      const splitImageVar =
+        splitArt.style.getPropertyValue("--split-image") || getComputedStyle(splitArt).getPropertyValue("--split-image");
+      const match = splitImageVar.match(/url\((['"]?)(.*?)\1\)/);
+      if (match && match[2]) {
+        const absoluteUrl = new URL(match[2], window.location.href).href;
+        urls.add(absoluteUrl);
+      }
+    }
+
+    await Promise.all(
+      Array.from(urls).map(
+        (url) =>
+          new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+            img.src = url;
+            if (img.complete) {
+              resolve();
+            }
+          })
+      )
+    );
+
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
 }
