@@ -349,6 +349,7 @@
 .home-sticky-visual {
   position: sticky;
   top: calc(var(--header-height) + 1rem);
+  aspect-ratio: 1 / 1;
   border-radius: var(--radius-xl);
   border: 1px solid var(--glass-line);
   overflow: hidden;
@@ -356,8 +357,9 @@
 }
 
 .home-sticky-visual img {
+  display: block;
   width: 100%;
-  height: clamp(280px, 52vw, 540px);
+  height: 100%;
   object-fit: cover;
 }
 
@@ -366,13 +368,13 @@
     radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.09), transparent 58%),
     linear-gradient(160deg, rgba(9, 9, 9, 0.98), rgba(16, 16, 16, 0.92));
   display: grid;
-  place-items: center;
+  place-items: stretch;
 }
 
 .home-sticky-visual--symbol img {
-  width: min(72%, 420px);
-  height: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   filter: contrast(1.05);
 }
 
@@ -546,7 +548,8 @@
   }
 
   .home-sticky-visual--symbol img {
-    width: min(56%, 280px);
+    width: 100%;
+    height: 100%;
   }
 }
 
