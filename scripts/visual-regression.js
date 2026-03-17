@@ -82,6 +82,7 @@ async function main() {
         ".hero-name-cursor {",
         "  display: none !important;",
         "}",
+        target.id === "news-index" ? ".section-split-art, [data-split-art] { display: none !important; }" : "",
       ].join("\n"),
     });
     await waitForStableRender(page);
