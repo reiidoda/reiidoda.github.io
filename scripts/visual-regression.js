@@ -162,6 +162,13 @@ function ensureDir(dirPath) {
 
 async function waitForStableRender(page) {
   await page.evaluate(async () => {
+    const imageElements = Array.from(document.images);
+
+    for (const image of imageElements) {
+      image.loading = "eager";
+      image.decoding = "sync";
+    }
+
     if (document.fonts && typeof document.fonts.ready?.then === "function") {
       try {
         await document.fonts.ready;
@@ -172,7 +179,7 @@ async function waitForStableRender(page) {
 
     const urls = new Set();
 
-    for (const image of Array.from(document.images)) {
+    for (const image of imageElements) {
       if (image.currentSrc) {
         urls.add(image.currentSrc);
       } else if (image.src) {
@@ -200,6 +207,35 @@ async function waitForStableRender(page) {
             img.src = url;
             if (img.complete) {
               resolve();
+            }
+          })
+      )
+    );
+
+    await Promise.all(
+      imageElements.map(
+        (image) =>
+          new Promise((resolve) => {
+            const settle = () => {
+              if (typeof image.decode === "function") {
+                image.decode().catch(() => {}).finally(resolve);
+                return;
+              }
+              resolve();
+            };
+
+            if (image.complete && image.naturalWidth > 0) {
+              settle();
+              return;
+            }
+
+            image.addEventListener("load", settle, { once: true });
+            image.addEventListener("error", () => resolve(), { once: true });
+
+            if (image.currentSrc) {
+              image.src = image.currentSrc;
+            } else if (image.src) {
+              image.src = image.src;
             }
           })
       )
