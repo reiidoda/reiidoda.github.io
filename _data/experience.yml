@@ -23,7 +23,7 @@
   category: "Hospitality Engineering / Smart Building"
   context: "Movenpick Hotel Lalez Durres · Full-time"
   location: "Durres, Albania · On-site"
-  summary: "Led hotel engineering operations and implemented smart-building integrations across BMS/EMS, HVAC, generators/UPS, access control, CCTV, and centralized event monitoring."
+  summary: "Led operational engineering for a multi-system environment spanning controls, monitoring, access, energy, and safety infrastructure."
   technologies:
     - Building Management Systems
     - Energy Management Systems (EMS)
@@ -57,7 +57,7 @@
   category: "AI / SaaS Engineering"
   context: "Upnova Group · Full-time"
   location: "Bari, Apulia, Italy · Hybrid"
-  summary: "Built and shipped an AI-powered document-processing SaaS with OCR and LLM pipelines; company partner in the ASIRID program."
+  summary: "Built an end-to-end document processing platform for ingestion, OCR, classification, extraction, review, and structured export."
   technologies:
     - Python
     - OCR
@@ -92,7 +92,7 @@
   category: "Optimization / Warehouse Systems"
   context: "Genesys Software · Full-Time"
   location: "Bari, Apulia, Italy · Hybrid"
-  summary: "Developed warehouse route-optimization and picking systems using C/C++, gRPC, FEFO workflows, and event streaming; company partner in the ASIRID program."
+  summary: "Developed graph-based warehouse routing and picking systems connected to live workflows through gRPC, Kafka, and PostgreSQL traceability."
   technologies:
     - C (Programming Language)
     - C++
@@ -110,7 +110,7 @@
   category: "Computer Vision / Robotics"
   context: "Vallefiorita · Full-time"
   location: "Bari, Apulia, Italy · Hybrid"
-  summary: "Built an edge visual-inspection and robotics rejection system using Python and OpenCV; company partner in the ASIRID program."
+  summary: "Built a real-time edge vision pipeline for automated quality control and rejection with Python, OpenCV, and connected hardware."
   technologies:
     - Python
     - OpenCV

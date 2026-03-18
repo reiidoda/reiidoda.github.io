@@ -3,6 +3,8 @@ layout: project
 title: Examen Case Study - Angular and Spring Boot Reflective Journaling Platform
 description: Deep case study of Examen, an open-source reflective journaling platform built with Angular SSR, Spring Boot, and PostgreSQL.
 permalink: /projects/examen/
+sitemap: false
+noindex: true
 project_name: Examen
 project_subtitle: Structured reflection platform with analytics, reminders, and AI-assisted growth insights.
 project_summary: "Examen is a production-style reflective journaling product where consistency mattered more than visual novelty. The implementation centers on a guided daily flow, strict session rules, and analytics that convert raw answers into actionable trends."

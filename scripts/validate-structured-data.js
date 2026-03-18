@@ -3,7 +3,10 @@
 const fs = require("fs");
 const path = require("path");
 
+const { collectNewsPosts } = require("./lib/news");
+
 const siteRoot = path.resolve(process.argv[2] || "_site");
+const repoRoot = process.cwd();
 const failures = [];
 
 if (!fs.existsSync(siteRoot) || !fs.statSync(siteRoot).isDirectory()) {
@@ -11,6 +14,7 @@ if (!fs.existsSync(siteRoot) || !fs.statSync(siteRoot).isDirectory()) {
   process.exit(1);
 }
 
+const newsPosts = collectNewsPosts(path.join(repoRoot, "_posts"));
 const schemaChecks = [
   {
     label: "Home page WebSite schema",
@@ -37,32 +41,16 @@ const schemaChecks = [
     requiredFields: ["name", "url", "description", "inLanguage"],
   },
   {
-    label: "Experience WebSite schema",
-    file: path.join("experience", "index.html"),
-    requiredType: "WebSite",
-    requiredFields: ["name", "url", "description", "inLanguage"],
-  },
-  {
-    label: "News post Article schema",
-    file: path.join("news", "2026", "03", "06", "launching-news-system", "index.html"),
-    requiredType: "Article",
-    requiredFields: [
-      "headline",
-      "description",
-      "datePublished",
-      "dateModified",
-      "url",
-      "mainEntityOfPage",
-      "author",
-      "publisher",
-      "inLanguage",
-    ],
-  },
-  {
     label: "News index breadcrumbs schema",
     file: path.join("news", "index.html"),
     requiredType: "BreadcrumbList",
     requiredFields: ["itemListElement"],
+  },
+  {
+    label: "Experience WebSite schema",
+    file: path.join("experience", "index.html"),
+    requiredType: "WebSite",
+    requiredFields: ["name", "url", "description", "inLanguage"],
   },
   {
     label: "Experience breadcrumbs schema",
@@ -83,18 +71,37 @@ const schemaChecks = [
     requiredFields: ["itemListElement"],
   },
   {
-    label: "News article breadcrumbs schema",
-    file: path.join("news", "2026", "03", "06", "launching-news-system", "index.html"),
-    requiredType: "BreadcrumbList",
-    requiredFields: ["itemListElement"],
-  },
-  {
     label: "Project page schema",
     file: path.join("projects", "occamo", "index.html"),
     requiredType: "SoftwareSourceCode",
     requiredFields: ["name", "description", "url", "mainEntityOfPage", "author", "codeRepository"],
   },
 ];
+
+for (const post of newsPosts) {
+  schemaChecks.push({
+    label: `News post Article schema (${post.fileName})`,
+    file: post.outputPath,
+    requiredType: "Article",
+    requiredFields: [
+      "headline",
+      "description",
+      "datePublished",
+      "dateModified",
+      "url",
+      "mainEntityOfPage",
+      "author",
+      "publisher",
+      "inLanguage",
+    ],
+  });
+  schemaChecks.push({
+    label: `News post breadcrumbs schema (${post.fileName})`,
+    file: post.outputPath,
+    requiredType: "BreadcrumbList",
+    requiredFields: ["itemListElement"],
+  });
+}
 
 for (const check of schemaChecks) {
   validateSchema(check);
@@ -108,7 +115,9 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("Structured data validation passed for WebSite, ProfilePage, Person, Article, BreadcrumbList, and project schemas.");
+console.log(
+  `Structured data validation passed for ${newsPosts.length} news post(s), core pages, breadcrumbs, and project schemas.`
+);
 
 function validateSchema(check) {
   const absolutePath = path.resolve(siteRoot, check.file);

@@ -20,7 +20,9 @@
       <div class="project-card-content">
         <header class="project-card-header">
           <p class="project-card-period">{{ include.project.period }}</p>
-          <span class="project-card-github project-card-github-static">GitHub</span>
+          <span class="project-card-github project-card-github-static">
+            {% if include.project.github %}GitHub{% else %}Case Study{% endif %}
+          </span>
         </header>
 
         <h3 class="project-card-title">
@@ -55,7 +57,7 @@
           <p class="project-card-links">
             {% if include.project.detail_url %}
               <a class="project-card-link" href="{{ include.project.detail_url | relative_url }}">
-                Read {{ include.project.title }} engineering case study
+                Read {{ include.project.title }} case study
               </a>
             {% endif %}
             {% if include.project.github %}

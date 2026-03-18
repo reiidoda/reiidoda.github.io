@@ -5,15 +5,20 @@ const path = require("path");
 const axeSource = require("axe-core").source;
 const { chromium } = require("playwright");
 
+const { collectNewsPosts } = require("./lib/news");
 const { startStaticServer } = require("./static-server");
 
 const siteRoot = path.resolve(process.argv[2] || "_site");
+const latestNewsPost = collectNewsPosts(path.resolve(process.cwd(), "_posts"))[0] || null;
 const pageTargets = [
   { label: "Home", path: "/" },
   { label: "Experience", path: "/experience/" },
   { label: "News index", path: "/news/" },
-  { label: "News post", path: "/news/2026/03/06/launching-news-system/" },
 ];
+
+if (latestNewsPost) {
+  pageTargets.push({ label: "News post", path: latestNewsPost.url });
+}
 
 const requiredAxeRules = ["color-contrast", "landmark-one-main", "page-has-heading-one", "link-name"];
 const focusableSelector = [

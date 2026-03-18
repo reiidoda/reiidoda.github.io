@@ -1,6 +1,6 @@
 ---
 title: Rei Doda
-description: Rei Doda is a software engineer building practical AI systems, optimization platforms, and reliable automation.
+description: Software engineer building practical AI systems, optimization platforms, and edge computer vision tools.
 body_class: portfolio
 ---
 <section class="hero hero--full" id="top" aria-labelledby="hero-title">
@@ -34,26 +34,20 @@ body_class: portfolio
             </figure>
 
             <div class="hero-copy hero-copy--intro">
-              <p class="hero-kicker">BIO</p>
+              <p class="hero-kicker">Software Engineer</p>
               <h1 id="hero-title">Rei Doda</h1>
               <p class="hero-identity">
-                <span class="hero-identity-static">Focused on</span>
-                <span
-                  class="term-cycle"
-                  data-term-cycle
-                  data-term-delay="3600"
-                  data-terms="Cybersecurity|Artificial Intelligence|Neuroscience"
-                >Cybersecurity</span>
+                Building practical AI systems and applied research at the intersection of AI and neuroscience.
               </p>
               <p class="hero-summary">
-                Building production-grade systems across AI, optimization, and automation, with emphasis on architecture clarity,
-                observability, and reliable human-in-the-loop control.
+                I design software that solves real operational problems. My work focuses on document AI, optimization,
+                and edge computer vision, with an emphasis on reliability, traceability, and clear engineering decisions.
               </p>
 
               <div class="hero-actions" data-hero-actions-intro>
-                <a class="button button-primary" href="{{ '/projects/' | relative_url }}">View Work</a>
-                <a class="button button-ghost" href="{{ '/cv/' | relative_url }}">Open CV</a>
+                <a class="button button-primary" href="{{ '/projects/' | relative_url }}">Projects</a>
                 <a class="button button-ghost" href="{{ '/experience/' | relative_url }}">Experience</a>
+                <a class="button button-ghost" href="{{ '/resume/' | relative_url }}">Resume</a>
               </div>
 
               <ul class="hero-links" data-hero-links-intro aria-label="Primary links">
@@ -70,108 +64,43 @@ body_class: portfolio
   </div>
 </section>
 
-<section class="section" id="about" aria-labelledby="about-title" data-reveal>
+<section class="section" id="work" aria-labelledby="selected-work-title" data-reveal>
   <div class="shell">
     <div class="section-intro">
-      <p class="section-label">What I Build</p>
-      <h2 id="about-title">AI systems for real-world operations.</h2>
+      <p class="section-label">Work</p>
+      <h2 id="selected-work-title">Selected Work</h2>
+      <p class="projects-intro-copy">
+        Selected case studies from applied AI, optimization, and edge vision. Each one reflects a real engineering problem,
+        a system built to solve it, and the technical decisions required to make it reliable.
+      </p>
     </div>
 
-    <p class="value-prop-compact">
-      Software engineer focused on building real-world systems across AI, optimization, and automation. Developed an AI OCR/document-processing SaaS with automated extraction and database categorization. Built a ware-house route-optimization and inventory platform. Delivered an edge computer-vision + robotics QC solution and integrated smart-building technologies in hospitality.
+    {% assign projects = site.data.featured_projects %}
+    {% if projects and projects.size > 0 %}
+      <div class="project-grid">
+        {% for project in projects %}
+          {% include project-card.html project=project flip_index=forloop.index0 %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty-state">Projects will be listed here.</p>
+    {% endif %}
+
+    <p class="section-action-row">
+      <a class="button button-ghost" href="{{ '/projects/' | relative_url }}">View All Projects</a>
     </p>
   </div>
 </section>
 
-<section class="section" aria-labelledby="story-title-1" data-reveal>
-  <div class="shell">
-    <article class="story-block story-block--split" data-reveal>
-      <figure class="story-block__media" data-parallax>
-        <img
-          src="{{ '/assets/img/portfolio/art/vision-simplicitas.webp' | relative_url }}"
-          alt="Classical mural themed around vision and simplicity"
-          width="1900"
-          height="1235"
-          loading="lazy"
-          decoding="async"
-          data-parallax-media
-        >
-      </figure>
-
-      <div class="story-block__content" data-sequence>
-        <p class="story-block__eyebrow">Selected Work</p>
-        <h2 id="story-title-1">InvesteRei</h2>
-        <p>
-          Open-source AI investing platform for automated portfolio management, algorithmic trading workflows,
-          wealth planning, and enterprise-grade brokerage integrations.
-        </p>
-        <div class="story-block__actions">
-          <a class="button button-ghost" href="{{ '/projects/investerei/' | relative_url }}">View Project</a>
-          <a class="button button-ghost" href="https://github.com/reiidoda/InvesteRei" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="story-block story-block--split story-block--reverse" data-reveal>
-      <figure class="story-block__media" data-parallax>
-        <img
-          src="{{ '/assets/img/portfolio/art/spiritus-scientiae.webp' | relative_url }}"
-          alt="Classical mural themed around scientific spirit and systems thinking"
-          width="1900"
-          height="1235"
-          loading="lazy"
-          decoding="async"
-          data-parallax-media
-        >
-      </figure>
-
-      <div class="story-block__content" data-sequence>
-        <p class="story-block__eyebrow">Selected Work</p>
-        <h2>OpenRe</h2>
-        <p>
-          Open-source AI agent evaluation workbench for benchmarking, tracing, optimization,
-          and safety with human approval.
-        </p>
-        <div class="story-block__actions">
-          <a class="button button-ghost" href="{{ '/projects/openre/' | relative_url }}">View Project</a>
-          <a class="button button-ghost" href="{{ '/projects/' | relative_url }}">All Projects</a>
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="story-title-2" data-reveal>
-  <div class="shell">
-    <article class="story-block story-block--center" data-reveal>
-      <figure class="story-block__media" data-parallax data-art-reveal>
-        <img
-          src="{{ '/assets/img/portfolio/art/naturae-leges.webp' | relative_url }}"
-          alt="Classical mural themed around natural laws and abstraction"
-          width="1900"
-          height="1235"
-          loading="lazy"
-          decoding="async"
-          data-parallax-media
-        >
-      </figure>
-      <div class="story-block__content" data-sequence>
-        <p class="story-block__eyebrow">Research Focus</p>
-        <h2 id="story-title-2">Research across Artificial Intelligence, Neuroscience, and Cybersecurity.</h2>
-        <p>
-          I continuously study and develop practical research directions across AI systems, neuroscience-inspired intelligence,
-          and cybersecurity-oriented resilience for modern software architectures.
-        </p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="section" id="work" aria-labelledby="work-title" data-reveal>
+<section class="section" aria-labelledby="experience-preview-title" data-reveal>
   <div class="shell">
     <div class="section-intro">
       <p class="section-label">Experience</p>
-      <h2 id="work-title">Recent Roles</h2>
+      <h2 id="experience-preview-title">Experience</h2>
+      <p class="projects-intro-copy">
+        Professional experience across AI systems, software engineering, and operational engineering. The common thread is
+        building and running systems that need to work reliably in real settings.
+      </p>
     </div>
 
     <article class="home-sticky-story" data-sticky-story>
@@ -199,8 +128,8 @@ body_class: portfolio
         <section class="home-sticky-step" data-sticky-step>
           <h3>Chief Engineer · Mövenpick Hotel (Accor Group)</h3>
           <p>
-            Led engineering operations and smart-building integrations across BMS/EMS, HVAC, access control, CCTV,
-            and centralized safety monitoring.
+            Led operational engineering for a multi-system environment spanning controls, monitoring, access, energy,
+            and safety infrastructure. The role strengthened my approach to reliability, integrations, and system-level thinking.
             <br>
             <small>Jul 2023 – Jun 2025 · Durrës, Albania</small>
           </p>
@@ -209,7 +138,8 @@ body_class: portfolio
         <section class="home-sticky-step" data-sticky-step>
           <h3>Lead Software Engineer · Upnova Group S.r.l</h3>
           <p>
-            Built and shipped AI document-processing SaaS systems combining OCR, LLM workflows, and production architecture.
+            Built an end-to-end document processing platform for ingestion, OCR, classification, extraction, review,
+            and structured export using deterministic pipelines and LLM-assisted workflows.
             <br>
             <small>Oct 2022 – Aug 2024 · Bari, Italy</small>
           </p>
@@ -223,62 +153,17 @@ body_class: portfolio
   </div>
 </section>
 
-<section class="section" id="toolkit" aria-labelledby="toolkit-title" data-reveal>
-  <div class="shell">
-    <div class="section-intro">
-      <p class="section-label">Core Engineering Toolkit</p>
-      <h2 id="toolkit-title">Core Engineering Toolkit</h2>
+<section class="section section-cv" id="resume-overview" aria-labelledby="resume-overview-title" data-reveal>
+  <div class="shell cv-shell">
+    <p class="section-label">Resume</p>
+    <h2 id="resume-overview-title">Resume</h2>
+    <p>
+      Education, experience, and selected technical work in a concise engineering resume.
+    </p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="{{ '/resume/' | relative_url }}">Open Resume</a>
+      <a class="button button-ghost" href="{{ '/assets/docs/rei-doda-cv.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Download PDF</a>
     </div>
-
-    <div class="foundations-grid">
-      <article>
-        <h3>Languages</h3>
-        <p>Python, Java, TypeScript, C, C++, SQL.</p>
-      </article>
-      <article>
-        <h3>Frameworks</h3>
-        <p>Spring Boot, Django, FastAPI, Angular, Node.js.</p>
-      </article>
-      <article>
-        <h3>Infrastructure</h3>
-        <p>Linux, Docker, CI/CD, deployment automation, gRPC, Kafka.</p>
-      </article>
-      <article>
-        <h3>AI / ML</h3>
-        <p>OCR, LLMs, RAG, TensorFlow, PyTorch, scikit-learn, LangChain.</p>
-      </article>
-      <article>
-        <h3>Databases</h3>
-        <p>PostgreSQL, MySQL, MongoDB, Oracle Database.</p>
-      </article>
-      <article>
-        <h3>Tools</h3>
-        <p>GitHub Actions, API design, observability-oriented workflows.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="notes-overview" aria-labelledby="notes-overview-title" data-reveal>
-  <div class="shell">
-    <div class="section-intro">
-      <p class="section-label">Profile</p>
-      <h2 id="notes-overview-title">Profile Hero</h2>
-    </div>
-
-    <article class="profile-readme" data-parallax data-art-reveal>
-      <picture data-parallax-media>
-        <source srcset="{{ '/assets/img/profile/reiidoda-profile.gif' | relative_url }}" type="image/gif">
-        <img
-          src="{{ '/assets/img/profile/reiidoda-profile.svg' | relative_url }}"
-          alt="Rei Doda profile hero"
-          width="1200"
-          height="1080"
-          loading="lazy"
-          decoding="async"
-        >
-      </picture>
-    </article>
   </div>
 </section>
 
@@ -286,28 +171,16 @@ body_class: portfolio
   <div class="shell contact-shell">
     <div>
       <p class="section-label">Contact</p>
-      <h2 id="contact-title">Open for collaboration.</h2>
-      <p>Available for collaboration in the fields of Artificial Intelligence, Neuroscience, and Cybersecurity.</p>
+      <h2 id="contact-title">Contact</h2>
+      <p>
+        Available for software engineering roles and collaborations focused on AI systems, optimization, and edge computer vision.
+      </p>
     </div>
     <ul class="contact-list">
       <li><span>Email</span><a href="mailto:reidoda@icloud.com">reidoda@icloud.com</a></li>
       <li><span>GitHub</span><a href="https://github.com/reiidoda" target="_blank" rel="noopener noreferrer">github.com/reiidoda</a></li>
       <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/reiidoda/" target="_blank" rel="noopener noreferrer">linkedin.com/in/reiidoda</a></li>
-      <li><span>CV</span><a href="{{ '/cv/' | relative_url }}">Open CV Page</a></li>
+      <li><span>Resume</span><a href="{{ '/resume/' | relative_url }}">Open resume page</a></li>
     </ul>
-  </div>
-</section>
-
-<section class="section section-cv" id="cv-overview" aria-labelledby="cv-overview-title" data-reveal>
-  <div class="shell cv-shell">
-    <p class="section-label">Curriculum Vitae Overview</p>
-    <h2 id="cv-overview-title">Curriculum Vitae Overview</h2>
-    <p>
-      Structured profile including experience, education, skills, and source references synced from the canonical CV repository.
-    </p>
-    <div class="hero-actions">
-      <a class="button button-primary" href="{{ '/cv/' | relative_url }}">Open CV Page</a>
-      <a class="button button-ghost" href="{{ '/assets/docs/rei-doda-cv.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Download PDF</a>
-    </div>
   </div>
 </section>

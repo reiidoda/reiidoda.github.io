@@ -14,15 +14,15 @@ The design system and visual language are aligned with the main profile reposito
 ## Live
 
 - Website: [https://reiidoda.github.io/](https://reiidoda.github.io/)
-- Resume (external project): [https://reiidoda.github.io/resume/](https://reiidoda.github.io/resume/)
+- Resume: [https://reiidoda.github.io/resume/](https://reiidoda.github.io/resume/)
 
 ## Main sections
 
-- `Bio` (`/`): neural hero intro, identity block, CTA actions, social links, terminal animation
+- `Home` (`/`): hero intro, identity block, CTA actions, selected work, experience preview, resume, contact
 - `Projects` (`/projects/`): project case-study pages with architecture, stack, and engineering impact
-- `News` (`/news/`): post listing, filters/search, article pages, RSS feed
+- `News` (`/news/`): featured latest article, search/filter controls, archive, article pages, RSS feed
 - `Experience` (`/experience/`): animated roadmap focused on education and jobs
-- `Resume`: external navigation link to the dedicated resume repository/site
+- `Resume` (`/resume/`): in-repository resume page with `/cv/` legacy redirect
 
 ## Tech stack
 
@@ -70,9 +70,11 @@ Run before opening a PR:
 npm ci
 npx playwright install chromium
 npm run lint:js
+npm run test:news
 bundle exec jekyll build
 npm run validate:readme
 npm run validate:generated-artifacts
+npm run validate:news
 npm run validate:links
 npm run validate:external-links
 npm run validate:structure
@@ -87,8 +89,9 @@ bash scripts/audit-ruby.sh
 ## CI/CD
 
 - PR validation workflow: [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
-  - JS syntax + README asset checks
+  - JS syntax + README asset checks + fixture-based news contract tests
   - Jekyll build + artifact checks
+  - news publication validation against `_posts`
   - generated-site artifact exclusion checks
   - internal + external link checks
   - structure + visual smoke checks

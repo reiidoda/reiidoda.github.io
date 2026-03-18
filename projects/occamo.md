@@ -3,6 +3,8 @@ layout: project
 title: OccamO Case Study - PR Complexity Regression Guard for CI
 description: Deep case study of OccamO, a CI-first regression guard that compares pull requests against baseline complexity and enforces policy gates.
 permalink: /projects/occamo/
+sitemap: false
+noindex: true
 project_name: OccamO
 project_subtitle: CI-native complexity and performance regression detection with SARIF and policy-based gates.
 project_summary: "OccamO focuses on one practical outcome: detect only what got worse in a pull request and make that signal actionable in the same CI context where teams already work."

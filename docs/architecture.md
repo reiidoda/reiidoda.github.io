@@ -1,211 +1,212 @@
 # Architecture Reference
 
-This document describes the current architecture of `reiidoda.github.io` as implemented in the repository.
+This document describes the current implementation of `reiidoda.github.io` as it exists in the repository.
 
-## 1. Product Scope
+## Product Scope
 
-The site is a static personal platform published with GitHub Pages and Jekyll. It provides four primary user-facing areas:
+The site is a Jekyll-based static portfolio published on GitHub Pages. The user-facing routes are:
 
-- Bio (`/`)
-- News (`/news/` + post pages)
-- Experience (`/experience/`)
-- Resume (external link to `https://reiidoda.github.io/resume/`)
+- Home: `/`
+- Projects: `/projects/`
+- News: `/news/` and `/news/YYYY/MM/DD/slug/`
+- Experience: `/experience/`
+- Resume: `/resume/`
+- Resume legacy redirect: `/cv/`
 
-## 2. High-Level Design (HLD)
+## Repository Layers
 
-The implementation is organized in four layers.
+### Presentation
 
-### 2.1 Presentation layer
+- Layouts in [`_layouts/`](../_layouts)
+- Shared includes in [`_includes/`](../_includes)
+- Styles in [`assets/css/`](../assets/css)
+- Interaction scripts in [`assets/js/`](../assets/js)
 
-- Jekyll layouts in [`_layouts/`](../_layouts)
-- Shared UI components in [`_includes/`](../_includes)
-- Style system in [`assets/css/`](../assets/css)
+### Content and Data
 
-Responsibilities:
-
-- common shell (`head`, `header`, `footer`)
-- page hero sections
-- card components (news + featured projects)
-- roadmap items
-
-### 2.2 Content/data layer
-
-- Site and hero text in [`_data/site.yml`](../_data/site.yml)
+- Site copy in [`_data/site.yml`](../_data/site.yml)
 - Navigation in [`_data/navigation.yml`](../_data/navigation.yml)
 - Social links in [`_data/social.yml`](../_data/social.yml)
-- Experience timeline data in [`_data/experience.yml`](../_data/experience.yml)
-- Featured projects data in [`_data/featured_projects.yml`](../_data/featured_projects.yml)
+- Experience entries in [`_data/experience.yml`](../_data/experience.yml)
+- Featured projects in [`_data/featured_projects.yml`](../_data/featured_projects.yml)
 - News posts in [`_posts/`](../_posts)
 
-Responsibilities:
+### Delivery and QA
 
-- content updates without touching templates
-- timeline ordering via `sort_date`
-- featured project ordering and metadata
-
-### 2.3 Interaction/animation layer
-
-- Bootstrap in [`assets/js/main.js`](../assets/js/main.js)
-- Bio hero intro animation in [`assets/js/hero-neural-intro.js`](../assets/js/hero-neural-intro.js)
-- Terminal typing in [`assets/js/terminal-typewriter.js`](../assets/js/terminal-typewriter.js)
-- Global reveals in [`assets/js/reveal-effects.js`](../assets/js/reveal-effects.js)
-- Experience roadmap animation in [`assets/js/roadmap.js`](../assets/js/roadmap.js)
-- News filtering/search in [`assets/js/news-filter.js`](../assets/js/news-filter.js)
-- Mobile nav in [`assets/js/mobile-menu.js`](../assets/js/mobile-menu.js)
-
-### 2.4 Delivery layer
-
-- Site config in [`_config.yml`](../_config.yml)
-- QA tooling manifest in [`package.json`](../package.json)
+- Jekyll config in [`_config.yml`](../_config.yml)
+- Node tooling in [`package.json`](../package.json)
 - Validation scripts in [`scripts/`](../scripts)
 - Visual baselines in [`tests/visual/`](../tests/visual)
-- PR CI workflow in [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
-- Pages deploy workflow in [`.github/workflows/pages.yml`](../.github/workflows/pages.yml)
+- CI workflow in [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
+- Pages deployment workflow in [`.github/workflows/pages.yml`](../.github/workflows/pages.yml)
 
-Responsibilities:
+## Layout Composition
 
-- validate JS syntax + README local image references + Jekyll build on PR/push
-- validate generated-site artifact exclusions, links, structure markers, visual smoke markers, and JSON-LD schemas
-- run Playwright screenshot diff tests and axe accessibility checks on key routes
-- run Node (`npm audit`) and Ruby (`bundle-audit`) dependency security checks
-- run scheduled weekly reliability checks (including external links)
-- deploy `_site` artifact to GitHub Pages on `main`
+Default page shell: [`_layouts/default.html`](../_layouts/default.html)
 
-## 3. Low-Level Design (LLD)
+1. [`_includes/head.html`](../_includes/head.html)
+2. [`_includes/header.html`](../_includes/header.html)
+3. page content
+4. [`_includes/footer.html`](../_includes/footer.html)
 
-## 3.1 Layout composition
+Page-specific layouts:
 
-Default shell is defined in [`_layouts/default.html`](../_layouts/default.html):
+- Home: [`index.html`](../index.html)
+- Projects index: [`projects.html`](../projects.html)
+- News index: [`news.html`](../news.html) with [`_layouts/news.html`](../_layouts/news.html)
+- News article: Jekyll posts with [`_layouts/post.html`](../_layouts/post.html)
+- Experience: [`experience.md`](../experience.md)
+- Resume: [`cv.md`](../cv.md)
 
-1. `<head>` via [`_includes/head.html`](../_includes/head.html)
-2. global header via [`_includes/header.html`](../_includes/header.html)
-3. page content (`{{ content }}`)
-4. global footer via [`_includes/footer.html`](../_includes/footer.html)
+## News System
 
-News listing uses [`_layouts/news.html`](../_layouts/news.html). News articles use [`_layouts/post.html`](../_layouts/post.html), which itself extends `default`.
+### Source of truth
 
-## 3.2 Route map
+The source of truth for news is the Markdown content in [`_posts/`](../_posts). Generated news pages are derived from those files during the Jekyll build. No generated HTML is committed.
 
-- [`index.html`](../index.html) -> `/` (Bio)
-- [`news.html`](../news.html) + [`_layouts/news.html`](../_layouts/news.html) -> `/news/`
-- [`_posts/2026-03-06-launching-news-system.md`](../_posts/2026-03-06-launching-news-system.md) -> `/news/YYYY/MM/DD/slug/`
-- [`experience.md`](../experience.md) -> `/experience/`
-- [`feed.xml`](../feed.xml) -> `/feed.xml`
-- [`sitemap.xml`](../sitemap.xml) -> `/sitemap.xml`
-- [`404.html`](../404.html) -> `/404.html`
+### Route derivation
 
-## 3.3 Bio page architecture
+A post named `YYYY-MM-DD-slug.md` is published at:
 
-Defined in [`index.html`](../index.html).
+- source: `_posts/YYYY-MM-DD-slug.md`
+- output: `/news/YYYY/MM/DD/slug/`
 
-Sections:
+The helper in [`scripts/lib/news.js`](../scripts/lib/news.js) mirrors that route logic for CI validation.
 
-1. Full-width neural intro hero (scroll-driven)
-2. Featured Projects cards
-3. Latest News preview
-4. Profile Visual block
+### Front matter contract
 
-Hero behavior:
+Every news post must include these required fields:
 
-- canvas stage is rendered by `hero-neural-intro.js`
-- scroll progress reveals `Rei Doda` name
-- when complete, hero sets `.is-complete` and dispatches `hero:complete`
-- terminal typewriter waits for `hero:complete` via `data-typewriter-start="hero-complete"`
+- `title`
+- `date`
+- `description`
+- `excerpt`
+- `tags`
+- `cover`
+- `cover_alt`
 
-## 3.4 News architecture
+Optional field supported by the post layout:
 
-News list:
+- `introduction`
 
-- layout: [`_layouts/news.html`](../_layouts/news.html)
-- card component: [`_includes/news-card.html`](../_includes/news-card.html)
-- filter/search behavior: [`assets/js/news-filter.js`](../assets/js/news-filter.js)
+Validation rules enforced by the news validator:
 
-Feed:
+- missing required fields fail validation
+- `date` must parse as a valid date
+- `tags` must be a non-empty list with at least one usable normalized value
+- `description` and `excerpt` must be non-trivial
+- `cover` must resolve to a repository asset
+- `cover_alt` must be present and non-trivial
+- title length outside the recommended range produces a warning
+- long posts without a section heading produce a warning
 
-- RSS endpoint: [`feed.xml`](../feed.xml)
-- feed autodiscovery link injected by [`_includes/head.html`](../_includes/head.html)
-- feed URL included in [`sitemap.xml`](../sitemap.xml)
+### Rendering flow
 
-## 3.5 Experience architecture
+1. Markdown post is loaded by Jekyll.
+2. [`_layouts/news.html`](../_layouts/news.html) renders the publication index from `site.posts`.
+3. [`_includes/news-card.html`](../_includes/news-card.html) renders both the featured article card and regular cards.
+4. [`_layouts/post.html`](../_layouts/post.html) renders the article page.
+5. [`_includes/news-reading-time.html`](../_includes/news-reading-time.html) computes reading time from article content.
+6. Jekyll feed and sitemap generation expose the same post URLs.
 
-- page template: [`experience.md`](../experience.md)
-- item renderer: [`_includes/roadmap-item.html`](../_includes/roadmap-item.html)
-- data source: [`_data/experience.yml`](../_data/experience.yml)
-- animation: [`assets/js/roadmap.js`](../assets/js/roadmap.js)
+### News index behavior
 
-Current content policy in data:
+The news index is a publication page with:
 
-- only `work` and `education` entries are present
+- a featured latest article section
+- search across title, description, excerpt, rendered content, and tags
+- normalized tag filters
+- an archive grouped by month
+- cards with cover thumbnails, reading time, and tag counts
 
-## 3.6 Resume behavior
+The featured latest article is derived from the newest post by date in `site.posts`.
 
-Top navigation uses [`_data/navigation.yml`](../_data/navigation.yml) and points Resume to an external URL:
+### News article behavior
 
-- `https://reiidoda.github.io/resume/`
+The post layout supports:
 
-No resume duplication is stored in this repository.
+- reading time near the date
+- summary box near the top using `introduction` or `excerpt`
+- cover image and alt text
+- anchorable `h2`/`h3`/`h4` headings
+- related posts based on shared tags
+- previous/next article navigation
 
-## 4. Design System and Style Responsibilities
+### News JavaScript
 
-Style entrypoint:
+[`assets/js/news-filter.js`](../assets/js/news-filter.js) is loaded only on news routes.
 
-- [`assets/css/main.css`](../assets/css/main.css)
+It handles:
 
-Core files:
+- search input filtering
+- tag button state
+- lightweight synonym expansion for common AI/news terms
+- heading anchor injection for article pages
 
-- tokens: [`assets/css/tokens.css`](../assets/css/tokens.css)
-- global layout and reveal rules: [`assets/css/layout.css`](../assets/css/layout.css)
-- page styles: [`assets/css/pages/`](../assets/css/pages)
-- reusable components: [`assets/css/components/`](../assets/css/components)
+The script is progressive enhancement. Without JavaScript, the full news index and all article pages still render.
 
-Theme direction:
+## Home Page Structure
 
-- black background
-- white/gray typography
-- monochrome neon-light accents
-- motion-heavy hero/roadmap with reduced-motion fallback
+[`index.html`](../index.html) currently renders:
 
-## 5. Patterns Used
+1. hero intro
+2. selected work
+3. experience preview
+4. resume section
+5. contact section
 
-### 5.1 Component include pattern
+The home page does not mirror a latest-news surface.
 
-Repeated HTML is centralized in includes (`header`, `footer`, cards, hero blocks).
+## Experience and Resume
 
-### 5.2 Content-as-data pattern
+- Experience route: [`experience.md`](../experience.md) -> `/experience/`
+- Resume route: [`cv.md`](../cv.md) -> `/resume/`
+- Legacy resume redirect: [`cv/index.html`](../cv/index.html) -> `/cv/`
 
-Structured content is kept in YAML data files and rendered with loops/partials.
+## SEO and Structured Data
 
-### 5.3 Progressive enhancement
+[`_includes/seo.html`](../_includes/seo.html) adds:
 
-Base content renders without JS; JS adds animation/filtering enhancements.
+- `WebSite` schema for core pages
+- `ProfilePage` and `Person` on the home page
+- `Article` schema on news posts
+- `BreadcrumbList` on news, projects, experience, and resume routes
+- project schema on project detail pages
 
-### 5.4 Observer/event pattern
+## Validation and CI
 
-- IntersectionObserver for reveal and animation lifecycle where applicable
-- custom event (`hero:complete`) to coordinate hero sequencing and terminal start
+News-specific checks:
 
-## 6. Asset and Media Conventions
+- [`scripts/test-news-pipeline.js`](../scripts/test-news-pipeline.js)
+  - fixture-based tests for missing front matter, long-post warnings, missing generated pages, and stale featured output
+- [`scripts/validate-news-posts.js`](../scripts/validate-news-posts.js)
+  - validates the front matter contract
+  - validates generated article pages exist for all `_posts`
+  - validates news index output is not stale relative to `_posts`
+  - validates RSS and sitemap include all generated news URLs
 
-- favicon assets: [`assets/img/favicon/`](../assets/img/favicon)
-- profile/share images: [`assets/img/profile/`](../assets/img/profile)
-- home visuals: [`assets/img/home/`](../assets/img/home)
-- favicon cache version is controlled by `favicon_version` in [`_config.yml`](../_config.yml)
+Other checks that include news pages:
 
-## 7. Operational Workflow
+- [`scripts/validate-structured-data.js`](../scripts/validate-structured-data.js)
+- [`scripts/validate-visual-smoke.js`](../scripts/validate-visual-smoke.js)
+- [`scripts/visual-regression.js`](../scripts/visual-regression.js)
+- [`scripts/accessibility-check.js`](../scripts/accessibility-check.js)
 
-Typical content updates:
+The visual, schema, and accessibility checks derive the news article target dynamically from the latest post in [`_posts/`](../_posts), so they stay aligned with the repository source.
 
-- add/update post in `_posts`
-- update timeline/featured projects in `_data`
-- run local verification:
+## Local Workflow
+
+Recommended validation flow:
 
 ```bash
 npm ci
 npx playwright install chromium
 npm run lint:js
-bundle exec jekyll build
 npm run validate:readme
+npm run test:news
+bundle exec jekyll build
 npm run validate:generated-artifacts
+npm run validate:news
 npm run validate:links
 npm run validate:external-links
 npm run validate:structure
@@ -216,8 +217,3 @@ npm run test:a11y
 npm run audit:node
 bash scripts/audit-ruby.sh
 ```
-
-Deployment:
-
-- merge PR to `main`
-- GitHub Actions builds and deploys Pages

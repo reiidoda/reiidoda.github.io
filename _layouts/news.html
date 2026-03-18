@@ -1,27 +1,153 @@
 ---
 layout: default
 ---
-<section class="section" aria-labelledby="news-title">
+{% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+{% assign latest_post = sorted_posts.first %}
+
+<section class="section page-intro" aria-labelledby="news-page-title" data-reveal>
   <div class="shell">
-    <p class="section-label">Notes</p>
-    <h1 id="news-title">{{ page.title }}</h1>
-    {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+    <p class="section-label">News</p>
+    <h1 id="news-page-title">News</h1>
+    <p class="page-intro-copy">
+      Writing on engineering work, implementation decisions, and system design across document AI, optimization, and edge vision.
+    </p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="news-list-title" data-reveal>
+  <div class="shell news-listing" data-news-root>
+    <div class="section-intro">
+      <p class="section-label">Publication</p>
+      <h2 id="news-list-title">Latest and Archive</h2>
+    </div>
 
     {% if sorted_posts.size > 0 %}
-      <div class="notes-grid" style="margin-top: 2rem;">
-        {% for post in sorted_posts %}
-          <article class="note-card">
-            <p class="note-date">{{ post.date | date: "%B %-d, %Y" }}</p>
-            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-            {% if post.excerpt %}
-              <p>{{ post.excerpt | strip_html | strip }}</p>
-            {% endif %}
-            <a href="{{ post.url | relative_url }}">Read note ↗</a>
-          </article>
-        {% endfor %}
-      </div>
+      <section class="news-featured-section" aria-labelledby="news-featured-title">
+        <div class="news-section-heading">
+          <p class="section-label">Latest</p>
+          <h2 id="news-featured-title">Featured article</h2>
+        </div>
+        {% include news-card.html post=latest_post variant='featured' %}
+      </section>
+
+      <section class="news-tools" aria-label="News search and filters">
+        <div class="news-search-row">
+          <label class="visually-hidden" for="news-search-input">Search articles</label>
+          <input
+            id="news-search-input"
+            class="news-search-input"
+            type="search"
+            name="q"
+            placeholder="Search title, excerpt, content, or tags"
+            autocomplete="off"
+            data-news-search-input
+          >
+          <button type="button" class="button button-ghost" data-news-reset>Reset</button>
+        </div>
+
+        <div class="news-filter-row" aria-label="Tag filters">
+          <button type="button" class="news-filter-tag is-active" data-news-tag="all" aria-pressed="true">
+            All <span aria-hidden="true">({{ sorted_posts.size }})</span>
+          </button>
+          {% assign sorted_tags = site.tags | sort %}
+          {% for tag_entry in sorted_tags %}
+            {% assign tag_name = tag_entry[0] %}
+            {% assign tag_posts = tag_entry[1] %}
+            <button type="button" class="news-filter-tag" data-news-tag="{{ tag_name | slugify }}" aria-pressed="false">
+              {{ tag_name }} <span aria-hidden="true">({{ tag_posts.size }})</span>
+            </button>
+          {% endfor %}
+        </div>
+
+        <p class="news-results" data-news-results aria-live="polite">{{ sorted_posts.size }} articles</p>
+      </section>
+
+      <section class="news-list-section" aria-labelledby="news-list-section-title">
+        <div class="news-section-heading">
+          <p class="section-label">All articles</p>
+          <h2 id="news-list-section-title">Browse all posts</h2>
+        </div>
+
+        <div class="notes-grid">
+          {% for post in sorted_posts offset:1 %}
+            {% include news-card.html post=post %}
+          {% endfor %}
+        </div>
+
+        {% if sorted_posts.size == 1 %}
+          <p class="empty-note">More posts will appear here as they are published.</p>
+        {% endif %}
+
+        <p class="empty-note" data-news-empty aria-live="polite" hidden>No articles match the current search or tag filter.</p>
+      </section>
+
+      <section class="news-archive" aria-labelledby="news-archive-title">
+        <div class="news-section-heading">
+          <p class="section-label">Archive</p>
+          <h2 id="news-archive-title">By month</h2>
+        </div>
+
+        <ul class="news-archive-links">
+          {% assign seen_archive_tokens = '' %}
+          {% for post in sorted_posts %}
+            {% capture archive_token %}|{{ post.date | date: "%Y-%m" }}|{% endcapture %}
+            {% assign archive_month = post.date | date: "%Y-%m" %}
+            {% unless seen_archive_tokens contains archive_token %}
+              {% assign archive_count = 0 %}
+              {% for archive_post in sorted_posts %}
+                {% assign archive_post_month = archive_post.date | date: "%Y-%m" %}
+                {% if archive_post_month == archive_month %}
+                  {% assign archive_count = archive_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              <li>
+                <a href="#archive-{{ post.date | date: '%Y-%m' }}">{{ post.date | date: "%B %Y" }}</a>
+                <span>{{ archive_count }} post{% if archive_count != 1 %}s{% endif %}</span>
+              </li>
+              {% assign seen_archive_tokens = seen_archive_tokens | append: archive_token %}
+            {% endunless %}
+          {% endfor %}
+        </ul>
+
+        <div class="news-archive-groups">
+          {% assign rendered_archive_tokens = '' %}
+          {% for post in sorted_posts %}
+            {% capture archive_token %}|{{ post.date | date: "%Y-%m" }}|{% endcapture %}
+            {% assign archive_month = post.date | date: "%Y-%m" %}
+            {% unless rendered_archive_tokens contains archive_token %}
+              <section class="news-archive-group" id="archive-{{ post.date | date: '%Y-%m' }}">
+                <h3>{{ post.date | date: "%B %Y" }}</h3>
+                <ul class="news-archive-list">
+                  {% for archive_post in sorted_posts %}
+                    {% assign archive_post_month = archive_post.date | date: "%Y-%m" %}
+                    {% if archive_post_month == archive_month %}
+                      <li>
+                        <a href="{{ archive_post.url | relative_url }}">{{ archive_post.title }}</a>
+                        <span>{{ archive_post.date | date: "%b %-d" }}</span>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </section>
+              {% assign rendered_archive_tokens = rendered_archive_tokens | append: archive_token %}
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </section>
     {% else %}
-      <p class="empty-note" style="margin-top: 1rem;">No notes published yet.</p>
+      <p class="empty-note">No articles published yet.</p>
     {% endif %}
+  </div>
+</section>
+
+<section class="section section-split-art" aria-hidden="true" data-reveal>
+  <div class="shell">
+    <div class="split-art" data-split-art style="--split-image: url('{{ '/assets/img/portfolio/art/battlefield-heart.webp' | relative_url }}');">
+      <div class="split-art__slice" data-split-slice style="--slice-index: 0;"></div>
+      <div class="split-art__slice" data-split-slice style="--slice-index: 1;"></div>
+      <div class="split-art__slice" data-split-slice style="--slice-index: 2;"></div>
+      <div class="split-art__slice" data-split-slice style="--slice-index: 3;"></div>
+      <div class="split-art__slice" data-split-slice style="--slice-index: 4;"></div>
+    </div>
   </div>
 </section>

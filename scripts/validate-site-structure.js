@@ -113,6 +113,10 @@ function validateFooter(page) {
     return;
   }
 
+  if (isStandaloneRedirectDocument(content)) {
+    return;
+  }
+
   for (const marker of footerMarkers) {
     if (!content.includes(marker)) {
       failures.push(`${page.label}: missing footer marker "${marker}" in ${page.file}`);
@@ -153,4 +157,8 @@ function readPage(relativePath, label) {
 
 function isHtmlDocument(content) {
   return /<html[\s>]/i.test(content) || /<!doctype html>/i.test(content);
+}
+
+function isStandaloneRedirectDocument(content) {
+  return /<meta[^>]+http-equiv=["']refresh["']/i.test(content);
 }

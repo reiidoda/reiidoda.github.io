@@ -3,6 +3,8 @@ layout: project
 title: OpenRe Case Study - Multimodal Agent Benchmark and Safety Workbench
 description: Deep case study of OpenRe, an open-source workbench for benchmarking, tracing, optimizing, and safely operating multimodal agents.
 permalink: /projects/openre/
+sitemap: false
+noindex: true
 project_name: OpenRe
 project_subtitle: Benchmark-first, trace-first, and safety-first architecture for multimodal agent operations.
 project_summary: "OpenRe was built to move agent development from demo quality to engineering quality. The core architecture ties together benchmark datasets, trace capture, safety policies, and optimization loops so system changes can be measured and audited."

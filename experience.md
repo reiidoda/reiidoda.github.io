@@ -1,15 +1,16 @@
 ---
 title: Experience
-description: Degree and professional experience timeline for Rei Doda.
+description: Professional experience across AI systems, software engineering, and operational engineering.
 permalink: /experience/
 body_class: experience
 ---
 <section class="section page-intro" aria-labelledby="experience-page-title" data-reveal>
   <div class="shell">
     <p class="section-label">Experience</p>
-    <h1 id="experience-page-title">Degree and Work Experience</h1>
+    <h1 id="experience-page-title">Experience</h1>
     <p class="page-intro-copy">
-      Professional timeline across software engineering, AI systems, optimization platforms, and operational technology integration.
+      Professional experience across AI systems, software engineering, and operational engineering. The common thread is building
+      and running systems that need to work reliably in real settings.
     </p>
   </div>
 </section>
@@ -29,8 +30,8 @@ body_class: experience
 <section class="section" aria-labelledby="work-experience-title" data-reveal>
   <div class="shell">
     <div class="section-intro">
-      <p class="section-label">Work Experience</p>
-      <h2 id="work-experience-title">Professional Timeline</h2>
+      <p class="section-label">Experience</p>
+      <h2 id="work-experience-title">Professional Experience</h2>
     </div>
     <ol class="timeline" data-timeline-sequence>
       <li data-timeline-item style="--timeline-index: 0;">
@@ -52,9 +53,10 @@ body_class: experience
             <p>Jul 2023 – Jun 2025 · Durrës, Albania</p>
           </header>
           <ul>
-            <li>Led hotel engineering operations across BMS/EMS, HVAC, generators/UPS, and life-safety systems.</li>
-            <li>Integrated access-control, CCTV, alarm events, EV charging, and smart parking into centralized monitoring workflows.</li>
-            <li>Built integrations between HR processes and building systems for secure provisioning and audit-ready traceability.</li>
+            <li>Managed integrated systems including BMS/EMS, HVAC, power backup, life-safety, access control, CCTV, EV charging, and parking infrastructure.</li>
+            <li>Built centralized monitoring workflows to improve visibility across alarms, controls, and operational events.</li>
+            <li>Connected HR and facility systems to support secure access provisioning, auditability, and more reliable operational processes.</li>
+            <li>Worked in an environment where uptime, response speed, and coordination across multiple systems were critical.</li>
           </ul>
         </article>
       </li>
@@ -76,8 +78,9 @@ body_class: experience
             <p>Oct 2022 – Aug 2024 · Bari, Italy</p>
           </header>
           <ul>
-            <li>Built and shipped an AI-powered document-processing SaaS using Python and Django.</li>
-            <li>Implemented OCR pipelines, PyTorch/LLM classification, extraction, summarization, and RAG-assisted workflows.</li>
+            <li>Built the backend in Django and implemented document ingestion, OCR, classification, extraction, and review flows.</li>
+            <li>Combined OCR with LLM-assisted analysis and retrieval-based workflows for more accurate downstream processing.</li>
+            <li>Produced structured outputs designed to integrate with business systems rather than remain trapped in PDFs.</li>
           </ul>
         </article>
       </li>
@@ -99,8 +102,9 @@ body_class: experience
             <p>Nov 2021 – Sep 2022 · Bari, Italy</p>
           </header>
           <ul>
-            <li>Developed warehouse route optimization systems with C/C++ weighted-graph logic and gRPC integrations.</li>
-            <li>Implemented FEFO barcode workflows and PostgreSQL lot/expiry traceability with RTLS and Kafka events.</li>
+            <li>Implemented graph-based route optimization in C/C++ for constrained picking and traversal logic.</li>
+            <li>Integrated optimization services with warehouse workflows through gRPC and Kafka-based event handling.</li>
+            <li>Supported FEFO, barcode workflows, and inventory traceability backed by PostgreSQL and real operational data.</li>
           </ul>
         </article>
       </li>
@@ -111,8 +115,9 @@ body_class: experience
             <p>Sep 2020 – Oct 2021 · Bari, Italy</p>
           </header>
           <ul>
-            <li>Built edge visual-inspection and robotics rejection system using Python, OpenCV, Raspberry Pi, Arduino, and ESP8266.</li>
-            <li>Deployed continuous operations as a systemd service with trace logging and image archiving.</li>
+            <li>Used Python and OpenCV to perform visual inspection and threshold-based quality analysis at the edge.</li>
+            <li>Connected vision decisions to rejection hardware through Raspberry Pi, Arduino, and ESP8266-based control.</li>
+            <li>Deployed the system as a continuous service with trace logging and archived image evidence for inspection.</li>
           </ul>
         </article>
       </li>
@@ -123,7 +128,7 @@ body_class: experience
 <section class="section" aria-labelledby="education-title" data-reveal>
   <div class="shell">
     <div class="section-intro">
-      <p class="section-label">Degree</p>
+      <p class="section-label">Education</p>
       <h2 id="education-title">Education</h2>
     </div>
     <div class="education-list">

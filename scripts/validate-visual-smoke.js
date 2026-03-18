@@ -18,10 +18,10 @@ const pageChecks = [
     markers: [
       "hero--full",
       "hero-shell",
-      "id=\"toolkit\"",
-      "id=\"notes-overview\"",
-      "id=\"contact\"",
-      "id=\"cv-overview\"",
+      "id=\"selected-work-title\"",
+      "id=\"experience-preview-title\"",
+      "id=\"resume-overview-title\"",
+      "id=\"contact-title\"",
       "class=\"site-footer\"",
     ],
   },
@@ -30,7 +30,9 @@ const pageChecks = [
     file: path.join("news", "index.html"),
     markers: [
       "id=\"news-page-title\"",
-      "class=\"notes-grid\"",
+      "data-news-featured=\"true\"",
+      "data-news-search-input",
+      "class=\"news-archive\"",
       "class=\"site-footer\"",
     ],
   },
@@ -92,7 +94,9 @@ function validateNewsPostTemplate() {
   const relativePath = path.relative(siteRoot, postFile);
   const markers = [
     "class=\"news-post\"",
-    "news-post-content",
+    "news-meta-reading-time",
+    "class=\"news-summary\"",
+    "data-news-post-content",
     "class=\"post-nav\"",
   ];
 

@@ -6,11 +6,13 @@ const { chromium } = require("playwright");
 const { PNG } = require("pngjs");
 const pixelmatch = require("pixelmatch");
 
+const { collectNewsPosts } = require("./lib/news");
 const { startStaticServer } = require("./static-server");
 
 const siteRoot = path.resolve(process.argv[2] || "_site");
 const updateMode = process.argv.includes("--update");
 const maxDiffRatio = Number(process.env.VISUAL_MAX_DIFF_RATIO || "0.1");
+const latestNewsPost = collectNewsPosts(path.resolve(process.cwd(), "_posts"))[0] || null;
 
 const screenshotConfig = {
   width: 1366,
@@ -21,8 +23,11 @@ const pageTargets = [
   { id: "home", path: "/" },
   { id: "experience", path: "/experience/" },
   { id: "news-index", path: "/news/" },
-  { id: "news-post", path: "/news/2026/03/06/launching-news-system/" },
 ];
+
+if (latestNewsPost) {
+  pageTargets.push({ id: "news-post", path: latestNewsPost.url });
+}
 
 const visualRoot = path.resolve("tests", "visual");
 const baselineDir = path.join(visualRoot, "baseline");

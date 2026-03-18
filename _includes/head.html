@@ -14,3 +14,10 @@
 <meta name="apple-mobile-web-app-title" content="Rei Doda">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 <script defer src="{{ '/assets/js/main.js' | relative_url }}"></script>
+{% assign load_news_scripts = false %}
+{% if page.layout == 'news' or page.layout == 'post' or page.url == '/news/' or page.url contains '/news/' %}
+  {% assign load_news_scripts = true %}
+{% endif %}
+{% if load_news_scripts %}
+  <script defer src="{{ '/assets/js/news-filter.js' | relative_url }}"></script>
+{% endif %}

@@ -1,20 +1,18 @@
 ---
-title: CV
-description: Structured CV highlights and verified source links for Rei Doda.
-permalink: /cv/
+title: Resume
+description: Education, experience, and selected technical work.
+permalink: /resume/
 body_class: cv
 ---
 <section class="section page-intro" aria-labelledby="cv-page-title" data-reveal>
   <div class="shell">
-    <p class="section-label">CV</p>
-    <h1 id="cv-page-title">Curriculum Vitae</h1>
+    <p class="section-label">Resume</p>
+    <h1 id="cv-page-title">Resume</h1>
     <p class="page-intro-copy">
-      Structured summary sourced from the canonical CV repository and synchronized PDF.
+      Education, experience, and selected technical work in a concise engineering resume.
     </p>
     <div class="cv-actions">
       <a class="button button-primary" href="{{ '/assets/docs/rei-doda-cv.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">Open PDF</a>
-      <a class="button button-ghost" href="https://reiidoda.github.io/resume/" target="_blank" rel="noopener noreferrer">Live CV Site ↗</a>
-      <a class="button button-ghost" href="https://github.com/reiidoda/resume" target="_blank" rel="noopener noreferrer">CV Source Repo ↗</a>
     </div>
   </div>
 </section>
@@ -35,14 +33,14 @@ body_class: cv
 
 <section class="section cv-page" aria-labelledby="cv-details-title" data-reveal>
   <div class="shell">
-    <h2 id="cv-details-title" class="visually-hidden">CV details</h2>
+    <h2 id="cv-details-title" class="visually-hidden">Resume details</h2>
 
     <div class="cv-grid">
       <article class="cv-block">
         <h2>Professional Summary</h2>
         <p>
-          Software engineer focused on real-world systems across AI, optimization, and automation,
-          including document-processing SaaS, warehouse routing platforms, and edge computer-vision robotics.
+          Software engineer working on practical AI systems and applied research inspired by neuroscience.
+          I focus on building useful products, reliable pipelines, and systems that perform well under real operational constraints.
         </p>
       </article>
 
@@ -65,22 +63,22 @@ body_class: cv
           <li>
             <h3>Mövenpick Hotel (Accor Group) · Chief Engineer</h3>
             <p class="cv-meta">Jul 2023 – Jun 2025 · Durrës, Albania</p>
-            <p>Led engineering operations and delivered smart-building integrations across BMS/EMS, HVAC, access control, CCTV, and safety systems.</p>
+            <p>Led operational engineering for a multi-system environment spanning controls, monitoring, access, energy, and safety infrastructure.</p>
           </li>
           <li>
             <h3>Upnova Group S.r.l · Lead Software Engineer</h3>
             <p class="cv-meta">Oct 2022 – Aug 2024 · Bari, Italy</p>
-            <p>Built and shipped an AI document-processing SaaS with OCR, classification, extraction, summarization, and retrieval-assisted workflows.</p>
+            <p>Built an end-to-end document processing platform for ingestion, OCR, classification, extraction, review, and structured export.</p>
           </li>
           <li>
             <h3>Genesys Software S.r.l · Software Engineer</h3>
             <p class="cv-meta">Nov 2021 – Sep 2022 · Bari, Italy</p>
-            <p>Developed warehouse routing and picking systems using C/C++, gRPC, FEFO workflows, RTLS events, and PostgreSQL traceability.</p>
+            <p>Developed graph-based warehouse routing and picking systems connected to live workflows through gRPC, Kafka, and PostgreSQL traceability.</p>
           </li>
           <li>
             <h3>Vallefiorita · Software Engineer</h3>
             <p class="cv-meta">Sep 2020 – Oct 2021 · Bari, Italy</p>
-            <p>Implemented edge visual-inspection and rejection pipelines with Python, OpenCV, Raspberry Pi, and robotics control.</p>
+            <p>Built a real-time edge vision pipeline for automated quality control and rejection with Python, OpenCV, and connected hardware.</p>
           </li>
         </ol>
       </article>

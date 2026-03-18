@@ -3,6 +3,8 @@ layout: project
 title: thinking_in_code Case Study - PDF to Podcast Pipeline with Citations
 description: Deep case study of thinking_in_code, a FastAPI and worker-based pipeline that transforms research PDFs into cited scripts and optional audio.
 permalink: /projects/thinking-in-code/
+sitemap: false
+noindex: true
 project_name: thinking_in_code
 project_subtitle: Local-first pipeline for turning research PDFs into citation-aware podcast scripts and audio artifacts.
 project_summary: "thinking_in_code was built to eliminate the manual path from research paper to publishable audio. The design focuses on job reliability, citation traceability, and controllable generation quality across script and TTS stages."

@@ -3,6 +3,8 @@ layout: project
 title: InvesteRei Case Study - AI Investing Platform with Human Approval
 description: Deep case study of InvesteRei, a microservice AI investing platform with explicit approve or decline control before trade execution.
 permalink: /projects/investerei/
+sitemap: false
+noindex: true
 project_name: InvesteRei
 project_subtitle: AI-assisted portfolio automation platform with explicit human approval and enterprise-style brokerage workflows.
 project_summary: "InvesteRei combines algorithmic decision support with a strict human-approval execution model. The architecture separates proposal intelligence from execution rails so automation can scale without removing user control."
