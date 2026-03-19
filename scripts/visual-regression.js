@@ -6,11 +6,13 @@ const { chromium } = require("playwright");
 const { PNG } = require("pngjs");
 const pixelmatch = require("pixelmatch");
 
+const { collectNewsPosts } = require("./lib/news");
 const { startStaticServer } = require("./static-server");
 
 const siteRoot = path.resolve(process.argv[2] || "_site");
 const updateMode = process.argv.includes("--update");
 const maxDiffRatio = Number(process.env.VISUAL_MAX_DIFF_RATIO || "0.1");
+const latestNewsPost = collectNewsPosts(path.resolve(process.cwd(), "_posts"))[0] || null;
 
 const screenshotConfig = {
   width: 1366,
@@ -21,8 +23,11 @@ const pageTargets = [
   { id: "home", path: "/" },
   { id: "experience", path: "/experience/" },
   { id: "news-index", path: "/news/" },
-  { id: "news-post", path: "/news/2026/03/06/launching-news-system/" },
 ];
+
+if (latestNewsPost) {
+  pageTargets.push({ id: "news-post", path: latestNewsPost.url });
+}
 
 const visualRoot = path.resolve("tests", "visual");
 const baselineDir = path.join(visualRoot, "baseline");
@@ -82,8 +87,10 @@ async function main() {
         ".hero-name-cursor {",
         "  display: none !important;",
         "}",
+        target.id === "news-index" ? ".section-split-art, [data-split-art] { display: none !important; }" : "",
       ].join("\n"),
     });
+    await waitForStableRender(page);
     await page.screenshot({ path: currentFile, fullPage: false });
 
     if (updateMode || !fs.existsSync(baselineFile)) {
@@ -151,4 +158,89 @@ function comparePngFiles(expectedFile, actualFile, diffFile) {
 
 function ensureDir(dirPath) {
   fs.mkdirSync(dirPath, { recursive: true });
+}
+
+async function waitForStableRender(page) {
+  await page.evaluate(async () => {
+    const imageElements = Array.from(document.images);
+
+    for (const image of imageElements) {
+      image.loading = "eager";
+      image.decoding = "sync";
+    }
+
+    if (document.fonts && typeof document.fonts.ready?.then === "function") {
+      try {
+        await document.fonts.ready;
+      } catch {
+        // Ignore font-loading failures to avoid blocking capture.
+      }
+    }
+
+    const urls = new Set();
+
+    for (const image of imageElements) {
+      if (image.currentSrc) {
+        urls.add(image.currentSrc);
+      } else if (image.src) {
+        urls.add(image.src);
+      }
+    }
+
+    for (const splitArt of Array.from(document.querySelectorAll("[data-split-art]"))) {
+      const splitImageVar =
+        splitArt.style.getPropertyValue("--split-image") || getComputedStyle(splitArt).getPropertyValue("--split-image");
+      const match = splitImageVar.match(/url\((['"]?)(.*?)\1\)/);
+      if (match && match[2]) {
+        const absoluteUrl = new URL(match[2], window.location.href).href;
+        urls.add(absoluteUrl);
+      }
+    }
+
+    await Promise.all(
+      Array.from(urls).map(
+        (url) =>
+          new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+            img.src = url;
+            if (img.complete) {
+              resolve();
+            }
+          })
+      )
+    );
+
+    await Promise.all(
+      imageElements.map(
+        (image) =>
+          new Promise((resolve) => {
+            const settle = () => {
+              if (typeof image.decode === "function") {
+                image.decode().catch(() => {}).finally(resolve);
+                return;
+              }
+              resolve();
+            };
+
+            if (image.complete && image.naturalWidth > 0) {
+              settle();
+              return;
+            }
+
+            image.addEventListener("load", settle, { once: true });
+            image.addEventListener("error", () => resolve(), { once: true });
+
+            if (image.currentSrc) {
+              image.src = image.currentSrc;
+            } else if (image.src) {
+              image.src = image.src;
+            }
+          })
+      )
+    );
+
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
 }

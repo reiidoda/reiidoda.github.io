@@ -1,0 +1,6 @@
+{% assign news_word_count = include.content | strip_html | number_of_words %}
+{% assign news_reading_minutes = news_word_count | plus: 219 | divided_by: 220 %}
+{% if news_reading_minutes < 1 %}
+  {% assign news_reading_minutes = 1 %}
+{% endif %}
+<span class="news-meta-reading-time">{{ news_reading_minutes }} min read</span>

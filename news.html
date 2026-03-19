@@ -1,50 +1,7 @@
 ---
+layout: news
 title: News
-description: Writing and engineering notes from Rei Doda.
+description: Engineering articles and notes on AI systems, optimization, and edge computer vision.
 permalink: /news/
 body_class: news
 ---
-<section class="section page-intro" aria-labelledby="news-page-title" data-reveal>
-  <div class="shell">
-    <p class="section-label">News</p>
-    <h1 id="news-page-title">Personal Blog</h1>
-    <p class="page-intro-copy">
-      Personal posts on engineering, AI systems, and technical decisions from ongoing work and research.
-    </p>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="news-list-title" data-reveal>
-  <div class="shell">
-    <h2 id="news-list-title" class="visually-hidden">News list</h2>
-    {% assign all_posts = site.posts | sort: 'date' | reverse %}
-    {% if all_posts.size > 0 %}
-      <div class="notes-grid">
-        {% for post in all_posts %}
-          <article class="note-card">
-            <p class="note-date">{{ post.date | date: "%B %-d, %Y" }}</p>
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-            {% if post.excerpt %}
-              <p>{{ post.excerpt | strip_html | strip }}</p>
-            {% endif %}
-            <a href="{{ post.url | relative_url }}">Read note ↗</a>
-          </article>
-        {% endfor %}
-      </div>
-    {% else %}
-      <p class="empty-note">No notes published yet.</p>
-    {% endif %}
-  </div>
-</section>
-
-<section class="section section-split-art" aria-hidden="true" data-reveal>
-  <div class="shell">
-    <div class="split-art" data-split-art style="--split-image: url('{{ '/assets/img/portfolio/art/battlefield-heart.webp' | relative_url }}');">
-      <div class="split-art__slice" data-split-slice style="--slice-index: 0;"></div>
-      <div class="split-art__slice" data-split-slice style="--slice-index: 1;"></div>
-      <div class="split-art__slice" data-split-slice style="--slice-index: 2;"></div>
-      <div class="split-art__slice" data-split-slice style="--slice-index: 3;"></div>
-      <div class="split-art__slice" data-split-slice style="--slice-index: 4;"></div>
-    </div>
-  </div>
-</section>

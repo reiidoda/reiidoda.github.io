@@ -1,100 +1,18 @@
-- id: examen
-  title: "examen"
-  period: "2024 - 2025"
-  summary: "Examen is a platform for structured daily examination of conscience and personal reflection."
+- id: ai-document-processing-saas
+  title: "AI OCR and Document Processing SaaS"
+  period: "2022 - 2024"
+  summary: "End-to-end platform for document ingestion, extraction, review, and structured categorization with OCR plus LLM-assisted analysis."
   impact:
-    - "Shipped a complete full-stack product across backend, API, and frontend."
-    - "Standardized daily reflection flows into a reusable, maintainable domain model."
-    - "Reduced manual journaling friction with guided, consistent interaction patterns."
+    - "Automated high-volume document processing from ingestion to classification."
+    - "Combined OCR pipelines with LLM-assisted review to reduce manual effort."
+    - "Delivered structured outputs suitable for downstream business systems."
   stack:
-    - Java
-    - Spring Boot
-    - Node JS
-    - Angular
-    - TypeScript
-  detail_url: "/projects/examen/"
-  github: "https://github.com/reiidoda/examen"
-
-- id: thinking-in-code
-  title: "thinking_in_code"
-  period: "2025"
-  summary: "Turn research PDFs into cited, listener-ready podcast scripts and optional audio."
-  impact:
-    - "Automated research-to-content transformation from raw PDFs to structured outputs."
-    - "Improved traceability by preserving citations through script generation."
-    - "Enabled faster publishing workflows with optional audio generation."
-  stack:
-    - Python
-    - FastAPI
-    - Redis
-    - Pydantic
-    - Docker
-  detail_url: "/projects/thinking-in-code/"
-  github: "https://github.com/reiidoda/thinking_in_code"
-
-- id: occamo
-  title: "OccamO"
-  period: "2025 - Present"
-  summary: "OccamO is a performance regression guard that analyzes code complexity on PRs, compares against the base branch, and reports only what got worse, with GitHub-native comments, SARIF, and policy gating."
-  impact:
-    - "Shifted performance risk detection to pull requests before merge."
-    - "Integrated SARIF + PR comments for actionable developer feedback."
-    - "Enabled quality policy enforcement through CI gating."
-  stack:
-    - Python
-    - TypeScript
-    - Docker
-  detail_url: "/projects/occamo/"
-  github: "https://github.com/reiidoda/OccamO"
-
-- id: investeren
-  title: "InvesteRei"
-  period: "2026 - Present"
-  summary: "AI-powered investing autopilot that builds and manages portfolios, with explicit Approve/Decline before any trade executes."
-  impact:
-    - "Implemented a human-in-the-loop decision model for safer automated investing workflows."
-    - "Designed a multi-service architecture for risk, simulation, and execution flows."
-    - "Integrated web and mobile clients for end-to-end portfolio operations."
-  stack:
-    - Java
-    - Spring Boot
-    - Angular
-    - Flutter
-    - Redis
+    - Django
+    - OCR
+    - LLMs
+    - RAG
     - PostgreSQL
-  detail_url: "/projects/investerei/"
-  github: "https://github.com/reiidoda/InvesteRei"
-
-- id: openre
-  title: "OpenRe"
-  period: "2026 - Present"
-  summary: "Open-source workbench for benchmarking, tracing, optimizing, and safely operating multimodal agents with human approval."
-  impact:
-    - "Created a benchmark-first workflow to compare agent configurations consistently."
-    - "Added trace and safety layers to make agent behavior auditable."
-    - "Enabled repeatable evaluation and optimization loops for agent systems."
-  stack:
-    - Python
-    - OpenAI Adapters
-    - SQLite
-    - PyYAML
-  detail_url: "/projects/openre/"
-  github: "https://github.com/reiidoda/OpenRe"
-
-- id: edge-vision-robotic-qc
-  title: "Edge Computer Vision and Robotics QC"
-  period: "2020 - 2021"
-  summary: "Real-time quality analysis and automated rejection pipeline combining computer vision thresholds, robotics control, and traceability logging."
-  impact:
-    - "Automated quality control decisions at the edge in near real-time."
-    - "Connected vision scoring directly with actuator-level rejection workflows."
-    - "Improved traceability for production-line quality incidents."
-  stack:
-    - OpenCV
-    - Edge Computing
-    - Robotics
-    - GPIO
-  detail_url: "/projects/edge-computer-vision-robotics-qc/"
+  detail_url: "/projects/ai-ocr-document-processing-saas/"
 
 - id: warehouse-route-optimization-platform
   title: "Warehouse Route Optimization Platform"
@@ -111,18 +29,17 @@
     - Kafka
   detail_url: "/projects/warehouse-route-optimization-platform/"
 
-- id: ai-document-processing-saas
-  title: "AI OCR and Document Processing SaaS"
-  period: "2022 - 2024"
-  summary: "End-to-end platform for document ingestion, extraction, review, and structured categorization with OCR plus LLM-assisted analysis."
+- id: edge-vision-robotic-qc
+  title: "Edge Computer Vision and Robotics QC"
+  period: "2020 - 2021"
+  summary: "Real-time quality analysis and automated rejection pipeline combining computer vision thresholds, robotics control, and traceability logging."
   impact:
-    - "Automated high-volume document processing from ingestion to classification."
-    - "Combined OCR pipelines with LLM-assisted review to reduce manual effort."
-    - "Delivered structured outputs suitable for downstream business systems."
+    - "Automated quality control decisions at the edge in near real-time."
+    - "Connected vision scoring directly with actuator-level rejection workflows."
+    - "Improved traceability for production-line quality incidents."
   stack:
-    - Django
-    - OCR
-    - LLMs
-    - RAG
-    - PostgreSQL
-  detail_url: "/projects/ai-ocr-document-processing-saas/"
+    - OpenCV
+    - Edge Computing
+    - Robotics
+    - GPIO
+  detail_url: "/projects/edge-computer-vision-robotics-qc/"

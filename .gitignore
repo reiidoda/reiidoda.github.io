@@ -5,6 +5,7 @@ _site/
 .bundle/
 vendor/bundle/
 .DS_Store
+.idea/
 node_modules/
 tests/visual/current/
 tests/visual/diff/
