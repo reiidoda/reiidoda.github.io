@@ -9,3 +9,8 @@ vendor/bundle/
 node_modules/
 tests/visual/current/
 tests/visual/diff/
+
+# IDE project settings
+.idea/
+*.iml
+.vscode/
