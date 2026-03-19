@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="primitives">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/vendor/bundle/ruby/2.6.0/gems/http_parser.rb-0.8.1/ext/ruby_http_parser/vendor/http-parser-java/ext/primitives.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

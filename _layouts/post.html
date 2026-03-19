@@ -1,17 +1,46 @@
 ---
 layout: default
 ---
+{% assign summary_text = page.introduction | default: page.excerpt | strip_html | strip %}
+{% assign related_count = 0 %}
+{% if page.tags and page.tags.size > 0 %}
+  {% for candidate in site.posts %}
+    {% if candidate.url != page.url and related_count < 3 %}
+      {% assign is_related = false %}
+      {% for candidate_tag in candidate.tags %}
+        {% if page.tags contains candidate_tag %}
+          {% assign is_related = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if is_related %}
+        {% assign related_count = related_count | plus: 1 %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
 <section class="section" aria-labelledby="post-title">
   <div class="shell post-shell">
-    <p class="section-label">Note</p>
+    <p class="section-label">Article</p>
     <h1 id="post-title">{{ page.title }}</h1>
-    <p class="post-meta">
+    <p class="post-meta news-post-meta">
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <span aria-hidden="true">·</span>
+      {% include news-reading-time.html content=content %}
       {% if page.tags and page.tags.size > 0 %}
-        <span>·</span>
-        <span>{{ page.tags | join: " · " }}</span>
+        <span aria-hidden="true">·</span>
+        <span>{{ page.tags.size }} tag{% if page.tags.size != 1 %}s{% endif %}</span>
       {% endif %}
     </p>
+
+    {% if page.tags and page.tags.size > 0 %}
+      <ul class="tag-list" aria-label="Article tags">
+        {% for tag in page.tags %}
+          <li class="tag-item">{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
 
     <article class="news-post">
       {% if page.cover %}
@@ -25,12 +54,43 @@ layout: default
         </figure>
       {% endif %}
 
-      <section class="news-post-content prose">
+      {% if summary_text %}
+        <aside class="news-summary" aria-labelledby="news-summary-title">
+          <p class="news-summary-label" id="news-summary-title">Summary</p>
+          <p>{{ summary_text }}</p>
+        </aside>
+      {% endif %}
+
+      <section class="news-post-content prose" data-news-post-content>
         {{ content }}
       </section>
 
+      {% if related_count > 0 %}
+        <section class="news-related" aria-labelledby="related-posts-title">
+          <h2 id="related-posts-title">Related posts</h2>
+          <div class="notes-grid">
+            {% assign rendered_related = 0 %}
+            {% for candidate in site.posts %}
+              {% if candidate.url != page.url and rendered_related < 3 %}
+                {% assign is_related = false %}
+                {% for candidate_tag in candidate.tags %}
+                  {% if page.tags contains candidate_tag %}
+                    {% assign is_related = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+                {% if is_related %}
+                  {% include news-card.html post=candidate %}
+                  {% assign rendered_related = rendered_related | plus: 1 %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
+
       <nav class="post-nav" aria-label="Post navigation">
-        <a href="{{ '/news/' | relative_url }}">All notes</a>
+        <a href="{{ '/news/' | relative_url }}">All articles</a>
         {% if page.next.url %}
           <a href="{{ page.next.url | relative_url }}">Newer</a>
         {% endif %}

@@ -55,6 +55,9 @@ jobs:
       - name: Validate README image references
         run: npm run validate:readme
 
+      - name: Test news validation fixtures
+        run: npm run test:news
+
       - name: Build Jekyll site
         run: bundle exec jekyll build
 
@@ -67,6 +70,9 @@ jobs:
 
       - name: Ensure internal repository files are excluded from generated site
         run: npm run validate:generated-artifacts
+
+      - name: Validate news publication output
+        run: npm run validate:news
 
       - name: Check internal links in generated site
         run: npm run validate:links

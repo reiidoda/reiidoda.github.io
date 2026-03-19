@@ -10,6 +10,8 @@ tags:
   - engineering
 excerpt: "Why this week’s AI news suggests the real engineering battleground is shifting from training to inference, latency, routing, and deployment economics."
 description: "An engineering perspective on why inference is becoming the core systems challenge in modern AI."
+cover: "/assets/img/portfolio/art/vision-simplicitas.webp"
+cover_alt: "Classical mural used as the cover image for the AI inference article"
 ---
 For the past two years, the focus in AI has been clear: train larger models on bigger clusters with more resources. The prestige was tied to frontier training runs, parameter counts, and benchmark successes.
 
