@@ -27,7 +27,8 @@ The design system and visual language are aligned with the main profile reposito
 ## Tech stack
 
 - Jekyll (GitHub Pages compatible)
-- `jekyll-seo-tag` + custom JSON-LD enhancements
+- `jekyll-feed`, `jekyll-seo-tag`, and `jekyll-sitemap`
+- custom JSON-LD enhancements
 - HTML + Liquid templates
 - CSS (component + page split)
 - Vanilla JavaScript animations/interactions

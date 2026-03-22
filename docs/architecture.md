@@ -66,7 +66,7 @@ Page-specific layouts:
 - [`experience.md`](../experience.md) -> `/experience/`
 - [`cv.md`](../cv.md) -> `/cv/`
 - [`feed.xml`](../feed.xml) -> `/feed.xml`
-- [`sitemap.xml`](../sitemap.xml) -> `/sitemap.xml`
+- `jekyll-sitemap` plugin -> `/sitemap.xml`
 - [`404.html`](../404.html) -> `/404.html`
 
 ## News System
@@ -118,7 +118,7 @@ Validation rules enforced by the news validator:
 3. [`_includes/news-card.html`](../_includes/news-card.html) renders both the featured article card and regular cards.
 4. [`_layouts/post.html`](../_layouts/post.html) renders the article page.
 5. [`_includes/news-reading-time.html`](../_includes/news-reading-time.html) computes reading time from article content.
-6. Jekyll feed and sitemap generation expose the same post URLs.
+6. Jekyll feed and `jekyll-sitemap` expose the same post URLs.
 
 ### News Index Behavior
 
