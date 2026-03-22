@@ -12,7 +12,7 @@ if (!fs.existsSync(siteRoot) || !fs.statSync(siteRoot).isDirectory()) {
 }
 
 const heroPage = {
-  label: "Bio page",
+  label: "Home page",
   file: "index.html",
   requiredMarkers: [
     "hero-shell",
@@ -25,7 +25,7 @@ const heroPage = {
 
 const faviconPages = [
   {
-    label: "Bio",
+    label: "Home",
     file: "index.html",
   },
   {

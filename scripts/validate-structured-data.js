@@ -21,6 +21,7 @@ const schemaChecks = [
     file: "index.html",
     requiredType: "WebSite",
     requiredFields: ["name", "url", "description", "inLanguage"],
+    maxCount: 1,
   },
   {
     label: "Home page ProfilePage schema",
@@ -39,6 +40,7 @@ const schemaChecks = [
     file: path.join("news", "index.html"),
     requiredType: "WebSite",
     requiredFields: ["name", "url", "description", "inLanguage"],
+    maxCount: 1,
   },
   {
     label: "News index breadcrumbs schema",
@@ -51,6 +53,7 @@ const schemaChecks = [
     file: path.join("experience", "index.html"),
     requiredType: "WebSite",
     requiredFields: ["name", "url", "description", "inLanguage"],
+    maxCount: 1,
   },
   {
     label: "Experience breadcrumbs schema",
@@ -133,6 +136,12 @@ function validateSchema(check) {
   if (matchingSchemas.length === 0) {
     failures.push(`${check.label}: missing schema type "${check.requiredType}" in ${check.file}`);
     return;
+  }
+
+  if (check.maxCount !== undefined && matchingSchemas.length > check.maxCount) {
+    failures.push(
+      `${check.label}: expected at most ${check.maxCount} schema block(s) of type "${check.requiredType}" in ${check.file}, found ${matchingSchemas.length}`,
+    );
   }
 
   const matchingSchema =

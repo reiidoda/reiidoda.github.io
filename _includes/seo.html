@@ -20,10 +20,13 @@
 {% if same_as_links == nil %}
   {% assign same_as_links = "" | split: "" %}
 {% endif %}
+{% assign site_alternate_name = site.url | replace: 'https://', '' | replace: 'http://', '' | replace: '/', '' %}
 
 {% assign tab_title = page.tab_title | default: page.title | default: site.title %}
 <title>{{ tab_title | escape }}</title>
-{% seo title=false %}
+{% capture jekyll_seo_output %}{% seo title=false %}{% endcapture %}
+{% assign jekyll_seo_output_parts = jekyll_seo_output | split: '<script type="application/ld+json">' %}
+{{ jekyll_seo_output_parts[0] }}
 
 {% if page.noindex or page.sitemap == false %}
   <meta name="robots" content="noindex, nofollow">
@@ -45,7 +48,7 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": {{ site.title | jsonify }},
-      "alternateName": {{ site.title | jsonify }},
+      "alternateName": {{ site_alternate_name | jsonify }},
       "url": {{ '/' | absolute_url | jsonify }},
       "description": {{ site.description | jsonify }},
       "inLanguage": {{ site.lang | default: 'en' | jsonify }},

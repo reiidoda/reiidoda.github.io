@@ -6,7 +6,7 @@ This document describes the current implementation of `reiidoda.github.io` as it
 
 The site is a Jekyll-based static portfolio published on GitHub Pages. The user-facing routes are:
 
-- Bio: `/`
+- Home: `/`
 - Projects: `/projects/`
 - News: `/news/` and `/news/YYYY/MM/DD/slug/`
 - Experience: `/experience/`
@@ -50,7 +50,7 @@ Default page shell: [`_layouts/default.html`](../_layouts/default.html)
 
 Page-specific layouts:
 
-- Bio: [`index.html`](../index.html)
+- Home: [`index.html`](../index.html)
 - Projects index: [`projects.html`](../projects.html)
 - News index: [`news.html`](../news.html) with [`_layouts/news.html`](../_layouts/news.html)
 - News article: Jekyll posts with [`_layouts/post.html`](../_layouts/post.html)
@@ -156,7 +156,7 @@ It handles:
 
 The script is progressive enhancement. Without JavaScript, the full news index and all article pages still render.
 
-## Bio Page Structure
+## Home Page Structure
 
 [`index.html`](../index.html) currently renders:
 
@@ -180,7 +180,7 @@ The script is progressive enhancement. Without JavaScript, the full news index a
 [`_includes/seo.html`](../_includes/seo.html) adds:
 
 - `WebSite` schema for core pages
-- `ProfilePage` and `Person` on the bio page
+- `ProfilePage` and `Person` on the home page
 - `Article` schema on news posts
 - `BreadcrumbList` on news, projects, and experience routes
 - project schema on project detail pages

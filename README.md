@@ -18,7 +18,7 @@ The design system and visual language are aligned with the main profile reposito
 
 ## Main sections
 
-- `Bio` (`/`): neural hero intro, identity block, CTA actions, social links, terminal animation
+- `Home` (`/`): portfolio hero intro, identity block, CTA actions, social links, profile sections
 - `Projects` (`/projects/`): project case-study pages with architecture, stack, and engineering impact
 - `News` (`/news/`): featured latest article, search/filter controls, archive, article pages, RSS feed
 - `Experience` (`/experience/`): animated roadmap focused on education and jobs
