@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
-  <title id="title">AUTOTREND-LOGISTICA architecture diagram</title>
+  <title id="title">Enterprise logistics platform architecture diagram</title>
   <desc id="desc">Architecture graph showing request intake, logistics orchestration, vehicle tracking evidence, and enterprise support services.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -18,7 +18,7 @@
     <path d="M0 560 H1280"/>
   </g>
   <g font-family="SF Mono, JetBrains Mono, monospace" fill="#f5f5f5">
-    <text x="56" y="60" font-size="28" font-weight="700">AUTOTREND-LOGISTICA Architecture</text>
+    <text x="56" y="60" font-size="28" font-weight="700">Enterprise Logistics Platform</text>
     <text x="56" y="90" font-size="16" fill="#bdbdbd">Request Intake -&gt; Workflow Orchestration -&gt; Tracking Evidence -&gt; Notifications and Analytics</text>
   </g>
   <g stroke="#d6d6d6" fill="#101010" stroke-width="1.4" font-family="SF Mono, JetBrains Mono, monospace" font-size="15">

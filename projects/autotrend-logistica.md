@@ -1,11 +1,11 @@
 ---
 layout: project
-title: AUTOTREND-LOGISTICA Case Study - Enterprise Vehicle Operations and Fleet Visibility
+title: Enterprise Logistics Platform Case Study - Enterprise Vehicle Operations and Fleet Visibility
 description: Deep case study of an enterprise logistics platform for vehicle requests, workflow orchestration, localization, and internal fleet visibility.
 permalink: /projects/autotrend-logistica/
-project_name: AUTOTREND-LOGISTICA
+project_name: Enterprise Logistics Platform
 project_subtitle: Enterprise logistics platform for vehicle operations, workflow orchestration, and internal fleet visibility.
-project_summary: "AUTOTREND-LOGISTICA was designed for Autotrend to replace fragmented vehicle-movement processes with a structured logistics system across mobile and web. The platform coordinated requests, confirmations, planning, notifications, key-status tracking, and vehicle localization across internal departments under one operational model."
+project_summary: "This platform was designed for Autotrend to replace fragmented vehicle-movement processes with a structured logistics system across mobile and web. It coordinated requests, confirmations, planning, notifications, key-status tracking, and vehicle localization across internal departments under one operational model."
 project_period: 2026
 project_stack:
   - Java
@@ -25,10 +25,10 @@ project_keywords:
   - spring boot logistics microservices
   - ocr vehicle localization
 project_diagram: /assets/img/projects/architecture/autotrend-logistica-architecture-diagram.svg
-project_diagram_alt: AUTOTREND-LOGISTICA architecture diagram showing request intake, workflow orchestration, tracking evidence, and enterprise support services.
+project_diagram_alt: Enterprise logistics platform architecture diagram showing request intake, workflow orchestration, tracking evidence, and enterprise support services.
 project_diagram_caption: "Architecture graph: vehicle requests flow through identity, logistics orchestration, tracking evidence, notifications, and analytics services for controlled execution."
 image: /assets/img/projects/architecture/autotrend-logistica-architecture-diagram.svg
-image_alt: AUTOTREND-LOGISTICA enterprise logistics architecture diagram.
+image_alt: Enterprise logistics platform architecture diagram.
 ---
 ## Problem
 Autotrend needed a structured way to coordinate internal vehicle movement across logistics, commercial, workshop, administration, and IT without relying on fragmented manual processes.
