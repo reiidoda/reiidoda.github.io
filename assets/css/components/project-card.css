@@ -56,23 +56,6 @@
   letter-spacing: 0.03em;
 }
 
-.project-card-github {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: var(--radius-pill);
-  color: var(--text-soft);
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.16rem 0.45rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-}
-
-.project-card-github-static {
-  pointer-events: none;
-}
-
 .project-card-title {
   margin: var(--space-3) 0 0;
   font-size: clamp(1.12rem, 2.4vw, 1.32rem);

@@ -1,3 +1,19 @@
+- id: autotrend-logistica
+  title: "AUTOTREND-LOGISTICA"
+  period: "2026"
+  summary: "Enterprise logistics platform for vehicle operations, workflow orchestration, and internal fleet visibility across mobile and web."
+  impact:
+    - "Digitized internal vehicle movement workflows across logistics, commercial, workshop, administration, and IT."
+    - "Structured request, planning, notification, and execution states into a controlled operational lifecycle."
+    - "Extended fleet visibility with GPS, photo, and OCR-assisted vehicle localization evidence."
+  stack:
+    - Java
+    - Spring Boot
+    - API Gateway
+    - PostgreSQL
+    - React Native
+  detail_url: "/projects/autotrend-logistica/"
+
 - id: ai-document-processing-saas
   title: "AI OCR and Document Processing SaaS"
   period: "2022 - 2024"
