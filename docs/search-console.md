@@ -25,7 +25,7 @@ Use **URL Inspection** for each important URL, check that the page is indexable,
 - `https://reiidoda.github.io/projects/`
 - `https://reiidoda.github.io/news/`
 - `https://reiidoda.github.io/experience/`
-- `https://reiidoda.github.io/news/2026/03/06/launching-news-system/`
+- `https://reiidoda.github.io/news/2026/03/18/the-ai-bottleneck-has-moved/`
 - Each new article page after publishing
 
 ## 4) Ongoing publishing workflow
